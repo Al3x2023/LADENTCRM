@@ -2,10 +2,22 @@
 const electron = require("electron");
 const preload = require("@electron-toolkit/preload");
 const api = {
+  // Auth
+  login: (username, password) => electron.ipcRenderer.invoke("login", { username, password }),
+  getUsers: () => electron.ipcRenderer.invoke("get-users"),
+  addUser: (data) => electron.ipcRenderer.invoke("add-user", data),
+  updateUser: (data) => electron.ipcRenderer.invoke("update-user", data),
+  changePassword: (data) => electron.ipcRenderer.invoke("change-password", data),
+  getAuditLogs: (params) => electron.ipcRenderer.invoke("get-audit-logs", params || {}),
+  // Staff
+  getStaff: () => electron.ipcRenderer.invoke("get-staff"),
+  addStaff: (data) => electron.ipcRenderer.invoke("add-staff", data),
+  updateStaff: (data) => electron.ipcRenderer.invoke("update-staff", data),
   // Patients
   getPatients: () => electron.ipcRenderer.invoke("get-patients"),
   addPatient: (patient) => electron.ipcRenderer.invoke("add-patient", patient),
   updatePatient: (patient) => electron.ipcRenderer.invoke("update-patient", patient),
+  deletePatient: (id) => electron.ipcRenderer.invoke("delete-patient", id),
   uploadPatientImage: (patientId, category) => electron.ipcRenderer.invoke("upload-patient-image", { patientId, category }),
   getPatientImages: (patientId) => electron.ipcRenderer.invoke("get-patient-images", patientId),
   getImageUrl: (fileName) => electron.ipcRenderer.invoke("get-image-url", fileName),

@@ -76,6 +76,18 @@
       "createStartMenuShortcut": true,
       "shortcutName": "LIADENT CRM"
     },
+    "linux": {
+      "target": [
+        {
+          "target": "AppImage",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "artifactName": "${productName}_${version}_${arch}.${ext}",
+      "category": "Office"
+    },
     "files": [
       "out/**/*"
     ]

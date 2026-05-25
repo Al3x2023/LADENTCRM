@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '../ui/Card'
 import { Button } from '../ui/Button'
-import { Shield, Lock, User, AlertCircle } from 'lucide-react'
+import { Shield, Lock, User, CircleAlert as AlertCircle } from 'lucide-react'
 import { useToast } from '../../context/ToastContext'
 
 interface LoginProps {
@@ -21,13 +21,12 @@ export const Login = ({ onLogin }: LoginProps) => {
     setError('')
 
     try {
-      // En una app real, esto llamaría a window.api.login(username, password)
-      // Para efectos de esta demo, simulamos la validación con el usuario admin por defecto
-      if (username === 'admin' && password === 'admin123') {
-        showToast('Sesión iniciada correctamente', 'success')
-        onLogin({ id: 1, username: 'admin', name: 'Administrador', role: 'admin' })
+      const result = await window.api.login(username, password)
+      if (result.success && result.user) {
+        showToast('Sesion iniciada correctamente', 'success')
+        onLogin(result.user)
       } else {
-        setError('Credenciales incorrectas. Intenta con admin / admin123')
+        setError(result.error || 'Credenciales incorrectas')
       }
     } catch (err) {
       setError('Error al conectar con el servidor')

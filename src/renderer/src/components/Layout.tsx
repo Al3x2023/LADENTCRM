@@ -34,11 +34,11 @@ export const Layout = ({ children, activeModule, setActiveModule, onLogout, user
             <div className="h-8 w-px bg-slate-200 mx-2"></div>
             <div className="flex items-center gap-3 pl-2">
               <div className="text-right">
-                <p className="text-sm font-semibold text-slate-900 leading-none">{user.full_name}</p>
+                <p className="text-sm font-semibold text-slate-900 leading-none">{user.full_name || user.name}</p>
                 <p className="text-xs text-slate-500 mt-1 uppercase tracking-tighter">{user.role}</p>
               </div>
-              <div className="w-10 h-10 bg-indigo-100 rounded-full flex items-center justify-center text-indigo-600 font-bold">
-                {user.full_name[0]}
+              <div className="w-10 h-10 bg-teal-100 rounded-full flex items-center justify-center text-teal-600 font-bold">
+                {user.full_name?.[0] || user.name?.[0] || '?'}
               </div>
             </div>
           </div>

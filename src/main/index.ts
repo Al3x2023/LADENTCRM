@@ -6,6 +6,7 @@ import { setupPatientsHandlers } from './modules/patients'
 import { setupAppointmentsHandlers } from './modules/appointments'
 import { setupClinicalHandlers } from './modules/clinical'
 import { setupBillingHandlers } from './modules/billing'
+import { setupAuthHandlers } from './modules/auth'
 
 function createWindow(): void {
   const mainWindow = new BrowserWindow({
@@ -47,6 +48,7 @@ app.whenReady().then(() => {
   initDatabase()
 
   // Setup IPC Handlers
+  setupAuthHandlers()
   setupPatientsHandlers()
   setupAppointmentsHandlers()
   setupClinicalHandlers()

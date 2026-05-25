@@ -7263,6 +7263,17 @@ const Heart = createLucideIcon("Heart", [
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
+const Image = createLucideIcon("Image", [
+  ["rect", { width: "18", height: "18", x: "3", y: "3", rx: "2", ry: "2", key: "1m3agn" }],
+  ["circle", { cx: "9", cy: "9", r: "2", key: "af1f0g" }],
+  ["path", { d: "m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21", key: "1xmnt7" }]
+]);
+/**
+ * @license lucide-react v0.378.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
 const Info = createLucideIcon("Info", [
   ["circle", { cx: "12", cy: "12", r: "10", key: "1mglay" }],
   ["path", { d: "M12 16v-4", key: "1dtifu" }],
@@ -7279,6 +7290,16 @@ const LayoutDashboard = createLucideIcon("LayoutDashboard", [
   ["rect", { width: "7", height: "5", x: "14", y: "3", rx: "1", key: "16une8" }],
   ["rect", { width: "7", height: "9", x: "14", y: "12", rx: "1", key: "1hutg5" }],
   ["rect", { width: "7", height: "5", x: "3", y: "16", rx: "1", key: "ldoo1y" }]
+]);
+/**
+ * @license lucide-react v0.378.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const Lock = createLucideIcon("Lock", [
+  ["rect", { width: "18", height: "11", x: "3", y: "11", rx: "2", ry: "2", key: "1w4ew1" }],
+  ["path", { d: "M7 11V7a5 5 0 0 1 10 0v4", key: "fwvmzm" }]
 ]);
 /**
  * @license lucide-react v0.378.0 - ISC
@@ -7491,10 +7512,10 @@ const TrendingUp = createLucideIcon("TrendingUp", [
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const UserCheck = createLucideIcon("UserCheck", [
-  ["path", { d: "M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2", key: "1yyitq" }],
-  ["circle", { cx: "9", cy: "7", r: "4", key: "nufk8" }],
-  ["polyline", { points: "16 11 18 13 22 9", key: "1pwet4" }]
+const Upload = createLucideIcon("Upload", [
+  ["path", { d: "M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4", key: "ih7n3h" }],
+  ["polyline", { points: "17 8 12 3 7 8", key: "t8dd8p" }],
+  ["line", { x1: "12", x2: "12", y1: "3", y2: "15", key: "widbto" }]
 ]);
 /**
  * @license lucide-react v0.378.0 - ISC
@@ -10065,7 +10086,7 @@ const Sidebar = ({ activeModule, setActiveModule, onLogout }) => {
   return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "w-64 bg-slate-900 text-slate-300 flex flex-col h-screen border-r border-slate-800", children: [
     /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "p-6", children: [
       /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-3 mb-8", children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "w-10 h-10 bg-indigo-600 rounded-xl flex items-center justify-center", children: /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-white font-bold text-xl", children: "L" }) }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "w-10 h-10 bg-teal-600 rounded-xl flex items-center justify-center", children: /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-white font-bold text-xl", children: "L" }) }),
         /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
           /* @__PURE__ */ jsxRuntimeExports.jsx("h1", { className: "text-white font-bold text-lg leading-tight", children: "LIADENT" }),
           /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-slate-500 text-xs font-medium uppercase tracking-widest", children: "CRM Dental" })
@@ -10077,10 +10098,10 @@ const Sidebar = ({ activeModule, setActiveModule, onLogout }) => {
           onClick: () => setActiveModule(item.id),
           className: cn(
             "w-full flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium transition-all duration-200",
-            activeModule === item.id ? "bg-indigo-600/10 text-indigo-400 border border-indigo-600/20" : "hover:bg-slate-800 hover:text-white border border-transparent"
+            activeModule === item.id ? "bg-teal-600/10 text-teal-400 border border-teal-600/20" : "hover:bg-slate-800 hover:text-white border border-transparent"
           ),
           children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsx(item.icon, { className: cn("w-5 h-5", activeModule === item.id ? "text-indigo-400" : "text-slate-500") }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx(item.icon, { className: cn("w-5 h-5", activeModule === item.id ? "text-teal-400" : "text-slate-500") }),
             item.label
           ]
         },
@@ -10094,7 +10115,7 @@ const Sidebar = ({ activeModule, setActiveModule, onLogout }) => {
         className: "w-full flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium text-slate-400 hover:bg-slate-800 hover:text-white transition-all",
         children: [
           /* @__PURE__ */ jsxRuntimeExports.jsx(LogOut, { className: "w-5 h-5" }),
-          "Cerrar Sesión"
+          "Cerrar Sesion"
         ]
       }
     ) })
@@ -10124,10 +10145,10 @@ const Layout = ({ children, activeModule, setActiveModule, onLogout, user }) => 
           /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "h-8 w-px bg-slate-200 mx-2" }),
           /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-3 pl-2", children: [
             /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "text-right", children: [
-              /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-sm font-semibold text-slate-900 leading-none", children: user.full_name }),
+              /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-sm font-semibold text-slate-900 leading-none", children: user.full_name || user.name }),
               /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-xs text-slate-500 mt-1 uppercase tracking-tighter", children: user.role })
             ] }),
-            /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "w-10 h-10 bg-indigo-100 rounded-full flex items-center justify-center text-indigo-600 font-bold", children: user.full_name[0] })
+            /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "w-10 h-10 bg-teal-100 rounded-full flex items-center justify-center text-teal-600 font-bold", children: user.full_name?.[0] || user.name?.[0] || "?" })
           ] })
         ] })
       ] }),
@@ -10138,6 +10159,7 @@ const Layout = ({ children, activeModule, setActiveModule, onLogout, user }) => 
 const Card = ({ className, ...props }) => /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: cn("bg-white rounded-xl border border-slate-200 shadow-sm", className), ...props });
 const CardHeader = ({ className, ...props }) => /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: cn("flex flex-col space-y-1.5 p-6", className), ...props });
 const CardTitle = ({ className, ...props }) => /* @__PURE__ */ jsxRuntimeExports.jsx("h3", { className: cn("text-lg font-semibold leading-none tracking-tight text-slate-900", className), ...props });
+const CardDescription = ({ className, ...props }) => /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: cn("text-sm text-slate-500", className), ...props });
 const CardContent = ({ className, ...props }) => /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: cn("p-6 pt-0", className), ...props });
 function Badge({ className, variant = "default", ...props }) {
   const variants = {
@@ -10587,6 +10609,83 @@ const TableCell = React.forwardRef(
   ({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntimeExports.jsx("td", { ref, className: cn("p-4 align-middle [&:has([role=checkbox])]:pr-0", className), ...props })
 );
 TableCell.displayName = "TableCell";
+const Modal = ({
+  isOpen,
+  onClose,
+  title,
+  children,
+  footer,
+  size = "md"
+}) => {
+  if (!isOpen) return null;
+  const sizes = {
+    sm: "max-w-sm",
+    md: "max-w-md",
+    lg: "max-w-lg",
+    xl: "max-w-2xl"
+  };
+  return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "fixed inset-0 z-50 flex items-center justify-center p-4", children: [
+    /* @__PURE__ */ jsxRuntimeExports.jsx(
+      "div",
+      {
+        className: "absolute inset-0 bg-black/50 backdrop-blur-sm",
+        onClick: onClose
+      }
+    ),
+    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: `relative bg-white rounded-2xl shadow-2xl w-full ${sizes[size]} animate-in fade-in zoom-in duration-200`, children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center justify-between p-6 border-b border-slate-100", children: [
+        title && /* @__PURE__ */ jsxRuntimeExports.jsx("h3", { className: "text-lg font-bold text-slate-900", children: title }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx(
+          Button,
+          {
+            variant: "ghost",
+            size: "sm",
+            className: "h-8 w-8 p-0",
+            onClick: onClose,
+            children: /* @__PURE__ */ jsxRuntimeExports.jsx(X$1, { className: "w-4 h-4" })
+          }
+        )
+      ] }),
+      /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "p-6", children }),
+      footer && /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "flex items-center justify-end gap-3 p-6 border-t border-slate-100 bg-slate-50/50 rounded-b-2xl", children: footer })
+    ] })
+  ] });
+};
+const ConfirmModal = ({
+  isOpen,
+  onClose,
+  onConfirm,
+  title = "¿Estás seguro?",
+  message: message2 = "Esta acción no se puede deshacer.",
+  confirmText = "Confirmar",
+  cancelText = "Cancelar",
+  variant = "default"
+}) => {
+  return /* @__PURE__ */ jsxRuntimeExports.jsx(
+    Modal,
+    {
+      isOpen,
+      onClose,
+      title,
+      size: "sm",
+      footer: /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsx(Button, { variant: "ghost", onClick: onClose, children: cancelText }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx(
+          Button,
+          {
+            variant: variant === "danger" ? "danger" : "primary",
+            onClick: () => {
+              onConfirm();
+              onClose();
+            },
+            children: confirmText
+          }
+        )
+      ] }),
+      children: /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-slate-600", children: message2 })
+    }
+  );
+};
 function exportToCSV(data, filename, headers) {
   const keys = Object.keys(headers);
   const csvContent = [
@@ -10612,6 +10711,7 @@ function exportToCSV(data, filename, headers) {
 const PatientList = ({ onAddPatient, onEditPatient, onViewClinicalHistory }) => {
   const [patients, setPatients] = reactExports.useState([]);
   const [searchTerm, setSearchTerm] = reactExports.useState("");
+  const [deleteTarget, setDeleteTarget] = reactExports.useState(null);
   const { showToast } = useToast();
   reactExports.useEffect(() => {
     fetchPatients();
@@ -10629,17 +10729,26 @@ const PatientList = ({ onAddPatient, onEditPatient, onViewClinicalHistory }) => 
       "Pacientes_LIADENT",
       {
         name: "Nombre",
-        id_number: "DNI/Identificación",
+        id_number: "DNI/Identificacion",
         email: "Email",
-        phone: "Teléfono",
+        phone: "Telefono",
         birth_date: "Fecha de Nacimiento",
-        address: "Dirección",
-        blood_type: "Grupo Sanguíneo",
+        address: "Direccion",
+        blood_type: "Grupo Sanguineo",
         allergies: "Alergias",
         created_at: "Fecha de Registro"
       }
     );
-    showToast("Exportación de pacientes completada", "success");
+    showToast("Exportacion de pacientes completada", "success");
+  };
+  const handleDelete = async (patient) => {
+    try {
+      await window.api.deletePatient(patient.id);
+      showToast(`Paciente "${patient.name}" eliminado`, "success");
+      fetchPatients();
+    } catch (error) {
+      showToast("Error al eliminar el paciente", "error");
+    }
   };
   return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-6", children: [
     /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center justify-between", children: [
@@ -10649,7 +10758,7 @@ const PatientList = ({ onAddPatient, onEditPatient, onViewClinicalHistory }) => 
           Input,
           {
             className: "pl-10",
-            placeholder: "Buscar por nombre, DNI o teléfono...",
+            placeholder: "Buscar por nombre, DNI o telefono...",
             value: searchTerm,
             onChange: (e) => setSearchTerm(e.target.value)
           }
@@ -10670,13 +10779,13 @@ const PatientList = ({ onAddPatient, onEditPatient, onViewClinicalHistory }) => 
       /* @__PURE__ */ jsxRuntimeExports.jsx(TableHeader, { children: /* @__PURE__ */ jsxRuntimeExports.jsxs(TableRow, { children: [
         /* @__PURE__ */ jsxRuntimeExports.jsx(TableHead, { children: "Paciente" }),
         /* @__PURE__ */ jsxRuntimeExports.jsx(TableHead, { children: "Contacto" }),
-        /* @__PURE__ */ jsxRuntimeExports.jsx(TableHead, { children: "DNI / Identificación" }),
-        /* @__PURE__ */ jsxRuntimeExports.jsx(TableHead, { children: "Última Visita" }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx(TableHead, { children: "DNI / Identificacion" }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx(TableHead, { children: "Registro" }),
         /* @__PURE__ */ jsxRuntimeExports.jsx(TableHead, { className: "text-right", children: "Acciones" })
       ] }) }),
       /* @__PURE__ */ jsxRuntimeExports.jsx(TableBody, { children: filteredPatients.length > 0 ? filteredPatients.map((patient) => /* @__PURE__ */ jsxRuntimeExports.jsxs(TableRow, { className: "cursor-pointer hover:bg-slate-50", children: [
         /* @__PURE__ */ jsxRuntimeExports.jsx(TableCell, { children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-3", children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "w-10 h-10 bg-indigo-100 rounded-full flex items-center justify-center text-indigo-700 font-bold", children: patient.name[0] }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "w-10 h-10 bg-teal-100 rounded-full flex items-center justify-center text-teal-700 font-bold", children: patient.name[0] }),
           /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
             /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "font-semibold text-slate-900", children: patient.name }),
             /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "text-xs text-slate-500", children: [
@@ -10689,24 +10798,24 @@ const PatientList = ({ onAddPatient, onEditPatient, onViewClinicalHistory }) => 
           /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "text-xs flex items-center gap-1.5 text-slate-600", children: [
             /* @__PURE__ */ jsxRuntimeExports.jsx(Phone, { className: "w-3 h-3" }),
             " ",
-            patient.phone
+            patient.phone || "-"
           ] }),
           /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "text-xs flex items-center gap-1.5 text-slate-600", children: [
             /* @__PURE__ */ jsxRuntimeExports.jsx(Mail, { className: "w-3 h-3" }),
             " ",
-            patient.email
+            patient.email || "-"
           ] })
         ] }) }),
         /* @__PURE__ */ jsxRuntimeExports.jsx(TableCell, { children: /* @__PURE__ */ jsxRuntimeExports.jsx(Badge, { variant: "outline", children: patient.id_number || "No registrado" }) }),
         /* @__PURE__ */ jsxRuntimeExports.jsx(TableCell, { children: /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "text-sm text-slate-600", children: patient.created_at ? new Date(patient.created_at).toLocaleDateString() : "-" }) }),
-        /* @__PURE__ */ jsxRuntimeExports.jsx(TableCell, { className: "text-right", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex justify-end gap-2", children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsx(TableCell, { className: "text-right", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex justify-end gap-1", children: [
           /* @__PURE__ */ jsxRuntimeExports.jsx(
             Button,
             {
               size: "sm",
               variant: "ghost",
               onClick: () => onViewClinicalHistory(patient),
-              className: "text-indigo-600 hover:text-indigo-700 hover:bg-indigo-50",
+              className: "text-teal-600 hover:text-teal-700 hover:bg-teal-50",
               children: "HCE"
             }
           ),
@@ -10718,10 +10827,32 @@ const PatientList = ({ onAddPatient, onEditPatient, onViewClinicalHistory }) => 
               onClick: () => onEditPatient(patient),
               children: "Editar"
             }
+          ),
+          /* @__PURE__ */ jsxRuntimeExports.jsx(
+            Button,
+            {
+              size: "sm",
+              variant: "ghost",
+              className: "text-red-500 hover:text-red-600 hover:bg-red-50",
+              onClick: () => setDeleteTarget(patient),
+              children: /* @__PURE__ */ jsxRuntimeExports.jsx(Trash2, { className: "w-4 h-4" })
+            }
           )
         ] }) })
       ] }, patient.id)) : /* @__PURE__ */ jsxRuntimeExports.jsx(TableRow, { children: /* @__PURE__ */ jsxRuntimeExports.jsx(TableCell, { colSpan: 5, className: "h-32 text-center text-slate-500", children: "No se encontraron pacientes." }) }) })
-    ] }) })
+    ] }) }),
+    /* @__PURE__ */ jsxRuntimeExports.jsx(
+      ConfirmModal,
+      {
+        isOpen: !!deleteTarget,
+        onClose: () => setDeleteTarget(null),
+        onConfirm: () => handleDelete(deleteTarget),
+        title: "Eliminar Paciente",
+        message: `Estas seguro de eliminar a "${deleteTarget?.name}"? Se eliminaran todas las notas clinicas, recetas, odontogramas e imagenes asociadas. Esta accion no se puede deshacer.`,
+        confirmText: "Eliminar",
+        variant: "danger"
+      }
+    )
   ] });
 };
 const PatientForm = ({ patient, onSave, onCancel }) => {
@@ -22052,7 +22183,7 @@ function(t3) {
   var h2 = l2.getContext("2d");
   h2.fillStyle = "#fff", h2.fillRect(0, 0, l2.width, l2.height);
   var f2 = { ignoreMouse: true, ignoreAnimation: true, ignoreDimensions: true }, d2 = this;
-  return (i.canvg ? Promise.resolve(i.canvg) : __vitePreload(() => import("./index.es-of4o-H9N.js"), true ? [] : void 0, import.meta.url)).catch(function(t4) {
+  return (i.canvg ? Promise.resolve(i.canvg) : __vitePreload(() => import("./index.es-D6t7SlLv.js"), true ? [] : void 0, import.meta.url)).catch(function(t4) {
     return Promise.reject(new Error("Could not load canvg: " + t4));
   }).then(function(t4) {
     return t4.default ? t4.default : t4;
@@ -22838,9 +22969,13 @@ const ClinicalHistory = ({ patient, onBack }) => {
   const [activeTab, setActiveTab] = reactExports.useState("notes");
   const [notes, setNotes] = reactExports.useState([]);
   const [prescriptions, setPrescriptions] = reactExports.useState([]);
+  const [images, setImages] = reactExports.useState([]);
+  const [imageUrls, setImageUrls] = reactExports.useState({});
   const [isAddingNote, setIsAddingNote] = reactExports.useState(false);
   const [isAddingPrescription, setIsAddingPrescription] = reactExports.useState(false);
   const [newNote, setNewNote] = reactExports.useState({ content: "", vitals: { temp: "", bp: "", heartRate: "" } });
+  const [deleteImageTarget, setDeleteImageTarget] = reactExports.useState(null);
+  const [lightboxImage, setLightboxImage] = reactExports.useState(null);
   const { showToast } = useToast();
   reactExports.useEffect(() => {
     fetchData();
@@ -22851,6 +22986,14 @@ const ClinicalHistory = ({ patient, onBack }) => {
       setNotes(notesData);
       const prescriptionsData = await window.api.getPrescriptions(patient.id);
       setPrescriptions(prescriptionsData);
+      const imagesData = await window.api.getPatientImages(patient.id);
+      setImages(imagesData);
+      const urls = {};
+      for (const img of imagesData) {
+        const url = await window.api.getImageUrl(img.file_name);
+        if (url) urls[img.file_name] = url;
+      }
+      setImageUrls(urls);
     }
   };
   const handleSaveNote = async () => {
@@ -22864,7 +23007,7 @@ const ClinicalHistory = ({ patient, onBack }) => {
       setNewNote({ content: "", vitals: { temp: "", bp: "", heartRate: "" } });
       setIsAddingNote(false);
       fetchData();
-      showToast("Nota de evolución guardada correctamente", "success");
+      showToast("Nota de evolucion guardada correctamente", "success");
     } catch (error) {
       showToast("Error al guardar la nota", "error");
     }
@@ -22874,7 +23017,7 @@ const ClinicalHistory = ({ patient, onBack }) => {
       await window.api.addPrescription(prescription);
       setIsAddingPrescription(false);
       fetchData();
-      showToast("Receta médica generada correctamente", "success");
+      showToast("Receta medica generada correctamente", "success");
     } catch (error) {
       showToast("Error al generar la receta", "error");
     }
@@ -22883,84 +23026,85 @@ const ClinicalHistory = ({ patient, onBack }) => {
     showToast("Generando PDF de receta...", "info");
     setTimeout(() => {
       generatePrescriptionPDF(pres, patient);
-      showToast("PDF de receta generado y guardado en Descargas", "success");
+      showToast("PDF de receta generado", "success");
     }, 500);
   };
+  const handleUploadImage = async (category) => {
+    try {
+      const result = await window.api.uploadPatientImage(patient.id, category);
+      if (result.success) {
+        showToast("Imagen subida correctamente", "success");
+        fetchData();
+      }
+    } catch (error) {
+      showToast("Error al subir la imagen", "error");
+    }
+  };
+  const handleDeleteImage = async (img) => {
+    try {
+      await window.api.deletePatientImage(img.id, img.file_name);
+      showToast("Imagen eliminada", "success");
+      fetchData();
+    } catch (error) {
+      showToast("Error al eliminar la imagen", "error");
+    }
+  };
+  const tabs = [
+    { id: "notes", label: "Notas de Evolucion" },
+    { id: "odontogram", label: "Odontograma" },
+    { id: "prescriptions", label: "Recetas Medicas" },
+    { id: "images", label: "Imagenes" }
+  ];
   return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-8", children: [
     /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center justify-between", children: [
       /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-4", children: [
         /* @__PURE__ */ jsxRuntimeExports.jsx(Button, { variant: "ghost", size: "sm", onClick: onBack, children: "Volver" }),
         /* @__PURE__ */ jsxRuntimeExports.jsxs("h2", { className: "text-2xl font-bold text-slate-900", children: [
-          "Historial Clínico: ",
+          "Historial Clinico: ",
           patient.name
         ] })
       ] }),
       /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex gap-2", children: [
         activeTab === "notes" && /* @__PURE__ */ jsxRuntimeExports.jsxs(Button, { onClick: () => setIsAddingNote(true), className: "gap-2", children: [
           /* @__PURE__ */ jsxRuntimeExports.jsx(Plus, { className: "w-4 h-4" }),
-          " Nueva Evolución"
+          " Nueva Evolucion"
         ] }),
         activeTab === "prescriptions" && /* @__PURE__ */ jsxRuntimeExports.jsxs(Button, { onClick: () => setIsAddingPrescription(true), className: "gap-2", children: [
           /* @__PURE__ */ jsxRuntimeExports.jsx(Plus, { className: "w-4 h-4" }),
           " Nueva Receta"
+        ] }),
+        activeTab === "images" && /* @__PURE__ */ jsxRuntimeExports.jsxs(Button, { onClick: () => handleUploadImage("general"), className: "gap-2", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx(Upload, { className: "w-4 h-4" }),
+          " Subir Imagen"
         ] })
       ] })
     ] }),
-    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex gap-4 border-b border-slate-200", children: [
-      /* @__PURE__ */ jsxRuntimeExports.jsx(
-        "button",
-        {
-          onClick: () => {
-            setActiveTab("notes");
-            setIsAddingPrescription(false);
-          },
-          className: cn(
-            "pb-4 px-2 text-sm font-bold transition-all",
-            activeTab === "notes" ? "text-indigo-600 border-b-2 border-indigo-600" : "text-slate-400 hover:text-slate-600"
-          ),
-          children: "Notas de Evolución"
-        }
-      ),
-      /* @__PURE__ */ jsxRuntimeExports.jsx(
-        "button",
-        {
-          onClick: () => {
-            setActiveTab("odontogram");
-            setIsAddingPrescription(false);
-          },
-          className: cn(
-            "pb-4 px-2 text-sm font-bold transition-all",
-            activeTab === "odontogram" ? "text-indigo-600 border-b-2 border-indigo-600" : "text-slate-400 hover:text-slate-600"
-          ),
-          children: "Odontograma"
-        }
-      ),
-      /* @__PURE__ */ jsxRuntimeExports.jsx(
-        "button",
-        {
-          onClick: () => {
-            setActiveTab("prescriptions");
-            setIsAddingPrescription(false);
-          },
-          className: cn(
-            "pb-4 px-2 text-sm font-bold transition-all",
-            activeTab === "prescriptions" ? "text-indigo-600 border-b-2 border-indigo-600" : "text-slate-400 hover:text-slate-600"
-          ),
-          children: "Recetas Médicas"
-        }
-      )
-    ] }),
+    /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "flex gap-4 border-b border-slate-200", children: tabs.map((tab) => /* @__PURE__ */ jsxRuntimeExports.jsx(
+      "button",
+      {
+        onClick: () => {
+          setActiveTab(tab.id);
+          setIsAddingPrescription(false);
+        },
+        className: cn(
+          "pb-4 px-2 text-sm font-bold transition-all",
+          activeTab === tab.id ? "text-teal-600 border-b-2 border-teal-600" : "text-slate-400 hover:text-slate-600"
+        ),
+        children: tab.label
+      },
+      tab.id
+    )) }),
     /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "grid grid-cols-1 lg:grid-cols-3 gap-8", children: [
       /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "lg:col-span-2 space-y-6", children: [
         activeTab === "notes" && /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
-          isAddingNote && /* @__PURE__ */ jsxRuntimeExports.jsxs(Card, { className: "border-indigo-200 shadow-md", children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsx(CardHeader, { children: /* @__PURE__ */ jsxRuntimeExports.jsx(CardTitle, { className: "text-lg", children: "Nueva Nota de Evolución" }) }),
+          isAddingNote && /* @__PURE__ */ jsxRuntimeExports.jsxs(Card, { className: "border-teal-200 shadow-md", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx(CardHeader, { children: /* @__PURE__ */ jsxRuntimeExports.jsx(CardTitle, { className: "text-lg", children: "Nueva Nota de Evolucion" }) }),
             /* @__PURE__ */ jsxRuntimeExports.jsxs(CardContent, { className: "space-y-4", children: [
               /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "grid grid-cols-3 gap-4", children: [
                 /* @__PURE__ */ jsxRuntimeExports.jsx(
                   Input,
                   {
-                    label: "Temp. (°C)",
+                    label: "Temp. (C)",
                     placeholder: "36.5",
                     value: newNote.vitals.temp,
                     onChange: (e) => setNewNote({ ...newNote, vitals: { ...newNote.vitals, temp: e.target.value } })
@@ -22990,9 +23134,9 @@ const ClinicalHistory = ({ patient, onBack }) => {
                 /* @__PURE__ */ jsxRuntimeExports.jsx(
                   "textarea",
                   {
-                    className: "flex w-full rounded-md border border-slate-300 bg-white px-3 py-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500",
+                    className: "flex w-full rounded-md border border-slate-300 bg-white px-3 py-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500",
                     rows: 6,
-                    placeholder: "Describe los hallazgos clínicos, diagnóstico y tratamiento...",
+                    placeholder: "Describe los hallazgos clinicos, diagnostico y tratamiento...",
                     value: newNote.content,
                     onChange: (e) => setNewNote({ ...newNote, content: e.target.value })
                   }
@@ -23013,7 +23157,7 @@ const ClinicalHistory = ({ patient, onBack }) => {
                 /* @__PURE__ */ jsxRuntimeExports.jsx(Clock, { className: "w-4 h-4 text-slate-400" }),
                 /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-sm font-medium text-slate-500", children: new Date(note.created_at).toLocaleString() })
               ] }),
-              /* @__PURE__ */ jsxRuntimeExports.jsx(Badge, { variant: "secondary", children: "Evolución" })
+              /* @__PURE__ */ jsxRuntimeExports.jsx(Badge, { variant: "secondary", children: "Evolucion" })
             ] }) }),
             /* @__PURE__ */ jsxRuntimeExports.jsxs(CardContent, { className: "space-y-4", children: [
               note.vitals_signs && /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "flex gap-4 p-2 bg-slate-50 rounded-lg border border-slate-100 text-xs font-medium text-slate-600", children: (() => {
@@ -23021,9 +23165,9 @@ const ClinicalHistory = ({ patient, onBack }) => {
                   const vitals = JSON.parse(note.vitals_signs);
                   return /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
                     vitals.temp && /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { children: [
-                      "T°: ",
+                      "T: ",
                       vitals.temp,
-                      "°C"
+                      "C"
                     ] }),
                     vitals.bp && /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { children: [
                       "PA: ",
@@ -23040,7 +23184,7 @@ const ClinicalHistory = ({ patient, onBack }) => {
                 }
               })() }),
               /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-slate-700 whitespace-pre-wrap leading-relaxed", children: note.content }),
-              /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "pt-4 border-t border-slate-100 flex items-center justify-between", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "text-xs text-slate-400", children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "pt-4 border-t border-slate-100", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "text-xs text-slate-400", children: [
                 "Atendido por: ",
                 /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-slate-600 font-medium", children: note.doctor_name || "Dr. Alejandro" })
               ] }) })
@@ -23081,7 +23225,7 @@ const ClinicalHistory = ({ patient, onBack }) => {
             ] }),
             /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "pt-4 border-t border-slate-100 flex items-center justify-between", children: [
               /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "text-xs text-slate-400", children: [
-                "Médico: ",
+                "Medico: ",
                 /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-slate-600 font-medium", children: pres.doctor_name || "Dr. Alejandro" })
               ] }),
               /* @__PURE__ */ jsxRuntimeExports.jsxs(
@@ -23103,13 +23247,44 @@ const ClinicalHistory = ({ patient, onBack }) => {
           /* @__PURE__ */ jsxRuntimeExports.jsx(Pill, { className: "w-12 h-12 text-slate-200 mx-auto mb-4" }),
           /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-slate-500 font-medium", children: "No hay recetas emitidas para este paciente." }),
           /* @__PURE__ */ jsxRuntimeExports.jsx(Button, { variant: "link", onClick: () => setIsAddingPrescription(true), children: "Generar nueva receta" })
+        ] }) }) }),
+        activeTab === "images" && /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "space-y-6", children: /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "grid grid-cols-2 md:grid-cols-3 gap-4", children: images.length > 0 ? images.map((img) => /* @__PURE__ */ jsxRuntimeExports.jsxs(Card, { className: "overflow-hidden group", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "relative aspect-square bg-slate-100", children: [
+            imageUrls[img.file_name] ? /* @__PURE__ */ jsxRuntimeExports.jsx(
+              "img",
+              {
+                src: imageUrls[img.file_name],
+                alt: img.category || "Imagen del paciente",
+                className: "w-full h-full object-cover cursor-pointer",
+                onClick: () => setLightboxImage(imageUrls[img.file_name])
+              }
+            ) : /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "flex items-center justify-center h-full", children: /* @__PURE__ */ jsxRuntimeExports.jsx(Image, { className: "w-8 h-8 text-slate-300" }) }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+              Button,
+              {
+                size: "sm",
+                variant: "danger",
+                className: "h-7 w-7 p-0",
+                onClick: () => setDeleteImageTarget(img),
+                children: /* @__PURE__ */ jsxRuntimeExports.jsx(Trash2, { className: "w-3 h-3" })
+              }
+            ) })
+          ] }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx(CardContent, { className: "p-3", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center justify-between", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx(Badge, { variant: "outline", className: "text-[10px]", children: img.category || "General" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-[10px] text-slate-400", children: new Date(img.uploaded_at).toLocaleDateString() })
+          ] }) })
+        ] }, img.id)) : /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "col-span-3 text-center py-20 bg-white rounded-xl border border-dashed border-slate-200", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx(Image, { className: "w-12 h-12 text-slate-200 mx-auto mb-4" }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-slate-500 font-medium", children: "No hay imagenes para este paciente." }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx(Button, { variant: "link", onClick: () => handleUploadImage("general"), children: "Subir primera imagen" })
         ] }) }) })
       ] }),
       /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-6", children: [
         /* @__PURE__ */ jsxRuntimeExports.jsxs(Card, { children: [
           /* @__PURE__ */ jsxRuntimeExports.jsx(CardHeader, { children: /* @__PURE__ */ jsxRuntimeExports.jsxs(CardTitle, { className: "text-base flex items-center gap-2", children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsx(Activity, { className: "w-4 h-4 text-indigo-500" }),
-            " Resumen Clínico"
+            /* @__PURE__ */ jsxRuntimeExports.jsx(Activity, { className: "w-4 h-4 text-teal-500" }),
+            " Resumen Clinico"
           ] }) }),
           /* @__PURE__ */ jsxRuntimeExports.jsxs(CardContent, { className: "space-y-4", children: [
             /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-1", children: [
@@ -23117,7 +23292,7 @@ const ClinicalHistory = ({ patient, onBack }) => {
               /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-sm font-semibold text-red-600", children: patient.allergies || "Ninguna conocida" })
             ] }),
             /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-1", children: [
-              /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-xs text-slate-500 font-medium uppercase tracking-wider", children: "Grupo Sanguíneo" }),
+              /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-xs text-slate-500 font-medium uppercase tracking-wider", children: "Grupo Sanguineo" }),
               /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-sm font-semibold text-slate-900", children: patient.blood_type || "No registrado" })
             ] }),
             /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-1", children: [
@@ -23127,7 +23302,7 @@ const ClinicalHistory = ({ patient, onBack }) => {
           ] })
         ] }),
         /* @__PURE__ */ jsxRuntimeExports.jsxs(Card, { children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx(CardHeader, { children: /* @__PURE__ */ jsxRuntimeExports.jsx(CardTitle, { className: "text-base", children: "Estadísticas del Paciente" }) }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx(CardHeader, { children: /* @__PURE__ */ jsxRuntimeExports.jsx(CardTitle, { className: "text-base", children: "Estadisticas del Paciente" }) }),
           /* @__PURE__ */ jsxRuntimeExports.jsxs(CardContent, { className: "space-y-4", children: [
             /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex justify-between items-center text-sm", children: [
               /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-slate-500", children: "Total Consultas:" }),
@@ -23138,13 +23313,33 @@ const ClinicalHistory = ({ patient, onBack }) => {
               /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "font-bold text-slate-900", children: prescriptions.length })
             ] }),
             /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex justify-between items-center text-sm", children: [
-              /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-slate-500", children: "Última Visita:" }),
+              /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-slate-500", children: "Imagenes:" }),
+              /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "font-bold text-slate-900", children: images.length })
+            ] }),
+            /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex justify-between items-center text-sm", children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-slate-500", children: "Ultima Visita:" }),
               /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "font-bold text-slate-900", children: notes.length > 0 ? new Date(notes[0].created_at).toLocaleDateString() : "N/A" })
             ] })
           ] })
         ] })
       ] })
-    ] })
+    ] }),
+    lightboxImage && /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-8", onClick: () => setLightboxImage(null), children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsx("button", { className: "absolute top-6 right-6 text-white/70 hover:text-white", onClick: () => setLightboxImage(null), children: /* @__PURE__ */ jsxRuntimeExports.jsx(X$1, { className: "w-8 h-8" }) }),
+      /* @__PURE__ */ jsxRuntimeExports.jsx("img", { src: lightboxImage, alt: "Vista ampliada", className: "max-w-full max-h-full object-contain rounded-lg" })
+    ] }),
+    /* @__PURE__ */ jsxRuntimeExports.jsx(
+      ConfirmModal,
+      {
+        isOpen: !!deleteImageTarget,
+        onClose: () => setDeleteImageTarget(null),
+        onConfirm: () => handleDeleteImage(deleteImageTarget),
+        title: "Eliminar Imagen",
+        message: "Estas seguro de eliminar esta imagen? Esta accion no se puede deshacer.",
+        confirmText: "Eliminar",
+        variant: "danger"
+      }
+    )
   ] });
 };
 const Patients = ({ initialView = "list", initialPatient }) => {
@@ -26021,19 +26216,90 @@ const Billing = () => {
 };
 const StaffAdmin = () => {
   const [activeTab, setActiveTab] = reactExports.useState("staff");
-  const mockStaff = [
-    { id: 1, name: "Dr. Alejandro", role: "Administrador", specialty: "Odontología General", status: "active" },
-    { id: 2, name: "Dra. María García", role: "Doctor", specialty: "Ortodoncia", status: "active" },
-    { id: 3, name: "Laura Pérez", role: "Recepcionista", specialty: "-", status: "active" }
-  ];
+  const [users, setUsers] = reactExports.useState([]);
+  const [auditLogs, setAuditLogs] = reactExports.useState([]);
+  const [auditTotal, setAuditTotal] = reactExports.useState(0);
+  const [showAddUser, setShowAddUser] = reactExports.useState(false);
+  const [editingUser, setEditingUser] = reactExports.useState(null);
+  const [newUser, setNewUser] = reactExports.useState({ username: "", password: "", full_name: "", role: "receptionist", email: "" });
+  const { showToast } = useToast();
+  reactExports.useEffect(() => {
+    fetchData();
+  }, [activeTab]);
+  const fetchData = async () => {
+    if (activeTab === "staff") {
+      const data = await window.api.getUsers();
+      setUsers(data);
+    } else {
+      const result = await window.api.getAuditLogs({ limit: 100, offset: 0 });
+      setAuditLogs(result.logs);
+      setAuditTotal(result.total);
+    }
+  };
+  const handleAddUser = async () => {
+    if (!newUser.username || !newUser.password || !newUser.full_name) {
+      showToast("Todos los campos obligatorios son requeridos", "error");
+      return;
+    }
+    const result = await window.api.addUser(newUser);
+    if (result.success) {
+      showToast("Usuario creado correctamente", "success");
+      setShowAddUser(false);
+      setNewUser({ username: "", password: "", full_name: "", role: "receptionist", email: "" });
+      fetchData();
+    } else {
+      showToast(result.error || "Error al crear usuario", "error");
+    }
+  };
+  const handleUpdateUser = async () => {
+    if (!editingUser) return;
+    const result = await window.api.updateUser({
+      id: editingUser.id,
+      full_name: editingUser.full_name,
+      role: editingUser.role,
+      email: editingUser.email,
+      active: editingUser.active ? true : false
+    });
+    if (result.success) {
+      showToast("Usuario actualizado correctamente", "success");
+      setEditingUser(null);
+      fetchData();
+    } else {
+      showToast("Error al actualizar usuario", "error");
+    }
+  };
+  const getRoleLabel = (role) => {
+    switch (role) {
+      case "admin":
+        return "Administrador";
+      case "doctor":
+        return "Doctor";
+      case "receptionist":
+        return "Recepcionista";
+      default:
+        return role;
+    }
+  };
+  const getActionColor = (action) => {
+    if (action.includes("DELETE") || action.includes("CANCEL")) return "bg-red-900/30 text-red-400";
+    if (action.includes("UPDATE") || action.includes("CHANGE")) return "bg-amber-900/30 text-amber-400";
+    if (action.includes("CREATE") || action.includes("LOGIN")) return "bg-emerald-900/30 text-emerald-400";
+    return "bg-blue-900/30 text-blue-400";
+  };
   return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "p-8 max-w-7xl mx-auto space-y-8", children: [
-    /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "flex items-center justify-between", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
-      /* @__PURE__ */ jsxRuntimeExports.jsxs("h2", { className: "text-3xl font-bold text-slate-900 tracking-tight flex items-center gap-3", children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsx(UserCog, { className: "w-8 h-8 text-indigo-600" }),
-        " Administración y Seguridad"
+    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center justify-between", children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsxs("h2", { className: "text-3xl font-bold text-slate-900 tracking-tight flex items-center gap-3", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx(UserCog, { className: "w-8 h-8 text-teal-600" }),
+          " Administracion y Seguridad"
+        ] }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-slate-500 mt-1", children: "Control de acceso, personal y auditoria del sistema." })
       ] }),
-      /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-slate-500 mt-1", children: "Control de acceso, personal y auditoría del sistema." })
-    ] }) }),
+      activeTab === "staff" && /* @__PURE__ */ jsxRuntimeExports.jsxs(Button, { className: "gap-2", onClick: () => setShowAddUser(true), children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsx(Plus, { className: "w-4 h-4" }),
+        " Nuevo Usuario"
+      ] })
+    ] }),
     /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex gap-4 border-b border-slate-200", children: [
       /* @__PURE__ */ jsxRuntimeExports.jsx(
         "button",
@@ -26041,9 +26307,9 @@ const StaffAdmin = () => {
           onClick: () => setActiveTab("staff"),
           className: cn(
             "pb-4 px-2 text-sm font-bold transition-all",
-            activeTab === "staff" ? "text-indigo-600 border-b-2 border-indigo-600" : "text-slate-400 hover:text-slate-600"
+            activeTab === "staff" ? "text-teal-600 border-b-2 border-teal-600" : "text-slate-400 hover:text-slate-600"
           ),
-          children: "Personal Médico"
+          children: "Personal Medico"
         }
       ),
       /* @__PURE__ */ jsxRuntimeExports.jsx(
@@ -26052,79 +26318,188 @@ const StaffAdmin = () => {
           onClick: () => setActiveTab("audit"),
           className: cn(
             "pb-4 px-2 text-sm font-bold transition-all",
-            activeTab === "audit" ? "text-indigo-600 border-b-2 border-indigo-600" : "text-slate-400 hover:text-slate-600"
+            activeTab === "audit" ? "text-teal-600 border-b-2 border-teal-600" : "text-slate-400 hover:text-slate-600"
           ),
-          children: "Registro de Auditoría (HIPAA/RGPD)"
+          children: "Registro de Auditoria (HIPAA/RGPD)"
         }
       )
     ] }),
-    activeTab === "staff" ? /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "grid grid-cols-1 gap-6", children: /* @__PURE__ */ jsxRuntimeExports.jsx(Card, { children: /* @__PURE__ */ jsxRuntimeExports.jsxs(Table, { children: [
+    activeTab === "staff" ? /* @__PURE__ */ jsxRuntimeExports.jsx(Card, { children: /* @__PURE__ */ jsxRuntimeExports.jsxs(Table, { children: [
       /* @__PURE__ */ jsxRuntimeExports.jsx(TableHeader, { children: /* @__PURE__ */ jsxRuntimeExports.jsxs(TableRow, { children: [
         /* @__PURE__ */ jsxRuntimeExports.jsx(TableHead, { children: "Usuario" }),
         /* @__PURE__ */ jsxRuntimeExports.jsx(TableHead, { children: "Rol" }),
-        /* @__PURE__ */ jsxRuntimeExports.jsx(TableHead, { children: "Especialidad" }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx(TableHead, { children: "Email" }),
         /* @__PURE__ */ jsxRuntimeExports.jsx(TableHead, { children: "Seguridad" }),
         /* @__PURE__ */ jsxRuntimeExports.jsx(TableHead, { children: "Estado" }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx(TableHead, { children: "Ultimo Acceso" }),
         /* @__PURE__ */ jsxRuntimeExports.jsx(TableHead, { className: "text-right", children: "Acciones" })
       ] }) }),
-      /* @__PURE__ */ jsxRuntimeExports.jsx(TableBody, { children: mockStaff.map((member) => /* @__PURE__ */ jsxRuntimeExports.jsxs(TableRow, { children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsx(TableBody, { children: users.length > 0 ? users.map((user) => /* @__PURE__ */ jsxRuntimeExports.jsxs(TableRow, { children: [
         /* @__PURE__ */ jsxRuntimeExports.jsx(TableCell, { children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-3", children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "w-8 h-8 bg-slate-100 rounded-full flex items-center justify-center text-slate-600", children: /* @__PURE__ */ jsxRuntimeExports.jsx(UserCheck, { className: "w-4 h-4" }) }),
-          /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "font-bold text-slate-900", children: member.name })
+          /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "w-8 h-8 bg-teal-100 rounded-full flex items-center justify-center text-teal-700 font-bold text-sm", children: user.full_name?.[0] || "?" }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "font-bold text-slate-900", children: user.full_name }),
+            /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "text-xs text-slate-500", children: [
+              "@",
+              user.username
+            ] })
+          ] })
         ] }) }),
-        /* @__PURE__ */ jsxRuntimeExports.jsx(TableCell, { children: /* @__PURE__ */ jsxRuntimeExports.jsx(Badge, { variant: "outline", children: member.role }) }),
-        /* @__PURE__ */ jsxRuntimeExports.jsx(TableCell, { className: "text-slate-500 text-xs", children: member.specialty }),
-        /* @__PURE__ */ jsxRuntimeExports.jsx(TableCell, { children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex gap-2", children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx(Badge, { variant: "success", className: "h-5 text-[9px]", children: "MFA" }),
-          /* @__PURE__ */ jsxRuntimeExports.jsx(Badge, { variant: "indigo", className: "h-5 text-[9px]", children: "Encrypted" })
-        ] }) }),
-        /* @__PURE__ */ jsxRuntimeExports.jsx(TableCell, { children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-1.5 text-emerald-600 font-bold text-xs", children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsx(TableCell, { children: /* @__PURE__ */ jsxRuntimeExports.jsx(Badge, { variant: "outline", children: getRoleLabel(user.role) }) }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx(TableCell, { className: "text-slate-500 text-xs", children: user.email || "-" }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx(TableCell, { children: /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "flex gap-2", children: /* @__PURE__ */ jsxRuntimeExports.jsx(Badge, { variant: "success", className: "h-5 text-[9px]", children: "Encrypted" }) }) }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx(TableCell, { children: user.active ? /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-1.5 text-emerald-600 font-bold text-xs", children: [
           /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "w-1.5 h-1.5 bg-emerald-500 rounded-full" }),
           " Activo"
+        ] }) : /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-1.5 text-slate-400 font-bold text-xs", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "w-1.5 h-1.5 bg-slate-400 rounded-full" }),
+          " Inactivo"
         ] }) }),
-        /* @__PURE__ */ jsxRuntimeExports.jsx(TableCell, { className: "text-right", children: /* @__PURE__ */ jsxRuntimeExports.jsx(Button, { size: "sm", variant: "ghost", children: "Editar Permisos" }) })
-      ] }, member.id)) })
-    ] }) }) }) : /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "space-y-6", children: /* @__PURE__ */ jsxRuntimeExports.jsxs(Card, { className: "bg-slate-900 text-slate-300 border-none shadow-2xl", children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsx(TableCell, { className: "text-xs text-slate-500", children: user.last_login ? new Date(user.last_login).toLocaleString() : "Nunca" }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx(TableCell, { className: "text-right", children: /* @__PURE__ */ jsxRuntimeExports.jsx(Button, { size: "sm", variant: "ghost", onClick: () => setEditingUser(user), children: "Editar" }) })
+      ] }, user.id)) : /* @__PURE__ */ jsxRuntimeExports.jsx(TableRow, { children: /* @__PURE__ */ jsxRuntimeExports.jsx(TableCell, { colSpan: 7, className: "text-center py-8 text-slate-500", children: "No hay usuarios registrados." }) }) })
+    ] }) }) : /* @__PURE__ */ jsxRuntimeExports.jsxs(Card, { className: "bg-slate-900 text-slate-300 border-none shadow-2xl", children: [
       /* @__PURE__ */ jsxRuntimeExports.jsx(CardHeader, { className: "border-b border-slate-800", children: /* @__PURE__ */ jsxRuntimeExports.jsxs(CardTitle, { className: "text-white flex items-center gap-2", children: [
         /* @__PURE__ */ jsxRuntimeExports.jsx(Shield, { className: "w-5 h-5 text-emerald-400" }),
-        " Trazabilidad Completa de Acciones"
+        " Trazabilidad Completa de Acciones (",
+        auditTotal,
+        " registros)"
       ] }) }),
       /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "overflow-x-auto", children: /* @__PURE__ */ jsxRuntimeExports.jsxs(Table, { className: "text-slate-400", children: [
         /* @__PURE__ */ jsxRuntimeExports.jsx(TableHeader, { className: "bg-slate-800/50 border-slate-700", children: /* @__PURE__ */ jsxRuntimeExports.jsxs(TableRow, { className: "border-slate-800", children: [
           /* @__PURE__ */ jsxRuntimeExports.jsx(TableHead, { className: "text-slate-300", children: "Timestamp" }),
           /* @__PURE__ */ jsxRuntimeExports.jsx(TableHead, { className: "text-slate-300", children: "Usuario" }),
-          /* @__PURE__ */ jsxRuntimeExports.jsx(TableHead, { className: "text-slate-300", children: "Módulo" }),
-          /* @__PURE__ */ jsxRuntimeExports.jsx(TableHead, { className: "text-slate-300", children: "Acción" }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx(TableHead, { className: "text-slate-300", children: "Modulo" }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx(TableHead, { className: "text-slate-300", children: "Accion" }),
           /* @__PURE__ */ jsxRuntimeExports.jsx(TableHead, { className: "text-slate-300", children: "Detalles" })
         ] }) }),
-        /* @__PURE__ */ jsxRuntimeExports.jsx(TableBody, { children: [
-          { time: "2026-05-19 12:45:12", user: "admin", module: "PATIENTS", action: "UPDATE", details: "Modificación de historial clínico ID #42" },
-          { time: "2026-05-19 12:30:05", user: "dr_alejandro", module: "CLINICAL", action: "CREATE", details: "Nueva nota de evolución paciente #12" },
-          { time: "2026-05-19 12:15:44", user: "recepcion", module: "BILLING", action: "EXPORT", details: "Exportación masiva de facturas PDF" },
-          { time: "2026-05-19 11:50:22", user: "admin", module: "SECURITY", action: "LOGIN", details: "Inicio de sesión exitoso IP 192.168.1.1" }
-        ].map((log, i2) => /* @__PURE__ */ jsxRuntimeExports.jsxs(TableRow, { className: "border-slate-800 hover:bg-slate-800/30", children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx(TableCell, { className: "text-[10px] font-mono", children: log.time }),
-          /* @__PURE__ */ jsxRuntimeExports.jsx(TableCell, { className: "text-xs font-bold text-slate-200", children: log.user }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx(TableBody, { children: auditLogs.length > 0 ? auditLogs.map((log) => /* @__PURE__ */ jsxRuntimeExports.jsxs(TableRow, { className: "border-slate-800 hover:bg-slate-800/30", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx(TableCell, { className: "text-[10px] font-mono", children: new Date(log.created_at).toLocaleString() }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx(TableCell, { className: "text-xs font-bold text-slate-200", children: log.user_name || log.username || "Sistema" }),
           /* @__PURE__ */ jsxRuntimeExports.jsx(TableCell, { children: /* @__PURE__ */ jsxRuntimeExports.jsx(Badge, { className: "bg-slate-700 text-slate-300 border-none text-[9px]", children: log.module }) }),
-          /* @__PURE__ */ jsxRuntimeExports.jsx(TableCell, { children: /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: cn(
-            "text-[10px] font-black px-1.5 py-0.5 rounded",
-            log.action === "UPDATE" ? "bg-amber-900/30 text-amber-400" : log.action === "CREATE" ? "bg-emerald-900/30 text-emerald-400" : "bg-blue-900/30 text-blue-400"
-          ), children: log.action }) }),
-          /* @__PURE__ */ jsxRuntimeExports.jsx(TableCell, { className: "text-xs italic opacity-70", children: log.details })
-        ] }, i2)) })
+          /* @__PURE__ */ jsxRuntimeExports.jsx(TableCell, { children: /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: cn("text-[10px] font-black px-1.5 py-0.5 rounded", getActionColor(log.action)), children: log.action }) }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx(TableCell, { className: "text-xs italic opacity-70", children: log.details || "-" })
+        ] }, log.id)) : /* @__PURE__ */ jsxRuntimeExports.jsx(TableRow, { children: /* @__PURE__ */ jsxRuntimeExports.jsx(TableCell, { colSpan: 5, className: "text-center py-8 text-slate-500", children: "No hay registros de auditoria." }) }) })
       ] }) })
-    ] }) })
+    ] }),
+    /* @__PURE__ */ jsxRuntimeExports.jsx(
+      Modal,
+      {
+        isOpen: showAddUser,
+        onClose: () => setShowAddUser(false),
+        title: "Nuevo Usuario",
+        footer: /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx(Button, { variant: "ghost", onClick: () => setShowAddUser(false), children: "Cancelar" }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx(Button, { onClick: handleAddUser, children: "Crear Usuario" })
+        ] }),
+        children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-4", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx(Input, { label: "Nombre Completo", value: newUser.full_name, onChange: (e) => setNewUser({ ...newUser, full_name: e.target.value }), required: true }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx(Input, { label: "Nombre de Usuario", value: newUser.username, onChange: (e) => setNewUser({ ...newUser, username: e.target.value }), required: true }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx(Input, { label: "Contrasena", type: "password", value: newUser.password, onChange: (e) => setNewUser({ ...newUser, password: e.target.value }), required: true }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-2", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx("label", { className: "text-sm font-medium text-slate-700", children: "Rol" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsxs(
+              "select",
+              {
+                value: newUser.role,
+                onChange: (e) => setNewUser({ ...newUser, role: e.target.value }),
+                className: "w-full px-3 py-2 rounded-md border border-slate-300 bg-white text-sm",
+                children: [
+                  /* @__PURE__ */ jsxRuntimeExports.jsx("option", { value: "admin", children: "Administrador" }),
+                  /* @__PURE__ */ jsxRuntimeExports.jsx("option", { value: "doctor", children: "Doctor" }),
+                  /* @__PURE__ */ jsxRuntimeExports.jsx("option", { value: "receptionist", children: "Recepcionista" })
+                ]
+              }
+            )
+          ] }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx(Input, { label: "Email", type: "email", value: newUser.email, onChange: (e) => setNewUser({ ...newUser, email: e.target.value }) })
+        ] })
+      }
+    ),
+    /* @__PURE__ */ jsxRuntimeExports.jsx(
+      Modal,
+      {
+        isOpen: !!editingUser,
+        onClose: () => setEditingUser(null),
+        title: "Editar Usuario",
+        footer: /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx(Button, { variant: "ghost", onClick: () => setEditingUser(null), children: "Cancelar" }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx(Button, { onClick: handleUpdateUser, children: "Guardar Cambios" })
+        ] }),
+        children: editingUser && /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-4", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx(Input, { label: "Nombre Completo", value: editingUser.full_name, onChange: (e) => setEditingUser({ ...editingUser, full_name: e.target.value }) }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-2", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx("label", { className: "text-sm font-medium text-slate-700", children: "Rol" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsxs(
+              "select",
+              {
+                value: editingUser.role,
+                onChange: (e) => setEditingUser({ ...editingUser, role: e.target.value }),
+                className: "w-full px-3 py-2 rounded-md border border-slate-300 bg-white text-sm",
+                children: [
+                  /* @__PURE__ */ jsxRuntimeExports.jsx("option", { value: "admin", children: "Administrador" }),
+                  /* @__PURE__ */ jsxRuntimeExports.jsx("option", { value: "doctor", children: "Doctor" }),
+                  /* @__PURE__ */ jsxRuntimeExports.jsx("option", { value: "receptionist", children: "Recepcionista" })
+                ]
+              }
+            )
+          ] }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx(Input, { label: "Email", type: "email", value: editingUser.email || "", onChange: (e) => setEditingUser({ ...editingUser, email: e.target.value }) }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-2", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx("label", { className: "text-sm font-medium text-slate-700", children: "Estado" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsxs(
+              "select",
+              {
+                value: editingUser.active ? "1" : "0",
+                onChange: (e) => setEditingUser({ ...editingUser, active: parseInt(e.target.value) }),
+                className: "w-full px-3 py-2 rounded-md border border-slate-300 bg-white text-sm",
+                children: [
+                  /* @__PURE__ */ jsxRuntimeExports.jsx("option", { value: "1", children: "Activo" }),
+                  /* @__PURE__ */ jsxRuntimeExports.jsx("option", { value: "0", children: "Inactivo" })
+                ]
+              }
+            )
+          ] })
+        ] })
+      }
+    )
   ] });
 };
-const Settings = () => {
+const Settings = ({ user }) => {
   const [activeTab, setActiveTab] = reactExports.useState("general");
-  const [toastMessage, setToastMessage] = reactExports.useState(null);
-  const showToast = (text, type) => {
-    setToastMessage({ text, type });
-    setTimeout(() => setToastMessage(null), 3e3);
-  };
+  const [currentPassword, setCurrentPassword] = reactExports.useState("");
+  const [newPassword, setNewPassword] = reactExports.useState("");
+  const [confirmPassword, setConfirmPassword] = reactExports.useState("");
+  const { showToast } = useToast();
   const handleSave = () => {
-    showToast("Configuración guardada correctamente", "success");
+    showToast("Configuracion guardada correctamente", "success");
+  };
+  const handleChangePassword = async () => {
+    if (!currentPassword || !newPassword || !confirmPassword) {
+      showToast("Todos los campos son obligatorios", "error");
+      return;
+    }
+    if (newPassword !== confirmPassword) {
+      showToast("Las contrasenas no coinciden", "error");
+      return;
+    }
+    if (newPassword.length < 6) {
+      showToast("La contrasena debe tener al menos 6 caracteres", "error");
+      return;
+    }
+    const result = await window.api.changePassword({
+      id: user.id,
+      currentPassword,
+      newPassword
+    });
+    if (result.success) {
+      showToast("Contrasena cambiada correctamente", "success");
+      setCurrentPassword("");
+      setNewPassword("");
+      setConfirmPassword("");
+    } else {
+      showToast(result.error || "Error al cambiar la contrasena", "error");
+    }
   };
   const handleBackup = () => {
     showToast("Copia de seguridad en proceso...", "info");
@@ -26133,19 +26508,18 @@ const Settings = () => {
     }, 2e3);
   };
   const handleRestore = () => {
-    if (confirm("¿Está seguro de restaurar una copia de seguridad? Esto sobrescribirá los datos actuales.")) {
-      showToast("Restauración en proceso...", "info");
+    if (confirm("Esta seguro de restaurar una copia de seguridad? Esto sobrescribira los datos actuales.")) {
+      showToast("Restauracion en proceso...", "info");
     }
   };
   return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "p-8 max-w-6xl mx-auto space-y-8", children: [
     /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "flex items-center justify-between", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
       /* @__PURE__ */ jsxRuntimeExports.jsxs("h2", { className: "text-3xl font-bold text-slate-900 tracking-tight flex items-center gap-3", children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsx(Settings$1, { className: "w-8 h-8 text-indigo-600" }),
-        " Configuración del Sistema"
+        /* @__PURE__ */ jsxRuntimeExports.jsx(Settings$1, { className: "w-8 h-8 text-teal-600" }),
+        " Configuracion del Sistema"
       ] }),
-      /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-slate-500 mt-1", children: "Personaliza la clínica dental según tus necesidades." })
+      /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-slate-500 mt-1", children: "Personaliza la clinica dental segun tus necesidades." })
     ] }) }),
-    toastMessage && /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: `p-4 rounded-lg ${toastMessage.type === "success" ? "bg-emerald-50 border border-emerald-200 text-emerald-800" : toastMessage.type === "error" ? "bg-red-50 border border-red-200 text-red-800" : "bg-blue-50 border border-blue-200 text-blue-800"}`, children: toastMessage.text }),
     /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "flex gap-4 border-b border-slate-200", children: [
       { id: "general", label: "General", icon: Settings$1 },
       { id: "database", label: "Base de Datos", icon: Database },
@@ -26155,7 +26529,10 @@ const Settings = () => {
       "button",
       {
         onClick: () => setActiveTab(tab.id),
-        className: `pb-4 px-4 text-sm font-medium transition-all flex items-center gap-2 ${activeTab === tab.id ? "text-indigo-600 border-b-2 border-indigo-600" : "text-slate-400 hover:text-slate-600"}`,
+        className: cn(
+          "pb-4 px-4 text-sm font-medium transition-all flex items-center gap-2",
+          activeTab === tab.id ? "text-teal-600 border-b-2 border-teal-600" : "text-slate-400 hover:text-slate-600"
+        ),
         children: [
           /* @__PURE__ */ jsxRuntimeExports.jsx(tab.icon, { className: "w-4 h-4" }),
           tab.label
@@ -26165,11 +26542,11 @@ const Settings = () => {
     )) }),
     activeTab === "general" && /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-6", children: [
       /* @__PURE__ */ jsxRuntimeExports.jsxs(Card, { children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsx(CardHeader, { children: /* @__PURE__ */ jsxRuntimeExports.jsx(CardTitle, { children: "Información de la Clínica" }) }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx(CardHeader, { children: /* @__PURE__ */ jsxRuntimeExports.jsx(CardTitle, { children: "Informacion de la Clinica" }) }),
         /* @__PURE__ */ jsxRuntimeExports.jsxs(CardContent, { className: "space-y-4", children: [
           /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "grid grid-cols-1 md:grid-cols-2 gap-4", children: [
             /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
-              /* @__PURE__ */ jsxRuntimeExports.jsx("label", { className: "block text-sm font-medium text-slate-700 mb-1", children: "Nombre de la Clínica" }),
+              /* @__PURE__ */ jsxRuntimeExports.jsx("label", { className: "block text-sm font-medium text-slate-700 mb-1", children: "Nombre de la Clinica" }),
               /* @__PURE__ */ jsxRuntimeExports.jsx(Input, { defaultValue: "LIADENT Dental Clinic" })
             ] }),
             /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
@@ -26177,7 +26554,7 @@ const Settings = () => {
               /* @__PURE__ */ jsxRuntimeExports.jsx(Input, { defaultValue: "ABC123456XYZ" })
             ] }),
             /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
-              /* @__PURE__ */ jsxRuntimeExports.jsx("label", { className: "block text-sm font-medium text-slate-700 mb-1", children: "Teléfono" }),
+              /* @__PURE__ */ jsxRuntimeExports.jsx("label", { className: "block text-sm font-medium text-slate-700 mb-1", children: "Telefono" }),
               /* @__PURE__ */ jsxRuntimeExports.jsx(Input, { defaultValue: "+52 55 1234 5678" })
             ] }),
             /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
@@ -26186,13 +26563,13 @@ const Settings = () => {
             ] })
           ] }),
           /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsx("label", { className: "block text-sm font-medium text-slate-700 mb-1", children: "Dirección" }),
-            /* @__PURE__ */ jsxRuntimeExports.jsx(Input, { defaultValue: "Av. Revolución 123, Col. Centro, Ciudad de México" })
+            /* @__PURE__ */ jsxRuntimeExports.jsx("label", { className: "block text-sm font-medium text-slate-700 mb-1", children: "Direccion" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx(Input, { defaultValue: "Av. Revolucion 123, Col. Centro, Ciudad de Mexico" })
           ] })
         ] })
       ] }),
       /* @__PURE__ */ jsxRuntimeExports.jsxs(Card, { children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsx(CardHeader, { children: /* @__PURE__ */ jsxRuntimeExports.jsx(CardTitle, { children: "Horario de Atención" }) }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx(CardHeader, { children: /* @__PURE__ */ jsxRuntimeExports.jsx(CardTitle, { children: "Horario de Atencion" }) }),
         /* @__PURE__ */ jsxRuntimeExports.jsx(CardContent, { className: "space-y-4", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "grid grid-cols-1 md:grid-cols-2 gap-4", children: [
           /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
             /* @__PURE__ */ jsxRuntimeExports.jsx("label", { className: "block text-sm font-medium text-slate-700 mb-1", children: "Hora de Apertura" }),
@@ -26213,7 +26590,7 @@ const Settings = () => {
       /* @__PURE__ */ jsxRuntimeExports.jsxs(Card, { children: [
         /* @__PURE__ */ jsxRuntimeExports.jsx(CardHeader, { children: /* @__PURE__ */ jsxRuntimeExports.jsx(CardTitle, { children: "Copias de Seguridad" }) }),
         /* @__PURE__ */ jsxRuntimeExports.jsxs(CardContent, { className: "space-y-4", children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-slate-600", children: "Realiza copias de seguridad periódicas para proteger tus datos." }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-slate-600", children: "Realiza copias de seguridad periodicas para proteger tus datos." }),
           /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex gap-3", children: [
             /* @__PURE__ */ jsxRuntimeExports.jsxs(Button, { onClick: handleBackup, className: "flex items-center gap-2", children: [
               /* @__PURE__ */ jsxRuntimeExports.jsx(Database, { className: "w-4 h-4" }),
@@ -26227,41 +26604,47 @@ const Settings = () => {
         ] })
       ] }),
       /* @__PURE__ */ jsxRuntimeExports.jsxs(Card, { children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsx(CardHeader, { children: /* @__PURE__ */ jsxRuntimeExports.jsx(CardTitle, { children: "Últimas Copias" }) }),
-        /* @__PURE__ */ jsxRuntimeExports.jsx(CardContent, { children: /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "space-y-2", children: [
-          { date: "2026-05-19 10:30:00", size: "2.4 MB" },
-          { date: "2026-05-18 22:00:00", size: "2.3 MB" },
-          { date: "2026-05-17 22:00:00", size: "2.2 MB" }
-        ].map((backup, i2) => /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex justify-between items-center p-3 bg-slate-50 rounded-lg", children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-sm text-slate-700", children: backup.date }),
-          /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-xs text-slate-500", children: backup.size })
-        ] }, i2)) }) })
+        /* @__PURE__ */ jsxRuntimeExports.jsx(CardHeader, { children: /* @__PURE__ */ jsxRuntimeExports.jsx(CardTitle, { children: "Base de Datos Local" }) }),
+        /* @__PURE__ */ jsxRuntimeExports.jsxs(CardContent, { className: "space-y-3", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex justify-between items-center p-3 bg-slate-50 rounded-lg", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-sm font-medium text-slate-700", children: "Motor" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-xs text-slate-500", children: "SQLite 3" })
+          ] }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex justify-between items-center p-3 bg-slate-50 rounded-lg", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-sm font-medium text-slate-700", children: "Cifrado" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-xs text-emerald-600 font-bold", children: "AES-256-CBC" })
+          ] }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex justify-between items-center p-3 bg-slate-50 rounded-lg", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-sm font-medium text-slate-700", children: "Campos Protegidos" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-xs text-slate-500", children: "DNI/Identificacion" })
+          ] })
+        ] })
       ] })
     ] }),
     activeTab === "notifications" && /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-6", children: [
       /* @__PURE__ */ jsxRuntimeExports.jsxs(Card, { children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsx(CardHeader, { children: /* @__PURE__ */ jsxRuntimeExports.jsx(CardTitle, { children: "Preferencias de Notificación" }) }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx(CardHeader, { children: /* @__PURE__ */ jsxRuntimeExports.jsx(CardTitle, { children: "Preferencias de Notificacion" }) }),
         /* @__PURE__ */ jsxRuntimeExports.jsxs(CardContent, { className: "space-y-4", children: [
           /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center justify-between", children: [
             /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
               /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "font-medium text-slate-900", children: "Recordatorios de Citas" }),
-              /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-sm text-slate-500", children: "Enviar recordatorios automáticos a los pacientes" })
+              /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-sm text-slate-500", children: "Enviar recordatorios automaticos a los pacientes" })
             ] }),
-            /* @__PURE__ */ jsxRuntimeExports.jsx("input", { type: "checkbox", className: "w-5 h-5 text-indigo-600", defaultChecked: true })
+            /* @__PURE__ */ jsxRuntimeExports.jsx("input", { type: "checkbox", className: "w-5 h-5 text-teal-600 rounded", defaultChecked: true })
           ] }),
           /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center justify-between", children: [
             /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
               /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "font-medium text-slate-900", children: "Notificaciones de Vencimiento" }),
-              /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-sm text-slate-500", children: "Alertar sobre tratamientos próximos a vencer" })
+              /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-sm text-slate-500", children: "Alertar sobre tratamientos proximos a vencer" })
             ] }),
-            /* @__PURE__ */ jsxRuntimeExports.jsx("input", { type: "checkbox", className: "w-5 h-5 text-indigo-600", defaultChecked: true })
+            /* @__PURE__ */ jsxRuntimeExports.jsx("input", { type: "checkbox", className: "w-5 h-5 text-teal-600 rounded", defaultChecked: true })
           ] }),
           /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center justify-between", children: [
             /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
-              /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "font-medium text-slate-900", children: "Email de Confirmación" }),
-              /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-sm text-slate-500", children: "Enviar email de confirmación al agendar cita" })
+              /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "font-medium text-slate-900", children: "Email de Confirmacion" }),
+              /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-sm text-slate-500", children: "Enviar email de confirmacion al agendar cita" })
             ] }),
-            /* @__PURE__ */ jsxRuntimeExports.jsx("input", { type: "checkbox", className: "w-5 h-5 text-indigo-600", defaultChecked: true })
+            /* @__PURE__ */ jsxRuntimeExports.jsx("input", { type: "checkbox", className: "w-5 h-5 text-teal-600 rounded", defaultChecked: true })
           ] })
         ] })
       ] }),
@@ -26276,61 +26659,169 @@ const Settings = () => {
         /* @__PURE__ */ jsxRuntimeExports.jsxs(CardContent, { className: "space-y-4", children: [
           /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center justify-between", children: [
             /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
-              /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "font-medium text-slate-900", children: "Autenticación de Dos Factores" }),
+              /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "font-medium text-slate-900", children: "Autenticacion de Dos Factores" }),
               /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-sm text-slate-500", children: "Requerir 2FA para todos los usuarios" })
             ] }),
-            /* @__PURE__ */ jsxRuntimeExports.jsx("input", { type: "checkbox", className: "w-5 h-5 text-indigo-600" })
+            /* @__PURE__ */ jsxRuntimeExports.jsx("input", { type: "checkbox", className: "w-5 h-5 text-teal-600 rounded" })
           ] }),
           /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center justify-between", children: [
             /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
-              /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "font-medium text-slate-900", children: "Registro de Auditoría" }),
+              /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "font-medium text-slate-900", children: "Registro de Auditoria" }),
               /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-sm text-slate-500", children: "Registrar todas las acciones del sistema" })
             ] }),
-            /* @__PURE__ */ jsxRuntimeExports.jsx("input", { type: "checkbox", className: "w-5 h-5 text-indigo-600", defaultChecked: true })
+            /* @__PURE__ */ jsxRuntimeExports.jsx("input", { type: "checkbox", className: "w-5 h-5 text-teal-600 rounded", defaultChecked: true })
           ] }),
           /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center justify-between", children: [
             /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
-              /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "font-medium text-slate-900", children: "Bloqueo Automático" }),
-              /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-sm text-slate-500", children: "Bloquear sesión después de inactividad (15 min)" })
+              /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "font-medium text-slate-900", children: "Bloqueo Automatico" }),
+              /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-sm text-slate-500", children: "Bloquear sesion despues de inactividad (15 min)" })
             ] }),
-            /* @__PURE__ */ jsxRuntimeExports.jsx("input", { type: "checkbox", className: "w-5 h-5 text-indigo-600", defaultChecked: true })
+            /* @__PURE__ */ jsxRuntimeExports.jsx("input", { type: "checkbox", className: "w-5 h-5 text-teal-600 rounded", defaultChecked: true })
           ] })
         ] })
       ] }),
       /* @__PURE__ */ jsxRuntimeExports.jsxs(Card, { children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsx(CardHeader, { children: /* @__PURE__ */ jsxRuntimeExports.jsx(CardTitle, { children: "Cambiar Contraseña de Administrador" }) }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx(CardHeader, { children: /* @__PURE__ */ jsxRuntimeExports.jsx(CardTitle, { children: "Cambiar Contrasena" }) }),
         /* @__PURE__ */ jsxRuntimeExports.jsxs(CardContent, { className: "space-y-4", children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsx("label", { className: "block text-sm font-medium text-slate-700 mb-1", children: "Contraseña Actual" }),
-            /* @__PURE__ */ jsxRuntimeExports.jsx(Input, { type: "password" })
-          ] }),
-          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsx("label", { className: "block text-sm font-medium text-slate-700 mb-1", children: "Nueva Contraseña" }),
-            /* @__PURE__ */ jsxRuntimeExports.jsx(Input, { type: "password" })
-          ] }),
-          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsx("label", { className: "block text-sm font-medium text-slate-700 mb-1", children: "Confirmar Nueva Contraseña" }),
-            /* @__PURE__ */ jsxRuntimeExports.jsx(Input, { type: "password" })
-          ] })
+          /* @__PURE__ */ jsxRuntimeExports.jsx(
+            Input,
+            {
+              label: "Contrasena Actual",
+              type: "password",
+              value: currentPassword,
+              onChange: (e) => setCurrentPassword(e.target.value)
+            }
+          ),
+          /* @__PURE__ */ jsxRuntimeExports.jsx(
+            Input,
+            {
+              label: "Nueva Contrasena",
+              type: "password",
+              value: newPassword,
+              onChange: (e) => setNewPassword(e.target.value)
+            }
+          ),
+          /* @__PURE__ */ jsxRuntimeExports.jsx(
+            Input,
+            {
+              label: "Confirmar Nueva Contrasena",
+              type: "password",
+              value: confirmPassword,
+              onChange: (e) => setConfirmPassword(e.target.value)
+            }
+          )
         ] })
       ] }),
-      /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "flex justify-end", children: /* @__PURE__ */ jsxRuntimeExports.jsxs(Button, { onClick: handleSave, className: "flex items-center gap-2", children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "flex justify-end", children: /* @__PURE__ */ jsxRuntimeExports.jsxs(Button, { onClick: handleChangePassword, className: "flex items-center gap-2", children: [
         /* @__PURE__ */ jsxRuntimeExports.jsx(Save, { className: "w-4 h-4" }),
-        "Guardar Cambios"
+        "Cambiar Contrasena"
       ] }) })
     ] })
   ] });
 };
+const Login = ({ onLogin }) => {
+  const [username, setUsername] = reactExports.useState("");
+  const [password, setPassword] = reactExports.useState("");
+  const [isLoading, setIsLoading] = reactExports.useState(false);
+  const [error, setError] = reactExports.useState("");
+  const { showToast } = useToast();
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setIsLoading(true);
+    setError("");
+    try {
+      const result = await window.api.login(username, password);
+      if (result.success && result.user) {
+        showToast("Sesion iniciada correctamente", "success");
+        onLogin(result.user);
+      } else {
+        setError(result.error || "Credenciales incorrectas");
+      }
+    } catch (err) {
+      setError("Error al conectar con el servidor");
+    } finally {
+      setIsLoading(false);
+    }
+  };
+  return /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "min-h-screen flex items-center justify-center bg-slate-900 p-6", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "w-full max-w-md space-y-8", children: [
+    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "text-center", children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "inline-flex items-center justify-center w-20 h-20 bg-indigo-600 rounded-3xl mb-6 shadow-2xl shadow-indigo-500/20", children: /* @__PURE__ */ jsxRuntimeExports.jsx(Shield, { className: "w-10 h-10 text-white" }) }),
+      /* @__PURE__ */ jsxRuntimeExports.jsx("h1", { className: "text-4xl font-black text-white tracking-tight", children: "LIADENT" }),
+      /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-slate-400 mt-2 font-medium", children: "Gestión Odontológica Profesional" })
+    ] }),
+    /* @__PURE__ */ jsxRuntimeExports.jsxs(Card, { className: "border-slate-800 bg-slate-800/50 backdrop-blur-xl shadow-2xl", children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsxs(CardHeader, { children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsx(CardTitle, { className: "text-white text-xl", children: "Iniciar Sesión" }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx(CardDescription, { className: "text-slate-400", children: "Ingresa tus credenciales para acceder al sistema." })
+      ] }),
+      /* @__PURE__ */ jsxRuntimeExports.jsx(CardContent, { children: /* @__PURE__ */ jsxRuntimeExports.jsxs("form", { onSubmit: handleSubmit, className: "space-y-6", children: [
+        error && /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "p-3 bg-red-500/10 border border-red-500/20 rounded-lg flex items-center gap-3 text-red-400 text-sm", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx(CircleAlert, { className: "w-4 h-4 shrink-0" }),
+          error
+        ] }),
+        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-4", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-2", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx("label", { className: "text-xs font-bold text-slate-400 uppercase tracking-widest ml-1", children: "Usuario" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "relative", children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsx(User, { className: "absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500" }),
+              /* @__PURE__ */ jsxRuntimeExports.jsx(
+                "input",
+                {
+                  type: "text",
+                  className: "w-full bg-slate-900 border border-slate-700 rounded-xl py-3 pl-10 pr-4 text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all",
+                  placeholder: "Nombre de usuario",
+                  value: username,
+                  onChange: (e) => setUsername(e.target.value),
+                  required: true
+                }
+              )
+            ] })
+          ] }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-2", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx("label", { className: "text-xs font-bold text-slate-400 uppercase tracking-widest ml-1", children: "Contraseña" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "relative", children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsx(Lock, { className: "absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500" }),
+              /* @__PURE__ */ jsxRuntimeExports.jsx(
+                "input",
+                {
+                  type: "password",
+                  className: "w-full bg-slate-900 border border-slate-700 rounded-xl py-3 pl-10 pr-4 text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all",
+                  placeholder: "••••••••",
+                  value: password,
+                  onChange: (e) => setPassword(e.target.value),
+                  required: true
+                }
+              )
+            ] })
+          ] })
+        ] }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx(
+          Button,
+          {
+            type: "submit",
+            className: "w-full py-6 text-lg font-bold bg-indigo-600 hover:bg-indigo-700 shadow-xl shadow-indigo-600/20",
+            disabled: isLoading,
+            children: isLoading ? "Verificando..." : "Acceder al Sistema"
+          }
+        ),
+        /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "text-center pt-2", children: /* @__PURE__ */ jsxRuntimeExports.jsx("button", { type: "button", className: "text-xs text-slate-500 hover:text-indigo-400 transition-colors", children: "¿Olvidaste tu contraseña? Contacta al administrador." }) })
+      ] }) })
+    ] }),
+    /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "text-center", children: /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-[10px] text-slate-600 font-bold uppercase tracking-widest", children: "Cumple con HIPAA / RGPD • Conexión Cifrada • 2026 LIADENT CRM" }) })
+  ] }) });
+};
 const App = () => {
-  const [user, setUser] = reactExports.useState({
-    id: 1,
-    username: "admin",
-    full_name: "Dr. Alejandro",
-    role: "admin"
-  });
+  const [user, setUser] = reactExports.useState(null);
   const [activeModule, setActiveModule] = reactExports.useState("dashboard");
   const [selectedPatient, setSelectedPatient] = reactExports.useState(void 0);
   const [patientsView, setPatientsView] = reactExports.useState("list");
+  const handleLogin = (userData) => {
+    setUser(userData);
+  };
+  const handleLogout = () => {
+    setUser(null);
+    setActiveModule("dashboard");
+  };
   const renderModule = () => {
     switch (activeModule) {
       case "dashboard":
@@ -26360,21 +26851,34 @@ const App = () => {
           }
         );
       case "clinical":
+        if (selectedPatient) {
+          return /* @__PURE__ */ jsxRuntimeExports.jsx(
+            Patients,
+            {
+              initialView: "history",
+              initialPatient: selectedPatient
+            }
+          );
+        }
         return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "p-8 text-center text-slate-500", children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx("h2", { className: "text-2xl font-bold mb-4", children: "HCE (Historial Clínico Electrónico)" }),
-          /* @__PURE__ */ jsxRuntimeExports.jsx("p", { children: "Módulo de historias clínicas y odontogramas integrado en la ficha del paciente." }),
-          /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { className: "mt-4 text-sm text-slate-400", children: [
-            "Accede a través de Pacientes -",
-            ">",
-            " Ver HCE"
-          ] })
+          /* @__PURE__ */ jsxRuntimeExports.jsx("h2", { className: "text-2xl font-bold mb-4", children: "HCE (Historial Clinico Electronico)" }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx("p", { children: "Modulo de historias clinicas y odontogramas integrado en la ficha del paciente." }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "mt-4 text-sm text-slate-400", children: "Accede a traves de Pacientes - Ver HCE" }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx(
+            "button",
+            {
+              className: "mt-6 px-6 py-3 bg-teal-600 text-white rounded-lg hover:bg-teal-700 transition-colors font-medium",
+              onClick: () => setActiveModule("patients"),
+              children: "Ir a Pacientes"
+            }
+          )
         ] });
       case "billing":
         return /* @__PURE__ */ jsxRuntimeExports.jsx(Billing, {});
       case "staff":
         return /* @__PURE__ */ jsxRuntimeExports.jsx(StaffAdmin, {});
       case "settings":
-        return /* @__PURE__ */ jsxRuntimeExports.jsx(Settings, {});
+        return /* @__PURE__ */ jsxRuntimeExports.jsx(Settings, { user });
       default:
         return /* @__PURE__ */ jsxRuntimeExports.jsx(
           Dashboard,
@@ -26386,12 +26890,15 @@ const App = () => {
         );
     }
   };
+  if (!user) {
+    return /* @__PURE__ */ jsxRuntimeExports.jsx(Login, { onLogin: handleLogin });
+  }
   return /* @__PURE__ */ jsxRuntimeExports.jsx(
     Layout,
     {
       activeModule,
       setActiveModule,
-      onLogout: () => setUser(null),
+      onLogout: handleLogout,
       user,
       children: renderModule()
     }
@@ -26405,3 +26912,6 @@ export {
   commonjsGlobal as c,
   getDefaultExportFromCjs as g
 };
+
+
+export { c, _, g }

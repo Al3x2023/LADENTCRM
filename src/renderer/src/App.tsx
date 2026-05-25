@@ -7,11 +7,12 @@ import { Billing } from './modules/billing/Billing'
 import { StaffAdmin } from './modules/staff/StaffAdmin'
 import { Settings } from './modules/settings/Settings'
 import { Login } from './components/auth/Login'
+import { Patient } from './env'
 
 const App = () => {
   const [user, setUser] = useState<any>(null)
   const [activeModule, setActiveModule] = useState('dashboard')
-  const [selectedPatient, setSelectedPatient] = useState<any>(undefined)
+  const [selectedPatient, setSelectedPatient] = useState<Patient | undefined>(undefined)
   const [patientsView, setPatientsView] = useState<'list' | 'form' | 'history'>('list')
 
   const handleLogin = (userData: any) => {
@@ -26,28 +27,40 @@ const App = () => {
   const renderModule = () => {
     switch (activeModule) {
       case 'dashboard':
-        return <Dashboard 
-                 setActiveModule={setActiveModule} 
-                 setSelectedPatient={setSelectedPatient}
-                 setView={setPatientsView}
-               />
+        return <Dashboard
+          setActiveModule={setActiveModule}
+          setSelectedPatient={setSelectedPatient}
+          setView={setPatientsView}
+        />
       case 'patients':
-        return <Patients 
-                 initialView={patientsView}
-                 initialPatient={selectedPatient}
-               />
+        return <Patients
+          initialView={patientsView}
+          initialPatient={selectedPatient}
+        />
       case 'appointments':
-        return <Appointments 
-                 setActiveModule={setActiveModule}
-                 setSelectedPatient={setSelectedPatient}
-                 setPatientsView={setPatientsView}
-               />
+        return <Appointments
+          setActiveModule={setActiveModule}
+          setSelectedPatient={setSelectedPatient}
+          setPatientsView={setPatientsView}
+        />
       case 'clinical':
+        if (selectedPatient) {
+          return <Patients
+            initialView="history"
+            initialPatient={selectedPatient}
+          />
+        }
         return (
           <div className="p-8 text-center text-slate-500">
-            <h2 className="text-2xl font-bold mb-4">HCE (Historial Clínico Electrónico)</h2>
-            <p>Módulo de historias clínicas y odontogramas integrado en la ficha del paciente.</p>
-            <p className="mt-4 text-sm text-slate-400">Accede a través de Pacientes -{'>'} Ver HCE</p>
+            <h2 className="text-2xl font-bold mb-4">HCE (Historial Clinico Electronico)</h2>
+            <p>Modulo de historias clinicas y odontogramas integrado en la ficha del paciente.</p>
+            <p className="mt-4 text-sm text-slate-400">Accede a traves de Pacientes - Ver HCE</p>
+            <button
+              className="mt-6 px-6 py-3 bg-teal-600 text-white rounded-lg hover:bg-teal-700 transition-colors font-medium"
+              onClick={() => setActiveModule('patients')}
+            >
+              Ir a Pacientes
+            </button>
           </div>
         )
       case 'billing':
@@ -55,13 +68,13 @@ const App = () => {
       case 'staff':
         return <StaffAdmin />
       case 'settings':
-        return <Settings />
+        return <Settings user={user} />
       default:
-        return <Dashboard 
-                 setActiveModule={setActiveModule} 
-                 setSelectedPatient={setSelectedPatient}
-                 setView={setPatientsView}
-               />
+        return <Dashboard
+          setActiveModule={setActiveModule}
+          setSelectedPatient={setSelectedPatient}
+          setView={setPatientsView}
+        />
     }
   }
 
@@ -70,8 +83,8 @@ const App = () => {
   }
 
   return (
-    <Layout 
-      activeModule={activeModule} 
+    <Layout
+      activeModule={activeModule}
       setActiveModule={setActiveModule}
       onLogout={handleLogout}
       user={user}

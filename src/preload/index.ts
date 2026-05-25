@@ -3,10 +3,24 @@ import { electronAPI } from '@electron-toolkit/preload'
 
 // Custom APIs for renderer
 const api = {
+  // Auth
+  login: (username: string, password: string) => ipcRenderer.invoke('login', { username, password }),
+  getUsers: () => ipcRenderer.invoke('get-users'),
+  addUser: (data: any) => ipcRenderer.invoke('add-user', data),
+  updateUser: (data: any) => ipcRenderer.invoke('update-user', data),
+  changePassword: (data: any) => ipcRenderer.invoke('change-password', data),
+  getAuditLogs: (params?: any) => ipcRenderer.invoke('get-audit-logs', params || {}),
+
+  // Staff
+  getStaff: () => ipcRenderer.invoke('get-staff'),
+  addStaff: (data: any) => ipcRenderer.invoke('add-staff', data),
+  updateStaff: (data: any) => ipcRenderer.invoke('update-staff', data),
+
   // Patients
   getPatients: () => ipcRenderer.invoke('get-patients'),
   addPatient: (patient) => ipcRenderer.invoke('add-patient', patient),
   updatePatient: (patient) => ipcRenderer.invoke('update-patient', patient),
+  deletePatient: (id: number) => ipcRenderer.invoke('delete-patient', id),
   uploadPatientImage: (patientId, category) => ipcRenderer.invoke('upload-patient-image', { patientId, category }),
   getPatientImages: (patientId) => ipcRenderer.invoke('get-patient-images', patientId),
   getImageUrl: (fileName) => ipcRenderer.invoke('get-image-url', fileName),

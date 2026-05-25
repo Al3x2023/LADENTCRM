@@ -32,7 +32,7 @@ export const Sidebar = ({ activeModule, setActiveModule, onLogout }: SidebarProp
     <div className="w-64 bg-slate-900 text-slate-300 flex flex-col h-screen border-r border-slate-800">
       <div className="p-6">
         <div className="flex items-center gap-3 mb-8">
-          <div className="w-10 h-10 bg-indigo-600 rounded-xl flex items-center justify-center">
+          <div className="w-10 h-10 bg-teal-600 rounded-xl flex items-center justify-center">
             <span className="text-white font-bold text-xl">L</span>
           </div>
           <div>
@@ -48,12 +48,12 @@ export const Sidebar = ({ activeModule, setActiveModule, onLogout }: SidebarProp
               onClick={() => setActiveModule(item.id)}
               className={cn(
                 'w-full flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium transition-all duration-200',
-                activeModule === item.id 
-                  ? 'bg-indigo-600/10 text-indigo-400 border border-indigo-600/20' 
+                activeModule === item.id
+                  ? 'bg-teal-600/10 text-teal-400 border border-teal-600/20'
                   : 'hover:bg-slate-800 hover:text-white border border-transparent'
               )}
             >
-              <item.icon className={cn('w-5 h-5', activeModule === item.id ? 'text-indigo-400' : 'text-slate-500')} />
+              <item.icon className={cn('w-5 h-5', activeModule === item.id ? 'text-teal-400' : 'text-slate-500')} />
               {item.label}
             </button>
           ))}
@@ -66,7 +66,7 @@ export const Sidebar = ({ activeModule, setActiveModule, onLogout }: SidebarProp
           className="w-full flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium text-slate-400 hover:bg-slate-800 hover:text-white transition-all"
         >
           <LogOut className="w-5 h-5" />
-          Cerrar Sesión
+          Cerrar Sesion
         </button>
       </div>
     </div>

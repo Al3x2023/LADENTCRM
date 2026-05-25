@@ -1,16 +1,17 @@
 import React, { useState, useEffect } from 'react'
-import { 
-  Table, 
-  TableBody, 
-  TableCell, 
-  TableHead, 
-  TableHeader, 
-  TableRow 
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow
 } from '../../components/ui/Table'
 import { Button } from '../../components/ui/Button'
 import { Input } from '../../components/ui/Input'
 import { Badge } from '../../components/ui/Badge'
-import { Search, Plus, Phone, Mail, FileSpreadsheet } from 'lucide-react'
+import { ConfirmModal } from '../../components/ui/Modal'
+import { Search, Plus, Phone, Mail, FileSpreadsheet, Trash2 } from 'lucide-react'
 import { Patient } from '../../env'
 import { exportToCSV } from '../../utils/export'
 import { useToast } from '../../context/ToastContext'
@@ -24,6 +25,7 @@ interface PatientListProps {
 export const PatientList = ({ onAddPatient, onEditPatient, onViewClinicalHistory }: PatientListProps) => {
   const [patients, setPatients] = useState<Patient[]>([])
   const [searchTerm, setSearchTerm] = useState('')
+  const [deleteTarget, setDeleteTarget] = useState<Patient | null>(null)
   const { showToast } = useToast()
 
   useEffect(() => {
@@ -35,7 +37,7 @@ export const PatientList = ({ onAddPatient, onEditPatient, onViewClinicalHistory
     setPatients(data)
   }
 
-  const filteredPatients = patients.filter(p => 
+  const filteredPatients = patients.filter(p =>
     p.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
     p.id_number?.toLowerCase().includes(searchTerm.toLowerCase()) ||
     p.phone?.includes(searchTerm)
@@ -47,17 +49,27 @@ export const PatientList = ({ onAddPatient, onEditPatient, onViewClinicalHistory
       'Pacientes_LIADENT',
       {
         name: 'Nombre',
-        id_number: 'DNI/Identificación',
+        id_number: 'DNI/Identificacion',
         email: 'Email',
-        phone: 'Teléfono',
+        phone: 'Telefono',
         birth_date: 'Fecha de Nacimiento',
-        address: 'Dirección',
-        blood_type: 'Grupo Sanguíneo',
+        address: 'Direccion',
+        blood_type: 'Grupo Sanguineo',
         allergies: 'Alergias',
         created_at: 'Fecha de Registro'
       }
     )
-    showToast('Exportación de pacientes completada', 'success')
+    showToast('Exportacion de pacientes completada', 'success')
+  }
+
+  const handleDelete = async (patient: Patient) => {
+    try {
+      await window.api.deletePatient(patient.id!)
+      showToast(`Paciente "${patient.name}" eliminado`, 'success')
+      fetchPatients()
+    } catch (error) {
+      showToast('Error al eliminar el paciente', 'error')
+    }
   }
 
   return (
@@ -65,9 +77,9 @@ export const PatientList = ({ onAddPatient, onEditPatient, onViewClinicalHistory
       <div className="flex items-center justify-between">
         <div className="relative w-96">
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
-          <Input 
-            className="pl-10" 
-            placeholder="Buscar por nombre, DNI o teléfono..." 
+          <Input
+            className="pl-10"
+            placeholder="Buscar por nombre, DNI o telefono..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
           />
@@ -88,8 +100,8 @@ export const PatientList = ({ onAddPatient, onEditPatient, onViewClinicalHistory
             <TableRow>
               <TableHead>Paciente</TableHead>
               <TableHead>Contacto</TableHead>
-              <TableHead>DNI / Identificación</TableHead>
-              <TableHead>Última Visita</TableHead>
+              <TableHead>DNI / Identificacion</TableHead>
+              <TableHead>Registro</TableHead>
               <TableHead className="text-right">Acciones</TableHead>
             </TableRow>
           </TableHeader>
@@ -99,7 +111,7 @@ export const PatientList = ({ onAddPatient, onEditPatient, onViewClinicalHistory
                 <TableRow key={patient.id} className="cursor-pointer hover:bg-slate-50">
                   <TableCell>
                     <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 bg-indigo-100 rounded-full flex items-center justify-center text-indigo-700 font-bold">
+                      <div className="w-10 h-10 bg-teal-100 rounded-full flex items-center justify-center text-teal-700 font-bold">
                         {patient.name[0]}
                       </div>
                       <div>
@@ -111,10 +123,10 @@ export const PatientList = ({ onAddPatient, onEditPatient, onViewClinicalHistory
                   <TableCell>
                     <div className="space-y-1">
                       <div className="text-xs flex items-center gap-1.5 text-slate-600">
-                        <Phone className="w-3 h-3" /> {patient.phone}
+                        <Phone className="w-3 h-3" /> {patient.phone || '-'}
                       </div>
                       <div className="text-xs flex items-center gap-1.5 text-slate-600">
-                        <Mail className="w-3 h-3" /> {patient.email}
+                        <Mail className="w-3 h-3" /> {patient.email || '-'}
                       </div>
                     </div>
                   </TableCell>
@@ -127,21 +139,29 @@ export const PatientList = ({ onAddPatient, onEditPatient, onViewClinicalHistory
                     </div>
                   </TableCell>
                   <TableCell className="text-right">
-                    <div className="flex justify-end gap-2">
-                      <Button 
-                        size="sm" 
-                        variant="ghost" 
+                    <div className="flex justify-end gap-1">
+                      <Button
+                        size="sm"
+                        variant="ghost"
                         onClick={() => onViewClinicalHistory(patient)}
-                        className="text-indigo-600 hover:text-indigo-700 hover:bg-indigo-50"
+                        className="text-teal-600 hover:text-teal-700 hover:bg-teal-50"
                       >
                         HCE
                       </Button>
-                      <Button 
-                        size="sm" 
-                        variant="ghost" 
+                      <Button
+                        size="sm"
+                        variant="ghost"
                         onClick={() => onEditPatient(patient)}
                       >
                         Editar
+                      </Button>
+                      <Button
+                        size="sm"
+                        variant="ghost"
+                        className="text-red-500 hover:text-red-600 hover:bg-red-50"
+                        onClick={() => setDeleteTarget(patient)}
+                      >
+                        <Trash2 className="w-4 h-4" />
                       </Button>
                     </div>
                   </TableCell>
@@ -157,6 +177,16 @@ export const PatientList = ({ onAddPatient, onEditPatient, onViewClinicalHistory
           </TableBody>
         </Table>
       </div>
+
+      <ConfirmModal
+        isOpen={!!deleteTarget}
+        onClose={() => setDeleteTarget(null)}
+        onConfirm={() => handleDelete(deleteTarget!)}
+        title="Eliminar Paciente"
+        message={`Estas seguro de eliminar a "${deleteTarget?.name}"? Se eliminaran todas las notas clinicas, recetas, odontogramas e imagenes asociadas. Esta accion no se puede deshacer.`}
+        confirmText="Eliminar"
+        variant="danger"
+      />
     </div>
   )
 }
