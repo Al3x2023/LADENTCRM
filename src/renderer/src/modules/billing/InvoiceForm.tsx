@@ -81,13 +81,27 @@ export const InvoiceForm = ({ onSave, onCancel }: InvoiceFormProps) => {
     const taxAmount = calculateTaxAmount()
     const total = subtotal + taxAmount
     const invoiceNumber = `FACT-${Date.now().toString().slice(-6)}`
+
+    // Calculate total_price for each item
+    const itemsWithTotals = items
+      .filter(i => i.description.trim())
+      .map(item => ({
+        description: item.description,
+        quantity: item.quantity,
+        unit_price: item.unitPrice,
+        total_price: item.quantity * item.unitPrice
+      }))
+
     onSave({
-      ...formData,
-      patient_id: parseInt(formData.patient_id.toString()),
-      invoice_number: invoiceNumber,
-      total_amount: total,
-      tax_amount: taxAmount,
-      items
+      invoice: {
+        ...formData,
+        patient_id: parseInt(formData.patient_id.toString()),
+        invoice_number: invoiceNumber,
+        total_amount: total,
+        tax_amount: taxAmount,
+        status: 'issued'
+      },
+      items: itemsWithTotals
     })
   }
 

@@ -13,7 +13,9 @@ interface PrescriptionGeneratorProps {
   doctorLicense?: string
 }
 
-export const PrescriptionGenerator = ({ patientId, patientName, onSave, doctorName = 'Dr. Profesional', doctorLicense = '0000000' }: PrescriptionGeneratorProps) => {
+export const PrescriptionGenerator = ({ patientId, patientName, onSave, doctorName = '', doctorLicense = '' }: PrescriptionGeneratorProps) => {
+  const [doctorNameState] = useState(doctorName)
+  const [doctorLicenseState] = useState(doctorLicense)
   const [medications, setMedications] = useState([{ name: '', dose: '', freq: '', duration: '' }])
   const [instructions, setInstructions] = useState('')
 
@@ -169,8 +171,8 @@ export const PrescriptionGenerator = ({ patientId, patientName, onSave, doctorNa
 
             <div className="mt-20 flex justify-center flex-col items-center">
               <div className="w-48 border-t border-slate-300 mb-2"></div>
-              <p className="text-xs font-bold text-slate-900">{doctorName}</p>
-              <p className="text-[10px] text-slate-500 font-medium">Cedula Profesional: {doctorLicense}</p>
+              <p className="text-xs font-bold text-slate-900">{doctorNameState || 'Nombre del Doctor'}</p>
+              <p className="text-[10px] text-slate-500 font-medium">Cedula Profesional: {doctorLicenseState || 'N/A'}</p>
             </div>
           </div>
         </CardContent>

@@ -10309,42 +10309,86 @@ const ClinicalCalculators = () => {
     unitConversion: {
       title: "Conversor de Glucosa",
       desc: "Convierte entre unidades de medicion de glucosa. Importante para pacientes diabeticos evaluados antes de procedimientos dentales.",
-      formula: "mg/dL ÷ 18.01559 = mmol/L (o multiplicar para lo inverso)"
+      formula: "mg/dL ÷ 18.01559 = mmol/L (o multiplicar para lo inverso)",
+      clinicalTips: [
+        "Valores normales en ayunas: 70-100 mg/dL (3.9-5.6 mmol/L)",
+        "Hiperglucemia: >126 mg/dL en ayunas indica diabetes",
+        "Antes de cirugia: verificar glucemia, ajustar anestesia si necesario",
+        "Pacientes diabeticos tienen mayor riesgo de infeccion post-operatoria"
+      ]
     },
     pediatricDose: {
       title: "Dosis Pediatricas",
       desc: "Calcula la dosis correcta segun el peso del paciente. Esencial en odontologia pediatrica. Nunca sobrepasar dosis maxima por tipo de medicamento.",
-      formula: "Dosis Total = Peso (kg) × Dosis Unitaria (mg/kg)"
+      formula: "Dosis Total = Peso (kg) × Dosis Unitaria (mg/kg)",
+      clinicalTips: [
+        "Amoxicilina: 25-50 mg/kg/dia dividido cada 8h (max 3g/dia)",
+        "Paracetamol: 10-15 mg/kg cada 6-8h (max 5 dosis/dia)",
+        "Ibuprofeno: 5-10 mg/kg cada 6-8h (max 40 mg/kg/dia)",
+        "NUNCA usar aspirina en menores de 12 anos (Riesgo de Sindrome de Reye)"
+      ]
     },
     bmi: {
       title: "Indice de Masa Corporal",
       desc: "Eval ua el estado nutricional. Pacientes con BMI extremo pueden requerir consideraciones anestesicas especiales.",
-      formula: "IMC = Peso (kg) ÷ Altura² (m²)"
+      formula: "IMC = Peso (kg) ÷ Altura² (m²)",
+      clinicalTips: [
+        "BMI <18.5: Bajo peso - evaluar nutricion, posible osteoporosis",
+        "BMI >30: Riesgo incrementado de EAP, diabetes tipo 2",
+        "Obesidad: precaucion con sedacion, posicion del paciente",
+        "En odontologia: relacion con enfermedad periodontal"
+      ]
     },
     anesthesia: {
       title: "Anestesia Local Dental",
       desc: "Calcula la dosis maxima segura de anestesicos dentales. Variar segun edad, peso y medicamentos concomitantes.",
-      formula: "Lidocaina 2%: 4.4mg/kg (max 500mg) | Articaina 4%: 7mg/kg (max 500mg)"
+      formula: "Lidocaina 2%: 4.4mg/kg (max 500mg) | Articaina 4%: 7mg/kg (max 500mg)",
+      clinicalTips: [
+        "1 cartucho = 1.8mL = contiene 36mg de lidocaina al 2%",
+        "Ninos: REDUCIR dosis maxima 10-15% adicional",
+        "Pacientes cardiacos: usar lidocaina CON vasoconstrictor PREFERIBLE",
+        "Evitar inyeccion intravascular: aspirar ANTES de inyectar",
+        "Sintomas de toxicidad: hormigueo perioral, tinnitus, agitacion"
+      ]
     },
     child: {
       title: "Clasificacion Pediatrica",
       desc: "Determina la etapa de desarrollo del nino para seleccionar la tecnica clinica apropiada y medicamentos.",
-      formula: "Basado en edad cronologica del paciente"
+      formula: "Basado en edad cronologica del paciente",
+      clinicalTips: [
+        '0-2 anos: Denticion primaria, tecnica "decir-mostrar-hacer"',
+        "3-6 anos: Denticion mixta - erupcion incisivos permanentes",
+        "7-12 anos: Denticion mixta - erupcan premolares y caninos",
+        "Aplicar sellantes en molares permanentes recien erupcionados",
+        "Fluor: menores de 6 anos evitar pasta con fluor por deglucion"
+      ]
     }
   };
   const renderExplanation = () => {
     const exp = explanations[activeCalc];
-    return /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "p-4 bg-blue-50 rounded-lg border border-blue-200 space-y-2", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-start gap-2", children: [
-      /* @__PURE__ */ jsxRuntimeExports.jsx(Info, { className: "w-4 h-4 text-blue-600 mt-0.5 shrink-0" }),
-      /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "text-xs space-y-1", children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "font-semibold text-blue-900", children: exp.title }),
-        /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-blue-800", children: exp.desc }),
-        /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { className: "font-mono text-[10px] text-blue-700 bg-white px-2 py-1 rounded", children: [
-          "Formula: ",
-          exp.formula
+    return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-3", children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "p-4 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-lg border border-blue-200 space-y-3", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-start gap-2", children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsx(Info, { className: "w-4 h-4 text-blue-600 mt-0.5 shrink-0" }),
+        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "text-xs space-y-1", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "font-bold text-blue-900", children: exp.title }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-blue-800 leading-relaxed", children: exp.desc }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { className: "font-mono text-[10px] text-blue-700 bg-white px-2 py-1 rounded border border-blue-100", children: [
+            "Formula: ",
+            exp.formula
+          ] })
         ] })
+      ] }) }),
+      /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "p-4 bg-amber-50 rounded-lg border border-amber-200 space-y-2", children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { className: "text-xs font-bold text-amber-900 uppercase tracking-wide flex items-center gap-1.5", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx(Info, { className: "w-3 h-3" }),
+          " Recordatorio Clinico"
+        ] }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx("ul", { className: "text-xs space-y-1.5", children: exp.clinicalTips.map((tip, i2) => /* @__PURE__ */ jsxRuntimeExports.jsxs("li", { className: "text-amber-800 flex items-start gap-2", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-amber-500 font-bold", children: "•" }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx("span", { children: tip })
+        ] }, i2)) })
       ] })
-    ] }) });
+    ] });
   };
   return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-6", children: [
     /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-3 mb-6", children: [
@@ -10577,79 +10621,82 @@ const Dashboard = ({ setActiveModule, setSelectedPatient, setView }) => {
   return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "p-8 max-w-7xl mx-auto space-y-8", children: [
     /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center justify-between", children: [
       /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsx("h2", { className: "text-3xl font-bold text-slate-900 tracking-tight", children: "Bienvenido de nuevo" }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx("h2", { className: "text-3xl font-black text-slate-900 tracking-tight", children: "Bienvenido de nuevo" }),
         /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-slate-500 mt-1", children: "Aquí tienes un resumen de la actividad de hoy en la clínica." })
       ] }),
       /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex gap-3", children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsxs(Button, { variant: "outline", className: "gap-2", onClick: () => setShowCalculators(!showCalculators), children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsxs(Button, { variant: "outline", className: "gap-2 shadow-sm", onClick: () => setShowCalculators(!showCalculators), children: [
           /* @__PURE__ */ jsxRuntimeExports.jsx(Calculator, { className: "w-4 h-4" }),
           " Calculadoras"
         ] }),
-        /* @__PURE__ */ jsxRuntimeExports.jsxs(Button, { variant: "outline", onClick: () => setActiveModule("billing"), children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsxs(Button, { variant: "outline", className: "shadow-sm", onClick: () => setActiveModule("billing"), children: [
           /* @__PURE__ */ jsxRuntimeExports.jsx(FileText, { className: "w-4 h-4" }),
           " Descargar Reporte"
         ] }),
-        /* @__PURE__ */ jsxRuntimeExports.jsx(Button, { onClick: () => setActiveModule("appointments"), children: "Nueva Cita" })
+        /* @__PURE__ */ jsxRuntimeExports.jsx(Button, { className: "shadow-lg shadow-teal-200", onClick: () => setActiveModule("appointments"), children: "Nueva Cita" })
       ] })
     ] }),
     /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6", children: [
-      /* @__PURE__ */ jsxRuntimeExports.jsxs(Card, { className: "bg-white border-l-4 border-l-indigo-500", children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsx(CardHeader, { className: "pb-2", children: /* @__PURE__ */ jsxRuntimeExports.jsxs(CardTitle, { className: "text-sm font-medium text-slate-500 uppercase flex items-center gap-2", children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsxs(Card, { className: "bg-gradient-to-br from-indigo-600 to-indigo-700 text-white border-none shadow-xl shadow-indigo-200/50 card-shadow-hover", children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsx(CardHeader, { className: "pb-2", children: /* @__PURE__ */ jsxRuntimeExports.jsxs(CardTitle, { className: "text-indigo-100 text-xs font-bold uppercase tracking-widest flex items-center gap-2", children: [
           /* @__PURE__ */ jsxRuntimeExports.jsx(Users, { className: "w-4 h-4" }),
           " Pacientes Totales"
         ] }) }),
         /* @__PURE__ */ jsxRuntimeExports.jsxs(CardContent, { children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "text-3xl font-bold text-slate-900", children: stats.totalPatients }),
-          /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { className: "text-xs text-emerald-600 font-medium mt-1 flex items-center gap-1", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "text-4xl font-black", children: stats.totalPatients }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { className: "text-xs text-indigo-200 font-medium mt-1 flex items-center gap-1", children: [
             /* @__PURE__ */ jsxRuntimeExports.jsx(TrendingUp, { className: "w-3 h-3" }),
             " +12% este mes"
           ] })
         ] })
       ] }),
-      /* @__PURE__ */ jsxRuntimeExports.jsxs(Card, { className: "bg-white border-l-4 border-l-emerald-500", children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsx(CardHeader, { className: "pb-2", children: /* @__PURE__ */ jsxRuntimeExports.jsxs(CardTitle, { className: "text-sm font-medium text-slate-500 uppercase flex items-center gap-2", children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsxs(Card, { className: "bg-gradient-to-br from-teal-600 to-teal-700 text-white border-none shadow-xl shadow-teal-200/50 card-shadow-hover", children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsx(CardHeader, { className: "pb-2", children: /* @__PURE__ */ jsxRuntimeExports.jsxs(CardTitle, { className: "text-teal-100 text-xs font-bold uppercase tracking-widest flex items-center gap-2", children: [
           /* @__PURE__ */ jsxRuntimeExports.jsx(Calendar, { className: "w-4 h-4" }),
           " Citas Hoy"
         ] }) }),
         /* @__PURE__ */ jsxRuntimeExports.jsxs(CardContent, { children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "text-3xl font-bold text-slate-900", children: stats.todayAppointments }),
-          /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { className: "text-xs text-slate-500 font-medium mt-1 flex items-center gap-1", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "text-4xl font-black", children: stats.todayAppointments }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { className: "text-xs text-teal-200 font-medium mt-1 flex items-center gap-1", children: [
             /* @__PURE__ */ jsxRuntimeExports.jsx(Clock, { className: "w-3 h-3" }),
             " Próxima: ",
-            stats.nextAppointmentTime
+            stats.nextAppointmentTime || "Sin citas"
           ] })
         ] })
       ] }),
-      /* @__PURE__ */ jsxRuntimeExports.jsxs(Card, { className: "bg-white border-l-4 border-l-amber-500", children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsx(CardHeader, { className: "pb-2", children: /* @__PURE__ */ jsxRuntimeExports.jsxs(CardTitle, { className: "text-sm font-medium text-slate-500 uppercase flex items-center gap-2", children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsxs(Card, { className: "bg-gradient-to-br from-amber-500 to-amber-600 text-white border-none shadow-xl shadow-amber-200/50 card-shadow-hover", children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsx(CardHeader, { className: "pb-2", children: /* @__PURE__ */ jsxRuntimeExports.jsxs(CardTitle, { className: "text-amber-100 text-xs font-bold uppercase tracking-widest flex items-center gap-2", children: [
           /* @__PURE__ */ jsxRuntimeExports.jsx(Activity, { className: "w-4 h-4" }),
           " Procedimientos"
         ] }) }),
         /* @__PURE__ */ jsxRuntimeExports.jsxs(CardContent, { children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "text-3xl font-bold text-slate-900", children: "24" }),
-          /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-xs text-slate-500 font-medium mt-1", children: "Realizados hoy" })
+          /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "text-4xl font-black", children: "24" }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-xs text-amber-200 font-medium mt-1", children: "Realizados hoy" })
         ] })
       ] }),
-      /* @__PURE__ */ jsxRuntimeExports.jsxs(Card, { className: "bg-white border-l-4 border-l-blue-500", children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsx(CardHeader, { className: "pb-2", children: /* @__PURE__ */ jsxRuntimeExports.jsxs(CardTitle, { className: "text-sm font-medium text-slate-500 uppercase flex items-center gap-2", children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsxs(Card, { className: "bg-gradient-to-br from-slate-700 to-slate-800 text-white border-none shadow-xl shadow-slate-300/50 card-shadow-hover", children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsx(CardHeader, { className: "pb-2", children: /* @__PURE__ */ jsxRuntimeExports.jsxs(CardTitle, { className: "text-slate-300 text-xs font-bold uppercase tracking-widest flex items-center gap-2", children: [
           /* @__PURE__ */ jsxRuntimeExports.jsx(CircleCheckBig, { className: "w-4 h-4" }),
           " Sistema"
         ] }) }),
         /* @__PURE__ */ jsxRuntimeExports.jsxs(CardContent, { children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "text-3xl font-bold text-slate-900", children: "Activo" }),
-          /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-xs text-emerald-600 font-medium mt-1", children: "Conectado y Seguro" })
+          /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "text-3xl font-black", children: "Activo" }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { className: "text-xs text-emerald-400 font-medium mt-1 flex items-center gap-1", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "w-1.5 h-1.5 bg-emerald-400 rounded-full animate-pulse" }),
+            " Conectado y Seguro"
+          ] })
         ] })
       ] })
     ] }),
     showCalculators && /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "animate-in slide-in-from-top-4 duration-500", children: /* @__PURE__ */ jsxRuntimeExports.jsx(ClinicalCalculators, {}) }),
     /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "grid grid-cols-1 lg:grid-cols-3 gap-8", children: [
-      /* @__PURE__ */ jsxRuntimeExports.jsxs(Card, { className: "lg:col-span-2", children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsx(CardHeader, { children: /* @__PURE__ */ jsxRuntimeExports.jsx(CardTitle, { children: "Citas de Hoy" }) }),
-        /* @__PURE__ */ jsxRuntimeExports.jsx(CardContent, { children: recentAppointments.length > 0 ? /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "space-y-4", children: recentAppointments.map((appt) => /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center justify-between p-4 bg-slate-50 rounded-xl border border-slate-100 hover:border-slate-200 transition-all", children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsxs(Card, { className: "lg:col-span-2 bg-white shadow-xl shadow-slate-200/50 border-slate-100", children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsx(CardHeader, { className: "border-b border-slate-100", children: /* @__PURE__ */ jsxRuntimeExports.jsx(CardTitle, { className: "text-lg font-bold text-slate-900", children: "Citas de Hoy" }) }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx(CardContent, { className: "pt-4", children: recentAppointments.length > 0 ? /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "space-y-4", children: recentAppointments.map((appt) => /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center justify-between p-4 bg-gradient-to-r from-slate-50 to-white rounded-xl border border-slate-100 hover:border-teal-200 hover:shadow-md transition-all", children: [
           /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-4", children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "w-12 h-12 bg-indigo-100 rounded-full flex items-center justify-center text-indigo-700 font-bold", children: appt.patient_name?.[0] }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "w-12 h-12 bg-gradient-to-br from-teal-500 to-cyan-600 rounded-full flex items-center justify-center text-white font-bold shadow-lg shadow-teal-200", children: appt.patient_name?.[0] }),
             /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
-              /* @__PURE__ */ jsxRuntimeExports.jsx("h4", { className: "font-semibold text-slate-900", children: appt.patient_name }),
+              /* @__PURE__ */ jsxRuntimeExports.jsx("h4", { className: "font-bold text-slate-900", children: appt.patient_name }),
               /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { className: "text-xs text-slate-500 flex items-center gap-1", children: [
                 /* @__PURE__ */ jsxRuntimeExports.jsx(Clock, { className: "w-3 h-3" }),
                 " ",
@@ -10664,7 +10711,7 @@ const Dashboard = ({ setActiveModule, setSelectedPatient, setView }) => {
               Badge,
               {
                 variant: appt.status === "arrived" ? "success" : appt.status === "in_progress" ? "warning" : appt.status === "completed" ? "success" : "warning",
-                className: "cursor-pointer",
+                className: "cursor-pointer font-bold",
                 onClick: () => setShowStatusModal({ appointment: appt }),
                 children: appt.status === "arrived" ? "En espera" : appt.status === "in_progress" ? "Atendiendo" : appt.status === "completed" ? "Completado" : appt.status === "cancelled" ? "Cancelado" : "Pendiente"
               }
@@ -10683,7 +10730,7 @@ const Dashboard = ({ setActiveModule, setSelectedPatient, setView }) => {
                 Button,
                 {
                   size: "sm",
-                  className: "bg-emerald-600 hover:bg-emerald-700",
+                  className: "bg-teal-600 hover:bg-teal-700 shadow-teal-200 shadow-md",
                   onClick: () => handleStatusChange(appt, "in_progress"),
                   children: "Atender"
                 }
@@ -10695,23 +10742,23 @@ const Dashboard = ({ setActiveModule, setSelectedPatient, setView }) => {
           /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-slate-500", children: "No hay citas programadas para hoy." })
         ] }) })
       ] }),
-      /* @__PURE__ */ jsxRuntimeExports.jsxs(Card, { children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsx(CardHeader, { children: /* @__PURE__ */ jsxRuntimeExports.jsx(CardTitle, { children: "Acciones Rápidas" }) }),
-        /* @__PURE__ */ jsxRuntimeExports.jsxs(CardContent, { className: "space-y-3", children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsxs(Button, { className: "w-full justify-start gap-3", variant: "outline", onClick: () => setActiveModule("patients"), children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsx(Users, { className: "w-4 h-4 text-indigo-500" }),
+      /* @__PURE__ */ jsxRuntimeExports.jsxs(Card, { className: "bg-white shadow-xl shadow-slate-200/50 border-slate-100", children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsx(CardHeader, { className: "border-b border-slate-100", children: /* @__PURE__ */ jsxRuntimeExports.jsx(CardTitle, { className: "text-lg font-bold text-slate-900", children: "Acciones Rápidas" }) }),
+        /* @__PURE__ */ jsxRuntimeExports.jsxs(CardContent, { className: "space-y-3 pt-4", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsxs(Button, { className: "w-full justify-start gap-3 shadow-sm", variant: "outline", onClick: () => setActiveModule("patients"), children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx(Users, { className: "w-4 h-4 text-teal-600" }),
             " Nuevo Paciente"
           ] }),
-          /* @__PURE__ */ jsxRuntimeExports.jsxs(Button, { className: "w-full justify-start gap-3", variant: "outline", onClick: () => setActiveModule("appointments"), children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsx(Calendar, { className: "w-4 h-4 text-emerald-500" }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs(Button, { className: "w-full justify-start gap-3 shadow-sm", variant: "outline", onClick: () => setActiveModule("appointments"), children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx(Calendar, { className: "w-4 h-4 text-emerald-600" }),
             " Agendar Cita"
           ] }),
-          /* @__PURE__ */ jsxRuntimeExports.jsxs(Button, { className: "w-full justify-start gap-3", variant: "outline", onClick: () => setActiveModule("billing"), children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsx(FileText, { className: "w-4 h-4 text-amber-500" }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs(Button, { className: "w-full justify-start gap-3 shadow-sm", variant: "outline", onClick: () => setActiveModule("billing"), children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx(FileText, { className: "w-4 h-4 text-amber-600" }),
             " Generar Factura"
           ] }),
-          /* @__PURE__ */ jsxRuntimeExports.jsxs(Button, { className: "w-full justify-start gap-3", variant: "outline", onClick: () => setActiveModule("staff"), children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsx(Activity, { className: "w-4 h-4 text-blue-500" }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs(Button, { className: "w-full justify-start gap-3 shadow-sm", variant: "outline", onClick: () => setActiveModule("staff"), children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx(Activity, { className: "w-4 h-4 text-slate-600" }),
             " Ver Reportes"
           ] })
         ] })
@@ -11403,7 +11450,9 @@ const Odontogram = ({ patientId }) => {
     ] })
   ] });
 };
-const PrescriptionGenerator = ({ patientId, patientName, onSave, doctorName = "Dr. Profesional", doctorLicense = "0000000" }) => {
+const PrescriptionGenerator = ({ patientId, patientName, onSave, doctorName = "", doctorLicense = "" }) => {
+  const [doctorNameState] = reactExports.useState(doctorName);
+  const [doctorLicenseState] = reactExports.useState(doctorLicense);
   const [medications, setMedications] = reactExports.useState([{ name: "", dose: "", freq: "", duration: "" }]);
   const [instructions, setInstructions] = reactExports.useState("");
   const addMedication = () => {
@@ -11555,10 +11604,10 @@ const PrescriptionGenerator = ({ patientId, patientName, onSave, doctorName = "D
         ] }),
         /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "mt-20 flex justify-center flex-col items-center", children: [
           /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "w-48 border-t border-slate-300 mb-2" }),
-          /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-xs font-bold text-slate-900", children: doctorName }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-xs font-bold text-slate-900", children: doctorNameState || "Nombre del Doctor" }),
           /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { className: "text-[10px] text-slate-500 font-medium", children: [
             "Cedula Profesional: ",
-            doctorLicense
+            doctorLicenseState || "N/A"
           ] })
         ] })
       ] }) })
@@ -22610,7 +22659,7 @@ function(t3) {
   var h2 = l2.getContext("2d");
   h2.fillStyle = "#fff", h2.fillRect(0, 0, l2.width, l2.height);
   var f2 = { ignoreMouse: true, ignoreAnimation: true, ignoreDimensions: true }, d2 = this;
-  return (i.canvg ? Promise.resolve(i.canvg) : __vitePreload(() => import("./index.es-DiwWspcn.js"), true ? [] : void 0, import.meta.url)).catch(function(t4) {
+  return (i.canvg ? Promise.resolve(i.canvg) : __vitePreload(() => import("./index.es-CJhTwS4f.js"), true ? [] : void 0, import.meta.url)).catch(function(t4) {
     return Promise.reject(new Error("Could not load canvg: " + t4));
   }).then(function(t4) {
     return t4.default ? t4.default : t4;
@@ -26232,13 +26281,22 @@ const InvoiceForm = ({ onSave, onCancel }) => {
     const taxAmount = calculateTaxAmount();
     const total = subtotal + taxAmount;
     const invoiceNumber = `FACT-${Date.now().toString().slice(-6)}`;
+    const itemsWithTotals = items.filter((i2) => i2.description.trim()).map((item) => ({
+      description: item.description,
+      quantity: item.quantity,
+      unit_price: item.unitPrice,
+      total_price: item.quantity * item.unitPrice
+    }));
     onSave({
-      ...formData,
-      patient_id: parseInt(formData.patient_id.toString()),
-      invoice_number: invoiceNumber,
-      total_amount: total,
-      tax_amount: taxAmount,
-      items
+      invoice: {
+        ...formData,
+        patient_id: parseInt(formData.patient_id.toString()),
+        invoice_number: invoiceNumber,
+        total_amount: total,
+        tax_amount: taxAmount,
+        status: "issued"
+      },
+      items: itemsWithTotals
     });
   };
   const addItem = () => {

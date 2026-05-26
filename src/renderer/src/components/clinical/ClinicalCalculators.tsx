@@ -98,45 +98,95 @@ export const ClinicalCalculators = () => {
     setTimeout(() => setCopiedResult(false), 2000)
   }
 
-  const explanations: Record<string, { title: string; desc: string; formula: string }> = {
+  const explanations: Record<string, { title: string; desc: string; formula: string; clinicalTips: string[] }> = {
     unitConversion: {
       title: 'Conversor de Glucosa',
       desc: 'Convierte entre unidades de medicion de glucosa. Importante para pacientes diabeticos evaluados antes de procedimientos dentales.',
-      formula: 'mg/dL ÷ 18.01559 = mmol/L (o multiplicar para lo inverso)'
+      formula: 'mg/dL ÷ 18.01559 = mmol/L (o multiplicar para lo inverso)',
+      clinicalTips: [
+        'Valores normales en ayunas: 70-100 mg/dL (3.9-5.6 mmol/L)',
+        'Hiperglucemia: >126 mg/dL en ayunas indica diabetes',
+        'Antes de cirugia: verificar glucemia, ajustar anestesia si necesario',
+        'Pacientes diabeticos tienen mayor riesgo de infeccion post-operatoria'
+      ]
     },
     pediatricDose: {
       title: 'Dosis Pediatricas',
       desc: 'Calcula la dosis correcta segun el peso del paciente. Esencial en odontologia pediatrica. Nunca sobrepasar dosis maxima por tipo de medicamento.',
-      formula: 'Dosis Total = Peso (kg) × Dosis Unitaria (mg/kg)'
+      formula: 'Dosis Total = Peso (kg) × Dosis Unitaria (mg/kg)',
+      clinicalTips: [
+        'Amoxicilina: 25-50 mg/kg/dia dividido cada 8h (max 3g/dia)',
+        'Paracetamol: 10-15 mg/kg cada 6-8h (max 5 dosis/dia)',
+        'Ibuprofeno: 5-10 mg/kg cada 6-8h (max 40 mg/kg/dia)',
+        'NUNCA usar aspirina en menores de 12 anos (Riesgo de Sindrome de Reye)'
+      ]
     },
     bmi: {
       title: 'Indice de Masa Corporal',
       desc: 'Eval ua el estado nutricional. Pacientes con BMI extremo pueden requerir consideraciones anestesicas especiales.',
-      formula: 'IMC = Peso (kg) ÷ Altura² (m²)'
+      formula: 'IMC = Peso (kg) ÷ Altura² (m²)',
+      clinicalTips: [
+        'BMI <18.5: Bajo peso - evaluar nutricion, posible osteoporosis',
+        'BMI >30: Riesgo incrementado de EAP, diabetes tipo 2',
+        'Obesidad: precaucion con sedacion, posicion del paciente',
+        'En odontologia: relacion con enfermedad periodontal'
+      ]
     },
     anesthesia: {
       title: 'Anestesia Local Dental',
       desc: 'Calcula la dosis maxima segura de anestesicos dentales. Variar segun edad, peso y medicamentos concomitantes.',
-      formula: 'Lidocaina 2%: 4.4mg/kg (max 500mg) | Articaina 4%: 7mg/kg (max 500mg)'
+      formula: 'Lidocaina 2%: 4.4mg/kg (max 500mg) | Articaina 4%: 7mg/kg (max 500mg)',
+      clinicalTips: [
+        '1 cartucho = 1.8mL = contiene 36mg de lidocaina al 2%',
+        'Ninos: REDUCIR dosis maxima 10-15% adicional',
+        'Pacientes cardiacos: usar lidocaina CON vasoconstrictor PREFERIBLE',
+        'Evitar inyeccion intravascular: aspirar ANTES de inyectar',
+        'Sintomas de toxicidad: hormigueo perioral, tinnitus, agitacion'
+      ]
     },
     child: {
       title: 'Clasificacion Pediatrica',
       desc: 'Determina la etapa de desarrollo del nino para seleccionar la tecnica clinica apropiada y medicamentos.',
-      formula: 'Basado en edad cronologica del paciente'
+      formula: 'Basado en edad cronologica del paciente',
+      clinicalTips: [
+        '0-2 anos: Denticion primaria, tecnica "decir-mostrar-hacer"',
+        '3-6 anos: Denticion mixta - erupcion incisivos permanentes',
+        '7-12 anos: Denticion mixta - erupcan premolares y caninos',
+        'Aplicar sellantes en molares permanentes recien erupcionados',
+        'Fluor: menores de 6 anos evitar pasta con fluor por deglucion'
+      ]
     }
   }
 
   const renderExplanation = () => {
     const exp = explanations[activeCalc]
     return (
-      <div className="p-4 bg-blue-50 rounded-lg border border-blue-200 space-y-2">
-        <div className="flex items-start gap-2">
-          <Info className="w-4 h-4 text-blue-600 mt-0.5 shrink-0" />
-          <div className="text-xs space-y-1">
-            <p className="font-semibold text-blue-900">{exp.title}</p>
-            <p className="text-blue-800">{exp.desc}</p>
-            <p className="font-mono text-[10px] text-blue-700 bg-white px-2 py-1 rounded">Formula: {exp.formula}</p>
+      <div className="space-y-3">
+        <div className="p-4 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-lg border border-blue-200 space-y-3">
+          <div className="flex items-start gap-2">
+            <Info className="w-4 h-4 text-blue-600 mt-0.5 shrink-0" />
+            <div className="text-xs space-y-1">
+              <p className="font-bold text-blue-900">{exp.title}</p>
+              <p className="text-blue-800 leading-relaxed">{exp.desc}</p>
+              <p className="font-mono text-[10px] text-blue-700 bg-white px-2 py-1 rounded border border-blue-100">
+                Formula: {exp.formula}
+              </p>
+            </div>
           </div>
+        </div>
+
+        <div className="p-4 bg-amber-50 rounded-lg border border-amber-200 space-y-2">
+          <p className="text-xs font-bold text-amber-900 uppercase tracking-wide flex items-center gap-1.5">
+            <Info className="w-3 h-3" /> Recordatorio Clinico
+          </p>
+          <ul className="text-xs space-y-1.5">
+            {exp.clinicalTips.map((tip, i) => (
+              <li key={i} className="text-amber-800 flex items-start gap-2">
+                <span className="text-amber-500 font-bold">•</span>
+                <span>{tip}</span>
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
     )
