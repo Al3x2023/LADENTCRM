@@ -7158,6 +7158,16 @@ const CircleCheckBig = createLucideIcon("CircleCheckBig", [
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
+const CircleCheck = createLucideIcon("CircleCheck", [
+  ["circle", { cx: "12", cy: "12", r: "10", key: "1mglay" }],
+  ["path", { d: "m9 12 2 2 4-4", key: "dzmm74" }]
+]);
+/**
+ * @license lucide-react v0.378.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
 const CircleX = createLucideIcon("CircleX", [
   ["circle", { cx: "12", cy: "12", r: "10", key: "1mglay" }],
   ["path", { d: "m15 9-6 6", key: "1uzhvr" }],
@@ -10676,7 +10686,7 @@ const Dashboard = ({ setActiveModule, setSelectedPatient, setView }) => {
       ] }),
       /* @__PURE__ */ jsxRuntimeExports.jsxs(Card, { className: "bg-gradient-to-br from-slate-700 to-slate-800 text-white border-none shadow-xl shadow-slate-300/50 card-shadow-hover", children: [
         /* @__PURE__ */ jsxRuntimeExports.jsx(CardHeader, { className: "pb-2", children: /* @__PURE__ */ jsxRuntimeExports.jsxs(CardTitle, { className: "text-slate-300 text-xs font-bold uppercase tracking-widest flex items-center gap-2", children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx(CircleCheckBig, { className: "w-4 h-4" }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx(CircleCheck, { className: "w-4 h-4" }),
           " Sistema"
         ] }) }),
         /* @__PURE__ */ jsxRuntimeExports.jsxs(CardContent, { children: [
@@ -22659,7 +22669,7 @@ function(t3) {
   var h2 = l2.getContext("2d");
   h2.fillStyle = "#fff", h2.fillRect(0, 0, l2.width, l2.height);
   var f2 = { ignoreMouse: true, ignoreAnimation: true, ignoreDimensions: true }, d2 = this;
-  return (i.canvg ? Promise.resolve(i.canvg) : __vitePreload(() => import("./index.es-CJhTwS4f.js"), true ? [] : void 0, import.meta.url)).catch(function(t4) {
+  return (i.canvg ? Promise.resolve(i.canvg) : __vitePreload(() => import("./index.es-cZ6V0vjZ.js"), true ? [] : void 0, import.meta.url)).catch(function(t4) {
     return Promise.reject(new Error("Could not load canvg: " + t4));
   }).then(function(t4) {
     return t4.default ? t4.default : t4;
@@ -27599,6 +27609,3 @@ export {
   commonjsGlobal as c,
   getDefaultExportFromCjs as g
 };
-
-
-export { c, _, g }
