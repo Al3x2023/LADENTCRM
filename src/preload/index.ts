@@ -52,6 +52,10 @@ const api = {
   addTreatment: (data: any) => ipcRenderer.invoke('add-treatment', data),
   updateTreatment: (data: any) => ipcRenderer.invoke('update-treatment', data),
   deleteTreatment: (id: number) => ipcRenderer.invoke('delete-treatment', id),
+
+  // User Management
+  deleteUser: (id: number) => ipcRenderer.invoke('delete-user', id),
+  resetUserPassword: (data: any) => ipcRenderer.invoke('reset-user-password', data),
 }
 
 // Use `contextBridge` APIs to expose Electron APIs to

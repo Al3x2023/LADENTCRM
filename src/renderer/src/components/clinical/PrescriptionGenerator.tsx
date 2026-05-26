@@ -9,9 +9,11 @@ interface PrescriptionGeneratorProps {
   patientId: number
   patientName: string
   onSave: (prescription: Prescription) => void
+  doctorName?: string
+  doctorLicense?: string
 }
 
-export const PrescriptionGenerator = ({ patientId, patientName, onSave }: PrescriptionGeneratorProps) => {
+export const PrescriptionGenerator = ({ patientId, patientName, onSave, doctorName = 'Dr. Profesional', doctorLicense = '0000000' }: PrescriptionGeneratorProps) => {
   const [medications, setMedications] = useState([{ name: '', dose: '', freq: '', duration: '' }])
   const [instructions, setInstructions] = useState('')
 
@@ -167,8 +169,8 @@ export const PrescriptionGenerator = ({ patientId, patientName, onSave }: Prescr
 
             <div className="mt-20 flex justify-center flex-col items-center">
               <div className="w-48 border-t border-slate-300 mb-2"></div>
-              <p className="text-xs font-bold text-slate-900">Dr. Alejandro</p>
-              <p className="text-[10px] text-slate-500 font-medium">Cédula Profesional: 12345678</p>
+              <p className="text-xs font-bold text-slate-900">{doctorName}</p>
+              <p className="text-[10px] text-slate-500 font-medium">Cedula Profesional: {doctorLicense}</p>
             </div>
           </div>
         </CardContent>

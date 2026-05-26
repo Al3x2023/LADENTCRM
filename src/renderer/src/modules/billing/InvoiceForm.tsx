@@ -69,6 +69,14 @@ export const InvoiceForm = ({ onSave, onCancel }: InvoiceFormProps) => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
+    if (!formData.patient_id || formData.patient_id === 0) {
+      showToast('Selecciona un paciente', 'error')
+      return
+    }
+    if (items.length === 0 || !items.some(i => i.description.trim())) {
+      showToast('Agrega al menos un concepto', 'error')
+      return
+    }
     const subtotal = calculateSubtotal()
     const taxAmount = calculateTaxAmount()
     const total = subtotal + taxAmount

@@ -18,6 +18,8 @@ export const StaffAdmin = () => {
   const [showAddUser, setShowAddUser] = useState(false)
   const [editingUser, setEditingUser] = useState<User | null>(null)
   const [newUser, setNewUser] = useState({ username: '', password: '', full_name: '', role: 'receptionist', email: '' })
+  const [resetPassUser, setResetPassUser] = useState<User | null>(null)
+  const [newPassword, setNewPassword] = useState('')
   const { showToast } = useToast()
 
   useEffect(() => {
@@ -174,9 +176,32 @@ export const StaffAdmin = () => {
                     {user.last_login ? new Date(user.last_login).toLocaleString() : 'Nunca'}
                   </TableCell>
                   <TableCell className="text-right">
-                    <Button size="sm" variant="ghost" onClick={() => setEditingUser(user)}>
-                      Editar
-                    </Button>
+                    <div className="flex gap-1 justify-end">
+                      <Button size="sm" variant="ghost" onClick={() => setEditingUser(user)}>
+                        Editar
+                      </Button>
+                      <Button size="sm" variant="ghost" className="text-amber-600" onClick={() => setResetPassUser(user)}>
+                        Reset Pass
+                      </Button>
+                      {user.id !== 1 && (
+                        <Button
+                          size="sm"
+                          variant="ghost"
+                          className="text-red-600"
+                          onClick={async () => {
+                            if (confirm(`Eliminar a ${user.full_name}?`)) {
+                              const result = await window.api.deleteUser(user.id)
+                              if (result.success) {
+                                showToast('Usuario eliminado', 'success')
+                                fetchData()
+                              }
+                            }
+                          }}
+                        >
+                          Eliminar
+                        </Button>
+                      )}
+                    </div>
                   </TableCell>
                 </TableRow>
               )) : (
@@ -304,6 +329,50 @@ export const StaffAdmin = () => {
                 <option value="0">Inactivo</option>
               </select>
             </div>
+          </div>
+        )}
+      </Modal>
+
+      {/* Reset Password Modal */}
+      <Modal
+        isOpen={!!resetPassUser}
+        onClose={() => { setResetPassUser(null); setNewPassword(''); }}
+        title="Resetear Contrasena"
+        footer={
+          <>
+            <Button variant="ghost" onClick={() => { setResetPassUser(null); setNewPassword(''); }}>Cancelar</Button>
+            <Button
+              onClick={async () => {
+                if (!newPassword || newPassword.length < 6) {
+                  showToast('La contrasena debe tener minimo 6 caracteres', 'error')
+                  return
+                }
+                const result = await window.api.resetUserPassword({ id: resetPassUser!.id, newPassword })
+                if (result.success) {
+                  showToast(`Contrasena reseteada para ${resetPassUser!.full_name}`, 'success')
+                  setResetPassUser(null)
+                  setNewPassword('')
+                }
+              }}
+            >
+              Resetear
+            </Button>
+          </>
+        }
+      >
+        {resetPassUser && (
+          <div className="space-y-4">
+            <div className="p-3 bg-amber-50 rounded-lg border border-amber-200">
+              <p className="text-sm text-amber-900 font-medium">Usuario: {resetPassUser.full_name}</p>
+            </div>
+            <Input
+              label="Nueva Contrasena"
+              type="password"
+              value={newPassword}
+              onChange={(e) => setNewPassword(e.target.value)}
+              placeholder="Minimo 6 caracteres"
+              required
+            />
           </div>
         )}
       </Modal>

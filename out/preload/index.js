@@ -44,7 +44,10 @@ const api = {
   getTreatments: () => electron.ipcRenderer.invoke("get-treatments"),
   addTreatment: (data) => electron.ipcRenderer.invoke("add-treatment", data),
   updateTreatment: (data) => electron.ipcRenderer.invoke("update-treatment", data),
-  deleteTreatment: (id) => electron.ipcRenderer.invoke("delete-treatment", id)
+  deleteTreatment: (id) => electron.ipcRenderer.invoke("delete-treatment", id),
+  // User Management
+  deleteUser: (id) => electron.ipcRenderer.invoke("delete-user", id),
+  resetUserPassword: (data) => electron.ipcRenderer.invoke("reset-user-password", data)
 };
 if (process.contextIsolated) {
   try {

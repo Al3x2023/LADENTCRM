@@ -622,6 +622,20 @@ function setupAuthHandlers() {
     logAction(null, "DELETE", "PATIENTS", `Paciente eliminado ID: ${id}`);
     return result.changes;
   });
+  electron.ipcMain.handle("delete-user", (_, id) => {
+    if (id === 1) {
+      return { success: false, error: "No se puede eliminar el administrador principal" };
+    }
+    const result = db2.prepare("DELETE FROM users WHERE id = ?").run(id);
+    logAction(null, "DELETE_USER", "AUTH", `Usuario eliminado ID: ${id}`);
+    return { success: true, changes: result.changes };
+  });
+  electron.ipcMain.handle("reset-user-password", (_, { id, newPassword }) => {
+    const hashedPassword = hashPassword(newPassword);
+    db2.prepare("UPDATE users SET password_hash = ? WHERE id = ?").run(hashedPassword, id);
+    logAction(null, "RESET_PASSWORD", "AUTH", `Contrasena reseteada para usuario ID: ${id}`);
+    return { success: true };
+  });
 }
 function createWindow() {
   const mainWindow = new electron.BrowserWindow({
