@@ -172,6 +172,10 @@ interface CustomAPI {
   addTreatment: (data: { name: string; description?: string; category: string; price: number; apply_tax: boolean }) => Promise<{ success: boolean; id?: number; error?: string }>;
   updateTreatment: (data: { id: number; name: string; description?: string; price: number; apply_tax: boolean; active: boolean }) => Promise<{ success: boolean }>;
   deleteTreatment: (id: number) => Promise<number>;
+
+  // User Management
+  deleteUser: (id: number) => Promise<{ success: boolean; changes?: number; error?: string }>;
+  resetUserPassword: (data: { id: number; newPassword: string }) => Promise<{ success: boolean }>;
 }
 
 declare global {
