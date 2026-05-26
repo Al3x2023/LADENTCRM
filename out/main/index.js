@@ -150,6 +150,19 @@ const SCHEMA = `
     uploaded_at DATETIME DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (patient_id) REFERENCES patients(id)
   );
+
+  -- Tratamientos y Productos (Conceptos rápidos)
+  CREATE TABLE IF NOT EXISTS treatments (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT NOT NULL UNIQUE,
+    description TEXT,
+    category TEXT CHECK(category IN ('treatment', 'material', 'service', 'other')) DEFAULT 'treatment',
+    price REAL NOT NULL,
+    apply_tax INTEGER DEFAULT 1,
+    active INTEGER DEFAULT 1,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
+  );
 `;
 const ALGORITHM = "aes-256-cbc";
 const KEY = crypto.scryptSync("liadent-secret-key-2026", "salt", 32);
@@ -475,6 +488,34 @@ function setupBillingHandlers() {
   electron.ipcMain.handle("update-invoice-status", (_, { id, status }) => {
     const result = db2.prepare("UPDATE invoices SET status = ? WHERE id = ?").run(status, id);
     logAction(null, "UPDATE_INVOICE_STATUS", "BILLING", `Estado de factura ${id} cambiado a ${status}`);
+    return result.changes;
+  });
+  electron.ipcMain.handle("get-treatments", () => {
+    return db2.prepare("SELECT * FROM treatments WHERE active = 1 ORDER BY category, name").all();
+  });
+  electron.ipcMain.handle("add-treatment", (_, { name, description, category, price, apply_tax }) => {
+    const existing = db2.prepare("SELECT id FROM treatments WHERE name = ?").get(name);
+    if (existing) {
+      return { success: false, error: "El tratamiento ya existe" };
+    }
+    const info = db2.prepare(`
+      INSERT INTO treatments (name, description, category, price, apply_tax)
+      VALUES (?, ?, ?, ?, ?)
+    `).run(name, description || "", category || "treatment", price, apply_tax ? 1 : 0);
+    logAction(null, "CREATE_TREATMENT", "BILLING", `Tratamiento creado: ${name}`);
+    return { success: true, id: info.lastInsertRowid };
+  });
+  electron.ipcMain.handle("update-treatment", (_, { id, name, description, price, apply_tax, active }) => {
+    db2.prepare(`
+      UPDATE treatments SET name = ?, description = ?, price = ?, apply_tax = ?, active = ?
+      WHERE id = ?
+    `).run(name, description, price, apply_tax ? 1 : 0, active ? 1 : 0, id);
+    logAction(null, "UPDATE_TREATMENT", "BILLING", `Tratamiento actualizado: ${name}`);
+    return { success: true };
+  });
+  electron.ipcMain.handle("delete-treatment", (_, id) => {
+    const result = db2.prepare("DELETE FROM treatments WHERE id = ?").run(id);
+    logAction(null, "DELETE_TREATMENT", "BILLING", `Tratamiento eliminado ID: ${id}`);
     return result.changes;
   });
 }

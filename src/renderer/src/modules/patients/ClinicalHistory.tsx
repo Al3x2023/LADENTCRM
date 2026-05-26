@@ -8,6 +8,8 @@ import { Stethoscope, Plus, Clock, Activity, Save, Pill, Printer, Image, Upload,
 import { Patient, ClinicalNote, Prescription } from '../../env'
 import { Odontogram } from '../../components/clinical/Odontogram'
 import { PrescriptionGenerator } from '../../components/clinical/PrescriptionGenerator'
+import { ClinicalCalculators } from '../../components/clinical/ClinicalCalculators'
+import { TreatmentsTab } from './TreatmentsTab'
 import { useToast } from '../../context/ToastContext'
 import { cn } from '../../components/ui/Button'
 import { generatePrescriptionPDF } from '../../utils/pdf'
@@ -18,7 +20,7 @@ interface ClinicalHistoryProps {
 }
 
 export const ClinicalHistory = ({ patient, onBack }: ClinicalHistoryProps) => {
-  const [activeTab, setActiveTab] = useState<'notes' | 'odontogram' | 'prescriptions' | 'images'>('notes')
+  const [activeTab, setActiveTab] = useState<'notes' | 'odontogram' | 'prescriptions' | 'images' | 'concepts' | 'calculators'>('notes')
   const [notes, setNotes] = useState<ClinicalNote[]>([])
   const [prescriptions, setPrescriptions] = useState<Prescription[]>([])
   const [images, setImages] = useState<any[]>([])
@@ -144,19 +146,37 @@ export const ClinicalHistory = ({ patient, onBack }: ClinicalHistoryProps) => {
         </div>
       </div>
 
-      <div className="flex gap-4 border-b border-slate-200">
+      <div className="flex gap-4 border-b border-slate-200 overflow-x-auto">
         {tabs.map(tab => (
           <button
             key={tab.id}
             onClick={() => { setActiveTab(tab.id); setIsAddingPrescription(false); }}
             className={cn(
-              "pb-4 px-2 text-sm font-bold transition-all",
+              "pb-4 px-2 text-sm font-bold transition-all whitespace-nowrap",
               activeTab === tab.id ? "text-teal-600 border-b-2 border-teal-600" : "text-slate-400 hover:text-slate-600"
             )}
           >
             {tab.label}
           </button>
         ))}
+        <button
+          onClick={() => setActiveTab('concepts')}
+          className={cn(
+            "pb-4 px-2 text-sm font-bold transition-all whitespace-nowrap",
+            activeTab === 'concepts' ? "text-teal-600 border-b-2 border-teal-600" : "text-slate-400 hover:text-slate-600"
+          )}
+        >
+          Conceptos
+        </button>
+        <button
+          onClick={() => setActiveTab('calculators')}
+          className={cn(
+            "pb-4 px-2 text-sm font-bold transition-all whitespace-nowrap",
+            activeTab === 'calculators' ? "text-teal-600 border-b-2 border-teal-600" : "text-slate-400 hover:text-slate-600"
+          )}
+        >
+          Calculadoras
+        </button>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
@@ -382,6 +402,14 @@ export const ClinicalHistory = ({ patient, onBack }: ClinicalHistoryProps) => {
                 )}
               </div>
             </div>
+          )}
+
+          {activeTab === 'concepts' && (
+            <TreatmentsTab />
+          )}
+
+          {activeTab === 'calculators' && (
+            <ClinicalCalculators />
           )}
         </div>
 

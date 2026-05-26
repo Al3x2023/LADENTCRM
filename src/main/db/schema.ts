@@ -143,4 +143,17 @@ export const SCHEMA = `
     uploaded_at DATETIME DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (patient_id) REFERENCES patients(id)
   );
+
+  -- Tratamientos y Productos (Conceptos rápidos)
+  CREATE TABLE IF NOT EXISTS treatments (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT NOT NULL UNIQUE,
+    description TEXT,
+    category TEXT CHECK(category IN ('treatment', 'material', 'service', 'other')) DEFAULT 'treatment',
+    price REAL NOT NULL,
+    apply_tax INTEGER DEFAULT 1,
+    active INTEGER DEFAULT 1,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
+  );
 `;

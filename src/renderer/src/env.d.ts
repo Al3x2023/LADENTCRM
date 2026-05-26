@@ -111,6 +111,17 @@ export interface AuditLog {
   user_name?: string;
 }
 
+export interface Treatment {
+  id?: number;
+  name: string;
+  description?: string;
+  category: 'treatment' | 'material' | 'service' | 'other';
+  price: number;
+  apply_tax?: number | boolean;
+  active?: number | boolean;
+  created_at?: string;
+}
+
 interface CustomAPI {
   // Auth
   login: (username: string, password: string) => Promise<{ success: boolean; user?: any; error?: string }>;
@@ -155,6 +166,12 @@ interface CustomAPI {
   createInvoice: (data: { invoice: Partial<Invoice>; items: Partial<InvoiceItem>[] }) => Promise<number>;
   getInvoiceDetails: (invoiceId: number) => Promise<{ invoice: Invoice; items: InvoiceItem[] }>;
   updateInvoiceStatus: (data: { id: number; status: string }) => Promise<void>;
+
+  // Treatments & Products
+  getTreatments: () => Promise<Treatment[]>;
+  addTreatment: (data: { name: string; description?: string; category: string; price: number; apply_tax: boolean }) => Promise<{ success: boolean; id?: number; error?: string }>;
+  updateTreatment: (data: { id: number; name: string; description?: string; price: number; apply_tax: boolean; active: boolean }) => Promise<{ success: boolean }>;
+  deleteTreatment: (id: number) => Promise<number>;
 }
 
 declare global {

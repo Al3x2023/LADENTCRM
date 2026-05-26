@@ -7179,6 +7179,16 @@ const Clock = createLucideIcon("Clock", [
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
+const Copy = createLucideIcon("Copy", [
+  ["rect", { width: "14", height: "14", x: "8", y: "8", rx: "2", ry: "2", key: "17jyea" }],
+  ["path", { d: "M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2", key: "zix9uf" }]
+]);
+/**
+ * @license lucide-react v0.378.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
 const CreditCard = createLucideIcon("CreditCard", [
   ["rect", { width: "20", height: "14", x: "2", y: "5", rx: "2", key: "ynyp8z" }],
   ["line", { x1: "2", x2: "22", y1: "10", y2: "10", key: "1b3vmo" }]
@@ -7472,6 +7482,16 @@ const Shield = createLucideIcon("Shield", [
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
+const SquarePen = createLucideIcon("SquarePen", [
+  ["path", { d: "M12 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7", key: "1m0v6g" }],
+  ["path", { d: "M18.375 2.625a2.121 2.121 0 1 1 3 3L12 15l-4 1 1-4Z", key: "1lpok0" }]
+]);
+/**
+ * @license lucide-react v0.378.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
 const Stethoscope = createLucideIcon("Stethoscope", [
   [
     "path",
@@ -7567,6 +7587,21 @@ const Users = createLucideIcon("Users", [
 const X$1 = createLucideIcon("X", [
   ["path", { d: "M18 6 6 18", key: "1bl5f8" }],
   ["path", { d: "m6 6 12 12", key: "d8bk6v" }]
+]);
+/**
+ * @license lucide-react v0.378.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const Zap = createLucideIcon("Zap", [
+  [
+    "path",
+    {
+      d: "M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z",
+      key: "1xq2db"
+    }
+  ]
 ]);
 function r(e) {
   var t3, f2, n2 = "";
@@ -10206,77 +10241,257 @@ const Input = React.forwardRef(
 );
 Input.displayName = "Input";
 const ClinicalCalculators = () => {
-  const [weight, setWeight] = reactExports.useState("");
-  const [height, setHeight] = reactExports.useState("");
-  const [bmi, setBmi] = reactExports.useState(null);
-  const calculateBmi = () => {
-    const w2 = parseFloat(weight);
-    const h2 = parseFloat(height) / 100;
-    if (w2 && h2) {
-      setBmi(parseFloat((w2 / (h2 * h2)).toFixed(2)));
+  const [activeCalc, setActiveCalc] = reactExports.useState("unitConversion");
+  const [copiedResult, setCopiedResult] = reactExports.useState(false);
+  const [mmolValue, setMmolValue] = reactExports.useState("");
+  const [mgdlValue, setMgdlValue] = reactExports.useState("");
+  const handleUnitConversion = (type, value) => {
+    const num = parseFloat(value);
+    if (type === "mmol") {
+      setMmolValue(value);
+      setMgdlValue((num * 18.01559).toFixed(2));
+    } else {
+      setMgdlValue(value);
+      setMmolValue((num / 18.01559).toFixed(2));
     }
   };
-  const getBmiCategory = (val) => {
-    if (val < 18.5) return { label: "Bajo peso", color: "text-amber-500" };
-    if (val < 25) return { label: "Normal", color: "text-emerald-500" };
-    if (val < 30) return { label: "Sobrepeso", color: "text-amber-500" };
-    return { label: "Obesidad", color: "text-red-500" };
+  const [patientWeight, setPatientWeight] = reactExports.useState("");
+  const [drugDose, setDrugDose] = reactExports.useState("");
+  const [pediatricResult, setPediatricResult] = reactExports.useState("");
+  const calculatePediatricDose = () => {
+    const weight = parseFloat(patientWeight);
+    const dose = parseFloat(drugDose);
+    if (weight > 0 && dose > 0) {
+      const result = (weight * dose).toFixed(2);
+      setPediatricResult(`${result} mg`);
+    }
   };
-  return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "grid grid-cols-1 md:grid-cols-2 gap-6", children: [
-    /* @__PURE__ */ jsxRuntimeExports.jsxs(Card, { children: [
-      /* @__PURE__ */ jsxRuntimeExports.jsx(CardHeader, { children: /* @__PURE__ */ jsxRuntimeExports.jsxs(CardTitle, { className: "flex items-center gap-2", children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsx(Calculator, { className: "w-5 h-5 text-indigo-500" }),
-        " Calculadora de IMC"
-      ] }) }),
-      /* @__PURE__ */ jsxRuntimeExports.jsxs(CardContent, { className: "space-y-4", children: [
+  const [heightCm, setHeightCm] = reactExports.useState("");
+  const [weightKg, setWeightKg] = reactExports.useState("");
+  const [bmiResult, setBmiResult] = reactExports.useState("");
+  const [bmiCategory, setBmiCategory] = reactExports.useState("");
+  const calculateBMI = () => {
+    const h2 = parseFloat(heightCm) / 100;
+    const w2 = parseFloat(weightKg);
+    if (h2 > 0 && w2 > 0) {
+      const bmi = (w2 / (h2 * h2)).toFixed(2);
+      setBmiResult(bmi);
+      if (bmi < "18.5") setBmiCategory("Bajo peso");
+      else if (bmi < "25") setBmiCategory("Normal");
+      else if (bmi < "30") setBmiCategory("Sobrepeso");
+      else setBmiCategory("Obeso");
+    }
+  };
+  const copyToClipboard = (text) => {
+    navigator.clipboard.writeText(text);
+    setCopiedResult(true);
+    setTimeout(() => setCopiedResult(false), 2e3);
+  };
+  return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-6", children: [
+    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-3 mb-6", children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsx(Calculator, { className: "w-6 h-6 text-teal-600" }),
+      /* @__PURE__ */ jsxRuntimeExports.jsx("h3", { className: "text-xl font-bold text-slate-900", children: "Calculadoras Clinicas" })
+    ] }),
+    /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "flex gap-2 flex-wrap", children: [
+      { id: "unitConversion", label: "Conversor de Unidades" },
+      { id: "pediatricDose", label: "Dosis Pediatricas" },
+      { id: "bmi", label: "IMC" }
+    ].map((calc) => /* @__PURE__ */ jsxRuntimeExports.jsx(
+      "button",
+      {
+        onClick: () => setActiveCalc(calc.id),
+        className: cn(
+          "px-4 py-2 rounded-lg text-sm font-medium transition-all",
+          activeCalc === calc.id ? "bg-teal-600 text-white shadow-md" : "bg-slate-100 text-slate-700 hover:bg-slate-200"
+        ),
+        children: calc.label
+      },
+      calc.id
+    )) }),
+    activeCalc === "unitConversion" && /* @__PURE__ */ jsxRuntimeExports.jsxs(Card, { className: "border-teal-200", children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsxs(CardHeader, { children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsx(CardTitle, { className: "text-lg", children: "Conversor de Unidades" }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-xs text-slate-500 mt-1", children: "mg/dL a mmol/l (Glucosa)" })
+      ] }),
+      /* @__PURE__ */ jsxRuntimeExports.jsxs(CardContent, { className: "space-y-6", children: [
         /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "grid grid-cols-2 gap-4", children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx(
-            Input,
-            {
-              label: "Peso (kg)",
-              placeholder: "70",
-              value: weight,
-              onChange: (e) => setWeight(e.target.value)
-            }
-          ),
-          /* @__PURE__ */ jsxRuntimeExports.jsx(
-            Input,
-            {
-              label: "Altura (cm)",
-              placeholder: "175",
-              value: height,
-              onChange: (e) => setHeight(e.target.value)
-            }
-          )
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-2", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx("label", { className: "text-sm font-medium text-slate-700", children: "mg/dL" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex gap-2", children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsx(
+                Input,
+                {
+                  type: "number",
+                  placeholder: "Ej: 100",
+                  value: mgdlValue,
+                  onChange: (e) => handleUnitConversion("mgdl", e.target.value)
+                }
+              ),
+              mgdlValue && /* @__PURE__ */ jsxRuntimeExports.jsx(
+                Button,
+                {
+                  size: "sm",
+                  variant: "ghost",
+                  onClick: () => copyToClipboard(mgdlValue),
+                  className: "h-10 w-10 p-0",
+                  children: /* @__PURE__ */ jsxRuntimeExports.jsx(Copy, { className: "w-4 h-4" })
+                }
+              )
+            ] })
+          ] }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-2", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx("label", { className: "text-sm font-medium text-slate-700", children: "mmol/L" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex gap-2", children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsx(
+                Input,
+                {
+                  type: "number",
+                  placeholder: "Ej: 5.5",
+                  value: mmolValue,
+                  onChange: (e) => handleUnitConversion("mmol", e.target.value)
+                }
+              ),
+              mmolValue && /* @__PURE__ */ jsxRuntimeExports.jsx(
+                Button,
+                {
+                  size: "sm",
+                  variant: "ghost",
+                  onClick: () => copyToClipboard(mmolValue),
+                  className: "h-10 w-10 p-0",
+                  children: /* @__PURE__ */ jsxRuntimeExports.jsx(Copy, { className: "w-4 h-4" })
+                }
+              )
+            ] })
+          ] })
         ] }),
-        /* @__PURE__ */ jsxRuntimeExports.jsx(Button, { onClick: calculateBmi, className: "w-full", children: "Calcular IMC" }),
-        bmi && /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "mt-6 p-6 bg-slate-50 rounded-2xl border border-slate-100 text-center animate-in zoom-in-95 duration-300", children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-sm font-bold text-slate-500 uppercase tracking-widest", children: "Tu IMC es" }),
-          /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-5xl font-black text-slate-900 my-2", children: bmi }),
-          /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: cn("text-lg font-bold", getBmiCategory(bmi).color), children: getBmiCategory(bmi).label })
+        /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "p-3 bg-teal-50 rounded-lg border border-teal-100", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { className: "text-xs text-teal-700", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx("strong", { children: "Formula:" }),
+          " mg/dL ÷ 18.01559 = mmol/L"
+        ] }) })
+      ] })
+    ] }),
+    activeCalc === "pediatricDose" && /* @__PURE__ */ jsxRuntimeExports.jsxs(Card, { className: "border-teal-200", children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsxs(CardHeader, { children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsx(CardTitle, { className: "text-lg", children: "Dosis Pediatricas" }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-xs text-slate-500 mt-1", children: "Calculo de dosis por peso corporal" })
+      ] }),
+      /* @__PURE__ */ jsxRuntimeExports.jsxs(CardContent, { className: "space-y-6", children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "grid grid-cols-2 gap-4", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-2", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx("label", { className: "text-sm font-medium text-slate-700", children: "Peso (kg)" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx(
+              Input,
+              {
+                type: "number",
+                placeholder: "Ej: 20",
+                value: patientWeight,
+                onChange: (e) => setPatientWeight(e.target.value)
+              }
+            )
+          ] }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-2", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx("label", { className: "text-sm font-medium text-slate-700", children: "Dosis Unitaria (mg/kg)" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx(
+              Input,
+              {
+                type: "number",
+                placeholder: "Ej: 10",
+                value: drugDose,
+                onChange: (e) => setDrugDose(e.target.value)
+              }
+            )
+          ] })
+        ] }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx(Button, { onClick: calculatePediatricDose, className: "w-full", children: "Calcular Dosis" }),
+        pediatricResult && /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "p-4 bg-green-50 rounded-lg border border-green-200 space-y-2", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center justify-between", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-sm font-medium text-slate-700", children: "Dosis Total:" }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-2", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx(Badge, { className: "bg-green-600 text-white text-base px-3 py-1", children: pediatricResult }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx(
+              Button,
+              {
+                size: "sm",
+                variant: "ghost",
+                onClick: () => copyToClipboard(pediatricResult),
+                className: "h-8 w-8 p-0",
+                children: /* @__PURE__ */ jsxRuntimeExports.jsx(Copy, { className: "w-4 h-4" })
+              }
+            )
+          ] })
+        ] }) }),
+        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "p-3 bg-amber-50 rounded-lg border border-amber-100 flex gap-2", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx(CircleAlert, { className: "w-4 h-4 text-amber-600 shrink-0 mt-0.5" }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-xs text-amber-700", children: "Estas calculadoras son de apoyo. Siempre verifica los resultados antes de administrar cualquier medicamento." })
         ] })
       ] })
     ] }),
-    /* @__PURE__ */ jsxRuntimeExports.jsxs(Card, { children: [
-      /* @__PURE__ */ jsxRuntimeExports.jsx(CardHeader, { children: /* @__PURE__ */ jsxRuntimeExports.jsxs(CardTitle, { className: "flex items-center gap-2", children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsx(Activity, { className: "w-5 h-5 text-emerald-500" }),
-        " Otras Herramientas"
-      ] }) }),
-      /* @__PURE__ */ jsxRuntimeExports.jsxs(CardContent, { className: "space-y-4", children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "p-4 border border-slate-100 rounded-xl hover:bg-slate-50 transition-colors cursor-pointer group", children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx("h4", { className: "font-bold text-slate-900 group-hover:text-indigo-600 transition-colors", children: "Conversor de Unidades" }),
-          /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-xs text-slate-500", children: "mg/dl a mmol/l y otras conversiones clínicas." })
+    activeCalc === "bmi" && /* @__PURE__ */ jsxRuntimeExports.jsxs(Card, { className: "border-teal-200", children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsxs(CardHeader, { children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsx(CardTitle, { className: "text-lg", children: "Indice de Masa Corporal (IMC)" }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-xs text-slate-500 mt-1", children: "BMI = peso(kg) / altura(m)²" })
+      ] }),
+      /* @__PURE__ */ jsxRuntimeExports.jsxs(CardContent, { className: "space-y-6", children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "grid grid-cols-2 gap-4", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-2", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx("label", { className: "text-sm font-medium text-slate-700", children: "Altura (cm)" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx(
+              Input,
+              {
+                type: "number",
+                placeholder: "Ej: 170",
+                value: heightCm,
+                onChange: (e) => setHeightCm(e.target.value)
+              }
+            )
+          ] }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-2", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx("label", { className: "text-sm font-medium text-slate-700", children: "Peso (kg)" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx(
+              Input,
+              {
+                type: "number",
+                placeholder: "Ej: 70",
+                value: weightKg,
+                onChange: (e) => setWeightKg(e.target.value)
+              }
+            )
+          ] })
         ] }),
-        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "p-4 border border-slate-100 rounded-xl hover:bg-slate-50 transition-colors cursor-pointer group", children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx("h4", { className: "font-bold text-slate-900 group-hover:text-indigo-600 transition-colors", children: "Dosis Pediátricas" }),
-          /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-xs text-slate-500", children: "Cálculo de dosis por peso para pacientes infantiles." })
-        ] }),
-        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "p-4 bg-indigo-50 border border-indigo-100 rounded-xl flex gap-3", children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx(Info, { className: "w-5 h-5 text-indigo-500 shrink-0" }),
-          /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-[10px] text-indigo-900 leading-tight", children: "Estas herramientas son de apoyo. Siempre verifique los resultados antes de emitir un diagnóstico o tratamiento." })
+        /* @__PURE__ */ jsxRuntimeExports.jsx(Button, { onClick: calculateBMI, className: "w-full", children: "Calcular IMC" }),
+        bmiResult && /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-3", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "p-4 bg-blue-50 rounded-lg border border-blue-200", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center justify-between mb-2", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-sm font-medium text-slate-700", children: "IMC:" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-2", children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsx(Badge, { className: "bg-blue-600 text-white text-base px-3 py-1", children: bmiResult }),
+              /* @__PURE__ */ jsxRuntimeExports.jsx(
+                Button,
+                {
+                  size: "sm",
+                  variant: "ghost",
+                  onClick: () => copyToClipboard(bmiResult),
+                  className: "h-8 w-8 p-0",
+                  children: /* @__PURE__ */ jsxRuntimeExports.jsx(Copy, { className: "w-4 h-4" })
+                }
+              )
+            ] })
+          ] }) }),
+          bmiCategory && /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "p-3 bg-slate-100 rounded-lg", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { className: "text-sm", children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "font-medium", children: "Categoria:" }),
+              " ",
+              bmiCategory
+            ] }),
+            /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "text-xs text-slate-600 mt-2 space-y-1", children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsx("p", { children: "Bajo peso: < 18.5" }),
+              /* @__PURE__ */ jsxRuntimeExports.jsx("p", { children: "Normal: 18.5 - 24.9" }),
+              /* @__PURE__ */ jsxRuntimeExports.jsx("p", { children: "Sobrepeso: 25 - 29.9" }),
+              /* @__PURE__ */ jsxRuntimeExports.jsx("p", { children: "Obeso: &geq; 30" })
+            ] })
+          ] })
         ] })
       ] })
-    ] })
+    ] }),
+    copiedResult && /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "fixed bottom-4 right-4 bg-green-600 text-white px-4 py-2 rounded-lg text-sm animate-pulse", children: "Copiado al portapapeles" })
   ] });
 };
 const ToastContext = reactExports.createContext(void 0);
@@ -11348,6 +11563,218 @@ const PrescriptionGenerator = ({ patientId, patientName, onSave }) => {
         ] })
       ] }) })
     ] })
+  ] });
+};
+const TreatmentsTab = ({ onSelectTreatment }) => {
+  const [treatments, setTreatments] = reactExports.useState([]);
+  const [showForm, setShowForm] = reactExports.useState(false);
+  const [editingId, setEditingId] = reactExports.useState(null);
+  const [searchTerm, setSearchTerm] = reactExports.useState("");
+  const [formData, setFormData] = reactExports.useState({
+    name: "",
+    description: "",
+    category: "treatment",
+    price: 0,
+    apply_tax: true
+  });
+  const { showToast } = useToast();
+  reactExports.useEffect(() => {
+    fetchTreatments();
+  }, []);
+  const fetchTreatments = async () => {
+    const data = await window.api.getTreatments();
+    setTreatments(data);
+  };
+  const handleSubmit = async () => {
+    if (!formData.name || !formData.price) {
+      showToast("Nombre y precio son obligatorios", "error");
+      return;
+    }
+    if (editingId) {
+      const result = await window.api.updateTreatment({ id: editingId, name: formData.name || "", description: formData.description || "", price: formData.price || 0, apply_tax: formData.apply_tax, active: true });
+      if (result.success) {
+        showToast("Tratamiento actualizado", "success");
+      }
+    } else {
+      const result = await window.api.addTreatment(formData);
+      if (result.success) {
+        showToast("Tratamiento creado", "success");
+      }
+    }
+    setFormData({ name: "", description: "", category: "treatment", price: 0, apply_tax: true });
+    setEditingId(null);
+    setShowForm(false);
+    fetchTreatments();
+  };
+  const handleDelete = async (id2) => {
+    if (confirm("Estas seguro de eliminar este tratamiento?")) {
+      await window.api.deleteTreatment(id2);
+      showToast("Tratamiento eliminado", "success");
+      fetchTreatments();
+    }
+  };
+  const handleEdit = (treatment) => {
+    setFormData({
+      name: treatment.name || "",
+      description: treatment.description || "",
+      category: treatment.category,
+      price: treatment.price,
+      apply_tax: treatment.apply_tax ? true : false
+    });
+    setEditingId(treatment.id || null);
+    setShowForm(true);
+  };
+  const filteredTreatments = treatments.filter(
+    (t3) => t3.name.toLowerCase().includes(searchTerm.toLowerCase()) || t3.description?.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+  const categories = {
+    treatment: "Tratamiento",
+    material: "Material",
+    service: "Servicio",
+    other: "Otro"
+  };
+  return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-6", children: [
+    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center justify-between", children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "relative flex-1 max-w-md", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+        Input,
+        {
+          placeholder: "Buscar tratamientos...",
+          value: searchTerm,
+          onChange: (e) => setSearchTerm(e.target.value)
+        }
+      ) }),
+      /* @__PURE__ */ jsxRuntimeExports.jsxs(Button, { onClick: () => {
+        setEditingId(null);
+        setFormData({ name: "", description: "", category: "treatment", price: 0, apply_tax: true });
+        setShowForm(true);
+      }, className: "gap-2", children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsx(Plus, { className: "w-4 h-4" }),
+        " Nuevo Tratamiento"
+      ] })
+    ] }),
+    /* @__PURE__ */ jsxRuntimeExports.jsx(Card, { children: /* @__PURE__ */ jsxRuntimeExports.jsxs(Table, { children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsx(TableHeader, { children: /* @__PURE__ */ jsxRuntimeExports.jsxs(TableRow, { children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsx(TableHead, { children: "Nombre" }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx(TableHead, { children: "Categoria" }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx(TableHead, { children: "Descripcion" }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx(TableHead, { className: "text-right", children: "Precio" }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx(TableHead, { children: "IVA" }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx(TableHead, { className: "text-right", children: "Acciones" })
+      ] }) }),
+      /* @__PURE__ */ jsxRuntimeExports.jsx(TableBody, { children: filteredTreatments.length > 0 ? filteredTreatments.map((treatment) => /* @__PURE__ */ jsxRuntimeExports.jsxs(TableRow, { children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsx(TableCell, { className: "font-medium", children: treatment.name }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx(TableCell, { children: /* @__PURE__ */ jsxRuntimeExports.jsx(Badge, { variant: "outline", children: categories[treatment.category] }) }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx(TableCell, { className: "text-sm text-slate-600", children: treatment.description || "-" }),
+        /* @__PURE__ */ jsxRuntimeExports.jsxs(TableCell, { className: "text-right font-semibold text-teal-600", children: [
+          "$",
+          treatment.price.toFixed(2)
+        ] }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx(TableCell, { children: /* @__PURE__ */ jsxRuntimeExports.jsx(Badge, { variant: treatment.apply_tax ? "success" : "secondary", children: treatment.apply_tax ? "Si" : "No" }) }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx(TableCell, { className: "text-right", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex justify-end gap-1", children: [
+          onSelectTreatment && /* @__PURE__ */ jsxRuntimeExports.jsx(
+            Button,
+            {
+              size: "sm",
+              variant: "ghost",
+              onClick: () => onSelectTreatment(treatment),
+              className: "text-teal-600 hover:text-teal-700",
+              children: /* @__PURE__ */ jsxRuntimeExports.jsx(Copy, { className: "w-4 h-4" })
+            }
+          ),
+          /* @__PURE__ */ jsxRuntimeExports.jsx(
+            Button,
+            {
+              size: "sm",
+              variant: "ghost",
+              onClick: () => handleEdit(treatment),
+              children: /* @__PURE__ */ jsxRuntimeExports.jsx(SquarePen, { className: "w-4 h-4" })
+            }
+          ),
+          /* @__PURE__ */ jsxRuntimeExports.jsx(
+            Button,
+            {
+              size: "sm",
+              variant: "ghost",
+              className: "text-red-500",
+              onClick: () => handleDelete(treatment.id),
+              children: /* @__PURE__ */ jsxRuntimeExports.jsx(Trash2, { className: "w-4 h-4" })
+            }
+          )
+        ] }) })
+      ] }, treatment.id)) : /* @__PURE__ */ jsxRuntimeExports.jsx(TableRow, { children: /* @__PURE__ */ jsxRuntimeExports.jsx(TableCell, { colSpan: 6, className: "text-center py-8 text-slate-500", children: "No hay tratamientos registrados." }) }) })
+    ] }) }),
+    /* @__PURE__ */ jsxRuntimeExports.jsx(
+      Modal,
+      {
+        isOpen: showForm,
+        onClose: () => setShowForm(false),
+        title: editingId ? "Editar Tratamiento" : "Nuevo Tratamiento",
+        footer: /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx(Button, { variant: "ghost", onClick: () => setShowForm(false), children: "Cancelar" }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx(Button, { onClick: handleSubmit, children: "Guardar" })
+        ] }),
+        children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-4", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx(
+            Input,
+            {
+              label: "Nombre",
+              value: formData.name || "",
+              onChange: (e) => setFormData({ ...formData, name: e.target.value }),
+              required: true
+            }
+          ),
+          /* @__PURE__ */ jsxRuntimeExports.jsx(
+            Input,
+            {
+              label: "Descripcion",
+              value: formData.description || "",
+              onChange: (e) => setFormData({ ...formData, description: e.target.value })
+            }
+          ),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-2", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx("label", { className: "text-sm font-medium text-slate-700", children: "Categoria" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsxs(
+              "select",
+              {
+                value: formData.category || "treatment",
+                onChange: (e) => setFormData({ ...formData, category: e.target.value }),
+                className: "w-full px-3 py-2 rounded-md border border-slate-300 bg-white text-sm",
+                children: [
+                  /* @__PURE__ */ jsxRuntimeExports.jsx("option", { value: "treatment", children: "Tratamiento" }),
+                  /* @__PURE__ */ jsxRuntimeExports.jsx("option", { value: "material", children: "Material" }),
+                  /* @__PURE__ */ jsxRuntimeExports.jsx("option", { value: "service", children: "Servicio" }),
+                  /* @__PURE__ */ jsxRuntimeExports.jsx("option", { value: "other", children: "Otro" })
+                ]
+              }
+            )
+          ] }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx(
+            Input,
+            {
+              label: "Precio",
+              type: "number",
+              step: "0.01",
+              min: "0",
+              value: formData.price || "",
+              onChange: (e) => setFormData({ ...formData, price: parseFloat(e.target.value) }),
+              required: true
+            }
+          ),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center justify-between p-3 bg-slate-50 rounded-lg", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx("label", { className: "text-sm font-medium text-slate-700", children: "Aplicar IVA" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx(
+              "input",
+              {
+                type: "checkbox",
+                checked: formData.apply_tax,
+                onChange: (e) => setFormData({ ...formData, apply_tax: e.target.checked }),
+                className: "w-5 h-5 text-teal-600 rounded"
+              }
+            )
+          ] })
+        ] })
+      }
+    )
   ] });
 };
 const scriptRel = function detectScriptRel() {
@@ -22183,7 +22610,7 @@ function(t3) {
   var h2 = l2.getContext("2d");
   h2.fillStyle = "#fff", h2.fillRect(0, 0, l2.width, l2.height);
   var f2 = { ignoreMouse: true, ignoreAnimation: true, ignoreDimensions: true }, d2 = this;
-  return (i.canvg ? Promise.resolve(i.canvg) : __vitePreload(() => import("./index.es-D6t7SlLv.js"), true ? [] : void 0, import.meta.url)).catch(function(t4) {
+  return (i.canvg ? Promise.resolve(i.canvg) : __vitePreload(() => import("./index.es-aZGt3MXQ.js"), true ? [] : void 0, import.meta.url)).catch(function(t4) {
     return Promise.reject(new Error("Could not load canvg: " + t4));
   }).then(function(t4) {
     return t4.default ? t4.default : t4;
@@ -23079,21 +23506,45 @@ const ClinicalHistory = ({ patient, onBack }) => {
         ] })
       ] })
     ] }),
-    /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "flex gap-4 border-b border-slate-200", children: tabs.map((tab) => /* @__PURE__ */ jsxRuntimeExports.jsx(
-      "button",
-      {
-        onClick: () => {
-          setActiveTab(tab.id);
-          setIsAddingPrescription(false);
+    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex gap-4 border-b border-slate-200 overflow-x-auto", children: [
+      tabs.map((tab) => /* @__PURE__ */ jsxRuntimeExports.jsx(
+        "button",
+        {
+          onClick: () => {
+            setActiveTab(tab.id);
+            setIsAddingPrescription(false);
+          },
+          className: cn(
+            "pb-4 px-2 text-sm font-bold transition-all whitespace-nowrap",
+            activeTab === tab.id ? "text-teal-600 border-b-2 border-teal-600" : "text-slate-400 hover:text-slate-600"
+          ),
+          children: tab.label
         },
-        className: cn(
-          "pb-4 px-2 text-sm font-bold transition-all",
-          activeTab === tab.id ? "text-teal-600 border-b-2 border-teal-600" : "text-slate-400 hover:text-slate-600"
-        ),
-        children: tab.label
-      },
-      tab.id
-    )) }),
+        tab.id
+      )),
+      /* @__PURE__ */ jsxRuntimeExports.jsx(
+        "button",
+        {
+          onClick: () => setActiveTab("concepts"),
+          className: cn(
+            "pb-4 px-2 text-sm font-bold transition-all whitespace-nowrap",
+            activeTab === "concepts" ? "text-teal-600 border-b-2 border-teal-600" : "text-slate-400 hover:text-slate-600"
+          ),
+          children: "Conceptos"
+        }
+      ),
+      /* @__PURE__ */ jsxRuntimeExports.jsx(
+        "button",
+        {
+          onClick: () => setActiveTab("calculators"),
+          className: cn(
+            "pb-4 px-2 text-sm font-bold transition-all whitespace-nowrap",
+            activeTab === "calculators" ? "text-teal-600 border-b-2 border-teal-600" : "text-slate-400 hover:text-slate-600"
+          ),
+          children: "Calculadoras"
+        }
+      )
+    ] }),
     /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "grid grid-cols-1 lg:grid-cols-3 gap-8", children: [
       /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "lg:col-span-2 space-y-6", children: [
         activeTab === "notes" && /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
@@ -23278,7 +23729,9 @@ const ClinicalHistory = ({ patient, onBack }) => {
           /* @__PURE__ */ jsxRuntimeExports.jsx(Image, { className: "w-12 h-12 text-slate-200 mx-auto mb-4" }),
           /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-slate-500 font-medium", children: "No hay imagenes para este paciente." }),
           /* @__PURE__ */ jsxRuntimeExports.jsx(Button, { variant: "link", onClick: () => handleUploadImage("general"), children: "Subir primera imagen" })
-        ] }) }) })
+        ] }) }) }),
+        activeTab === "concepts" && /* @__PURE__ */ jsxRuntimeExports.jsx(TreatmentsTab, {}),
+        activeTab === "calculators" && /* @__PURE__ */ jsxRuntimeExports.jsx(ClinicalCalculators, {})
       ] }),
       /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-6", children: [
         /* @__PURE__ */ jsxRuntimeExports.jsxs(Card, { children: [
@@ -25720,7 +26173,10 @@ const Appointments = ({ setActiveModule, setSelectedPatient, setPatientsView }) 
 };
 const InvoiceForm = ({ onSave, onCancel }) => {
   const [patients, setPatients] = reactExports.useState([]);
-  const [items, setItems] = reactExports.useState([{ description: "", quantity: 1, unitPrice: 0 }]);
+  const [treatments, setTreatments] = reactExports.useState([]);
+  const [items, setItems] = reactExports.useState([{ description: "", quantity: 1, unitPrice: 0, apply_tax: true }]);
+  const [showTreatmentList, setShowTreatmentList] = reactExports.useState(false);
+  const { showToast } = useToast();
   const [formData, setFormData] = reactExports.useState({
     patient_id: 0,
     issue_date: (/* @__PURE__ */ new Date()).toISOString().split("T")[0],
@@ -25730,33 +26186,64 @@ const InvoiceForm = ({ onSave, onCancel }) => {
   });
   reactExports.useEffect(() => {
     loadPatients();
+    loadTreatments();
   }, []);
   const loadPatients = async () => {
     const data = await window.api.getPatients();
     setPatients(data);
   };
-  const calculateTotal = () => {
+  const loadTreatments = async () => {
+    const data = await window.api.getTreatments();
+    setTreatments(data);
+  };
+  const addTreatmentToItems = (treatment) => {
+    setItems([...items, {
+      description: treatment.name,
+      quantity: 1,
+      unitPrice: treatment.price,
+      apply_tax: treatment.apply_tax ? true : false
+    }]);
+    setShowTreatmentList(false);
+    showToast(`${treatment.name} agregado`, "success");
+  };
+  const calculateSubtotal = () => {
     return items.reduce((sum, item) => sum + item.quantity * item.unitPrice, 0);
+  };
+  const calculateTaxAmount = () => {
+    return items.reduce((sum, item) => {
+      const itemTax = item.apply_tax ? item.quantity * item.unitPrice * 0.16 : 0;
+      return sum + itemTax;
+    }, 0);
+  };
+  const calculateTotal = () => {
+    return calculateSubtotal() + calculateTaxAmount();
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    const total = calculateTotal();
+    const subtotal = calculateSubtotal();
+    const taxAmount = calculateTaxAmount();
+    const total = subtotal + taxAmount;
     const invoiceNumber = `FACT-${Date.now().toString().slice(-6)}`;
     onSave({
       ...formData,
       patient_id: parseInt(formData.patient_id.toString()),
       invoice_number: invoiceNumber,
       total_amount: total,
-      tax_amount: total * 0.16,
+      tax_amount: taxAmount,
       items
     });
   };
   const addItem = () => {
-    setItems([...items, { description: "", quantity: 1, unitPrice: 0 }]);
+    setItems([...items, { description: "", quantity: 1, unitPrice: 0, apply_tax: true }]);
   };
   const updateItem = (index, field, value) => {
     const newItems = [...items];
     newItems[index] = { ...newItems[index], [field]: value };
+    setItems(newItems);
+  };
+  const updateItemTax = (index, apply_tax) => {
+    const newItems = [...items];
+    newItems[index] = { ...newItems[index], apply_tax };
     setItems(newItems);
   };
   const removeItem = (index) => {
@@ -25826,75 +26313,134 @@ const InvoiceForm = ({ onSave, onCancel }) => {
             /* @__PURE__ */ jsxRuntimeExports.jsx(FileText, { className: "w-4 h-4" }),
             " Conceptos"
           ] }),
-          /* @__PURE__ */ jsxRuntimeExports.jsx(Button, { type: "button", size: "sm", variant: "outline", onClick: addItem, children: "+ Agregar" })
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex gap-2", children: [
+            treatments.length > 0 && /* @__PURE__ */ jsxRuntimeExports.jsxs(
+              Button,
+              {
+                type: "button",
+                size: "sm",
+                variant: "outline",
+                onClick: () => setShowTreatmentList(!showTreatmentList),
+                className: "gap-1",
+                children: [
+                  /* @__PURE__ */ jsxRuntimeExports.jsx(Zap, { className: "w-3 h-3" }),
+                  " Rapido"
+                ]
+              }
+            ),
+            /* @__PURE__ */ jsxRuntimeExports.jsx(Button, { type: "button", size: "sm", variant: "outline", onClick: addItem, children: "+ Agregar" })
+          ] })
         ] }),
-        /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "space-y-3", children: items.map((item, index) => /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "grid grid-cols-12 gap-3 items-end", children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "col-span-6", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
-            Input,
-            {
-              placeholder: "Descripción del servicio...",
-              value: item.description,
-              onChange: (e) => updateItem(index, "description", e.target.value),
-              required: true
-            }
-          ) }),
-          /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "col-span-2", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
-            Input,
-            {
-              type: "number",
-              min: "1",
-              value: item.quantity,
-              onChange: (e) => updateItem(index, "quantity", parseInt(e.target.value)),
-              required: true
-            }
-          ) }),
-          /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "col-span-2", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
-            Input,
-            {
-              type: "number",
-              min: "0",
-              step: "0.01",
-              value: item.unitPrice,
-              onChange: (e) => updateItem(index, "unitPrice", parseFloat(e.target.value)),
-              required: true
-            }
-          ) }),
-          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "col-span-1 text-right font-semibold", children: [
-            "$",
-            (item.quantity * item.unitPrice).toFixed(2)
-          ] }),
-          /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "col-span-1", children: items.length > 1 && /* @__PURE__ */ jsxRuntimeExports.jsx(
-            Button,
+        showTreatmentList && treatments.length > 0 && /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "mb-4 p-3 bg-teal-50 rounded-lg border border-teal-200", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-xs font-semibold text-teal-900 mb-2", children: "Tratamientos Rapidos:" }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "flex flex-wrap gap-2", children: treatments.map((t3) => /* @__PURE__ */ jsxRuntimeExports.jsxs(
+            "button",
             {
               type: "button",
-              size: "sm",
-              variant: "ghost",
-              className: "text-red-600",
-              onClick: () => removeItem(index),
-              children: /* @__PURE__ */ jsxRuntimeExports.jsx(X$1, { className: "w-4 h-4" })
-            }
-          ) })
+              onClick: () => addTreatmentToItems(t3),
+              className: "px-3 py-1 bg-white border border-teal-300 rounded-lg text-xs hover:bg-teal-100 transition-colors flex items-center gap-1",
+              children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsx("span", { children: t3.name }),
+                /* @__PURE__ */ jsxRuntimeExports.jsxs(Badge, { className: "bg-teal-600 text-white text-[9px] px-1", children: [
+                  "$",
+                  t3.price.toFixed(2)
+                ] })
+              ]
+            },
+            t3.id
+          )) })
+        ] }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "space-y-3", children: items.map((item, index) => /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-2 p-3 bg-slate-50 rounded-lg", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "grid grid-cols-12 gap-3 items-end", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "col-span-5", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+              Input,
+              {
+                placeholder: "Descripcion del servicio...",
+                value: item.description,
+                onChange: (e) => updateItem(index, "description", e.target.value),
+                required: true
+              }
+            ) }),
+            /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "col-span-2", children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsx("label", { className: "text-xs text-slate-600 font-medium", children: "Cantidad" }),
+              /* @__PURE__ */ jsxRuntimeExports.jsx(
+                Input,
+                {
+                  type: "number",
+                  min: "1",
+                  value: item.quantity,
+                  onChange: (e) => updateItem(index, "quantity", parseInt(e.target.value)),
+                  required: true
+                }
+              )
+            ] }),
+            /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "col-span-2", children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsx("label", { className: "text-xs text-slate-600 font-medium", children: "Precio" }),
+              /* @__PURE__ */ jsxRuntimeExports.jsx(
+                Input,
+                {
+                  type: "number",
+                  min: "0",
+                  step: "0.01",
+                  value: item.unitPrice,
+                  onChange: (e) => updateItem(index, "unitPrice", parseFloat(e.target.value)),
+                  required: true
+                }
+              )
+            ] }),
+            /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "col-span-1 text-right font-semibold text-teal-600", children: [
+              "$",
+              (item.quantity * item.unitPrice).toFixed(2)
+            ] }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "col-span-2", children: items.length > 1 && /* @__PURE__ */ jsxRuntimeExports.jsx(
+              Button,
+              {
+                type: "button",
+                size: "sm",
+                variant: "ghost",
+                className: "text-red-600",
+                onClick: () => removeItem(index),
+                children: /* @__PURE__ */ jsxRuntimeExports.jsx(X$1, { className: "w-4 h-4" })
+              }
+            ) })
+          ] }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-2 pl-1", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx(
+              "input",
+              {
+                type: "checkbox",
+                checked: item.apply_tax || false,
+                onChange: (e) => updateItemTax(index, e.target.checked),
+                className: "w-4 h-4 text-teal-600 rounded"
+              }
+            ),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("label", { className: "text-xs text-slate-600 font-medium", children: "Aplicar IVA (16%)" }),
+            item.apply_tax && /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { className: "text-xs text-teal-600 font-semibold", children: [
+              "+$",
+              (item.quantity * item.unitPrice * 0.16).toFixed(2)
+            ] })
+          ] })
         ] }, index)) }),
-        /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "mt-6 pt-4 border-t border-slate-200", children: /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "flex justify-end", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "w-64 space-y-2", children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "mt-6 pt-4 border-t border-slate-200", children: /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "flex justify-end", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "w-72 space-y-2", children: [
           /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex justify-between text-sm", children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsx("span", { children: "Subtotal:" }),
-            /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-slate-600", children: "Subtotal:" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { className: "font-semibold", children: [
+              "$",
+              calculateSubtotal().toFixed(2)
+            ] })
+          ] }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex justify-between text-sm", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-slate-600", children: "IVA (16%):" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { className: "font-semibold text-amber-600", children: [
+              "$",
+              calculateTaxAmount().toFixed(2)
+            ] })
+          ] }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex justify-between text-lg font-bold text-slate-900 border-t pt-2 border-teal-200", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx("span", { children: "Total:" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { className: "text-teal-600", children: [
               "$",
               calculateTotal().toFixed(2)
-            ] })
-          ] }),
-          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex justify-between text-sm", children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsx("span", { children: "IVA (16%):" }),
-            /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { children: [
-              "$",
-              (calculateTotal() * 0.16).toFixed(2)
-            ] })
-          ] }),
-          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex justify-between text-lg font-bold text-slate-900 border-t pt-2", children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsx("span", { children: "Total:" }),
-            /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { className: "text-indigo-600", children: [
-              "$",
-              (calculateTotal() * 1.16).toFixed(2)
             ] })
           ] })
         ] }) }) })

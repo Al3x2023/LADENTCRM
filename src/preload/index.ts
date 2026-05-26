@@ -46,6 +46,12 @@ const api = {
   createInvoice: (data) => ipcRenderer.invoke('create-invoice', data),
   getInvoiceDetails: (invoiceId) => ipcRenderer.invoke('get-invoice-details', invoiceId),
   updateInvoiceStatus: (data) => ipcRenderer.invoke('update-invoice-status', data),
+
+  // Treatments & Products
+  getTreatments: () => ipcRenderer.invoke('get-treatments'),
+  addTreatment: (data: any) => ipcRenderer.invoke('add-treatment', data),
+  updateTreatment: (data: any) => ipcRenderer.invoke('update-treatment', data),
+  deleteTreatment: (id: number) => ipcRenderer.invoke('delete-treatment', id),
 }
 
 // Use `contextBridge` APIs to expose Electron APIs to

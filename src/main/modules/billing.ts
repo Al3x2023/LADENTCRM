@@ -64,4 +64,37 @@ export function setupBillingHandlers() {
     logAction(null, 'UPDATE_INVOICE_STATUS', 'BILLING', `Estado de factura ${id} cambiado a ${status}`)
     return result.changes
   })
+
+  // Tratamientos y Productos
+  ipcMain.handle('get-treatments', () => {
+    return db.prepare('SELECT * FROM treatments WHERE active = 1 ORDER BY category, name').all()
+  })
+
+  ipcMain.handle('add-treatment', (_, { name, description, category, price, apply_tax }) => {
+    const existing = db.prepare('SELECT id FROM treatments WHERE name = ?').get(name)
+    if (existing) {
+      return { success: false, error: 'El tratamiento ya existe' }
+    }
+    const info = db.prepare(`
+      INSERT INTO treatments (name, description, category, price, apply_tax)
+      VALUES (?, ?, ?, ?, ?)
+    `).run(name, description || '', category || 'treatment', price, apply_tax ? 1 : 0)
+    logAction(null, 'CREATE_TREATMENT', 'BILLING', `Tratamiento creado: ${name}`)
+    return { success: true, id: info.lastInsertRowid }
+  })
+
+  ipcMain.handle('update-treatment', (_, { id, name, description, price, apply_tax, active }) => {
+    db.prepare(`
+      UPDATE treatments SET name = ?, description = ?, price = ?, apply_tax = ?, active = ?
+      WHERE id = ?
+    `).run(name, description, price, apply_tax ? 1 : 0, active ? 1 : 0, id)
+    logAction(null, 'UPDATE_TREATMENT', 'BILLING', `Tratamiento actualizado: ${name}`)
+    return { success: true }
+  })
+
+  ipcMain.handle('delete-treatment', (_, id) => {
+    const result = db.prepare('DELETE FROM treatments WHERE id = ?').run(id)
+    logAction(null, 'DELETE_TREATMENT', 'BILLING', `Tratamiento eliminado ID: ${id}`)
+    return result.changes
+  })
 }

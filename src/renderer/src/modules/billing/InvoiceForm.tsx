@@ -2,8 +2,10 @@ import React, { useState, useEffect } from 'react'
 import { Button } from '../../components/ui/Button'
 import { Input } from '../../components/ui/Input'
 import { Card, CardContent, CardHeader, CardTitle } from '../../components/ui/Card'
-import { X, User, FileText, DollarSign, Calendar } from 'lucide-react'
-import { Patient } from '../../env'
+import { Badge } from '../../components/ui/Badge'
+import { X, User, FileText, DollarSign, Calendar, Zap } from 'lucide-react'
+import { Patient, Treatment } from '../../env'
+import { useToast } from '../../context/ToastContext'
 
 interface InvoiceFormProps {
   onSave: (invoice: any) => void
@@ -12,7 +14,10 @@ interface InvoiceFormProps {
 
 export const InvoiceForm = ({ onSave, onCancel }: InvoiceFormProps) => {
   const [patients, setPatients] = useState<Patient[]>([])
-  const [items, setItems] = useState([{ description: '', quantity: 1, unitPrice: 0 }])
+  const [treatments, setTreatments] = useState<Treatment[]>([])
+  const [items, setItems] = useState([{ description: '', quantity: 1, unitPrice: 0, apply_tax: true }])
+  const [showTreatmentList, setShowTreatmentList] = useState(false)
+  const { showToast } = useToast()
   const [formData, setFormData] = useState({
     patient_id: 0,
     issue_date: new Date().toISOString().split('T')[0],
@@ -23,6 +28,7 @@ export const InvoiceForm = ({ onSave, onCancel }: InvoiceFormProps) => {
 
   useEffect(() => {
     loadPatients()
+    loadTreatments()
   }, [])
 
   const loadPatients = async () => {
@@ -30,31 +36,66 @@ export const InvoiceForm = ({ onSave, onCancel }: InvoiceFormProps) => {
     setPatients(data)
   }
 
-  const calculateTotal = () => {
+  const loadTreatments = async () => {
+    const data = await window.api.getTreatments()
+    setTreatments(data)
+  }
+
+  const addTreatmentToItems = (treatment: Treatment) => {
+    setItems([...items, {
+      description: treatment.name,
+      quantity: 1,
+      unitPrice: treatment.price,
+      apply_tax: treatment.apply_tax ? true : false
+    }])
+    setShowTreatmentList(false)
+    showToast(`${treatment.name} agregado`, 'success')
+  }
+
+  const calculateSubtotal = () => {
     return items.reduce((sum, item) => sum + (item.quantity * item.unitPrice), 0)
+  }
+
+  const calculateTaxAmount = () => {
+    return items.reduce((sum, item) => {
+      const itemTax = item.apply_tax ? (item.quantity * item.unitPrice) * 0.16 : 0
+      return sum + itemTax
+    }, 0)
+  }
+
+  const calculateTotal = () => {
+    return calculateSubtotal() + calculateTaxAmount()
   }
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    const total = calculateTotal()
+    const subtotal = calculateSubtotal()
+    const taxAmount = calculateTaxAmount()
+    const total = subtotal + taxAmount
     const invoiceNumber = `FACT-${Date.now().toString().slice(-6)}`
     onSave({
       ...formData,
       patient_id: parseInt(formData.patient_id.toString()),
       invoice_number: invoiceNumber,
       total_amount: total,
-      tax_amount: total * 0.16,
+      tax_amount: taxAmount,
       items
     })
   }
 
   const addItem = () => {
-    setItems([...items, { description: '', quantity: 1, unitPrice: 0 }])
+    setItems([...items, { description: '', quantity: 1, unitPrice: 0, apply_tax: true }])
   }
 
   const updateItem = (index: number, field: string, value: any) => {
     const newItems = [...items]
     newItems[index] = { ...newItems[index], [field]: value }
+    setItems(newItems)
+  }
+
+  const updateItemTax = (index: number, apply_tax: boolean) => {
+    const newItems = [...items]
+    newItems[index] = { ...newItems[index], apply_tax }
     setItems(newItems)
   }
 
@@ -120,55 +161,107 @@ export const InvoiceForm = ({ onSave, onCancel }: InvoiceFormProps) => {
                 <h4 className="font-semibold text-slate-800 flex items-center gap-2">
                   <FileText className="w-4 h-4" /> Conceptos
                 </h4>
-                <Button type="button" size="sm" variant="outline" onClick={addItem}>
-                  + Agregar
-                </Button>
+                <div className="flex gap-2">
+                  {treatments.length > 0 && (
+                    <Button
+                      type="button"
+                      size="sm"
+                      variant="outline"
+                      onClick={() => setShowTreatmentList(!showTreatmentList)}
+                      className="gap-1"
+                    >
+                      <Zap className="w-3 h-3" /> Rapido
+                    </Button>
+                  )}
+                  <Button type="button" size="sm" variant="outline" onClick={addItem}>
+                    + Agregar
+                  </Button>
+                </div>
               </div>
+
+              {showTreatmentList && treatments.length > 0 && (
+                <div className="mb-4 p-3 bg-teal-50 rounded-lg border border-teal-200">
+                  <p className="text-xs font-semibold text-teal-900 mb-2">Tratamientos Rapidos:</p>
+                  <div className="flex flex-wrap gap-2">
+                    {treatments.map(t => (
+                      <button
+                        key={t.id}
+                        type="button"
+                        onClick={() => addTreatmentToItems(t)}
+                        className="px-3 py-1 bg-white border border-teal-300 rounded-lg text-xs hover:bg-teal-100 transition-colors flex items-center gap-1"
+                      >
+                        <span>{t.name}</span>
+                        <Badge className="bg-teal-600 text-white text-[9px] px-1">
+                          ${t.price.toFixed(2)}
+                        </Badge>
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              )}
 
               <div className="space-y-3">
                 {items.map((item, index) => (
-                  <div key={index} className="grid grid-cols-12 gap-3 items-end">
-                    <div className="col-span-6">
-                      <Input
-                        placeholder="Descripción del servicio..."
-                        value={item.description}
-                        onChange={(e) => updateItem(index, 'description', e.target.value)}
-                        required
+                  <div key={index} className="space-y-2 p-3 bg-slate-50 rounded-lg">
+                    <div className="grid grid-cols-12 gap-3 items-end">
+                      <div className="col-span-5">
+                        <Input
+                          placeholder="Descripcion del servicio..."
+                          value={item.description}
+                          onChange={(e) => updateItem(index, 'description', e.target.value)}
+                          required
+                        />
+                      </div>
+                      <div className="col-span-2">
+                        <label className="text-xs text-slate-600 font-medium">Cantidad</label>
+                        <Input
+                          type="number"
+                          min="1"
+                          value={item.quantity}
+                          onChange={(e) => updateItem(index, 'quantity', parseInt(e.target.value))}
+                          required
+                        />
+                      </div>
+                      <div className="col-span-2">
+                        <label className="text-xs text-slate-600 font-medium">Precio</label>
+                        <Input
+                          type="number"
+                          min="0"
+                          step="0.01"
+                          value={item.unitPrice}
+                          onChange={(e) => updateItem(index, 'unitPrice', parseFloat(e.target.value))}
+                          required
+                        />
+                      </div>
+                      <div className="col-span-1 text-right font-semibold text-teal-600">
+                        ${(item.quantity * item.unitPrice).toFixed(2)}
+                      </div>
+                      <div className="col-span-2">
+                        {items.length > 1 && (
+                          <Button
+                            type="button"
+                            size="sm"
+                            variant="ghost"
+                            className="text-red-600"
+                            onClick={() => removeItem(index)}
+                          >
+                            <X className="w-4 h-4" />
+                          </Button>
+                        )}
+                      </div>
+                    </div>
+                    <div className="flex items-center gap-2 pl-1">
+                      <input
+                        type="checkbox"
+                        checked={item.apply_tax || false}
+                        onChange={(e) => updateItemTax(index, e.target.checked)}
+                        className="w-4 h-4 text-teal-600 rounded"
                       />
-                    </div>
-                    <div className="col-span-2">
-                      <Input
-                        type="number"
-                        min="1"
-                        value={item.quantity}
-                        onChange={(e) => updateItem(index, 'quantity', parseInt(e.target.value))}
-                        required
-                      />
-                    </div>
-                    <div className="col-span-2">
-                      <Input
-                        type="number"
-                        min="0"
-                        step="0.01"
-                        value={item.unitPrice}
-                        onChange={(e) => updateItem(index, 'unitPrice', parseFloat(e.target.value))}
-                        required
-                      />
-                    </div>
-                    <div className="col-span-1 text-right font-semibold">
-                      ${(item.quantity * item.unitPrice).toFixed(2)}
-                    </div>
-                    <div className="col-span-1">
-                      {items.length > 1 && (
-                        <Button 
-                          type="button" 
-                          size="sm" 
-                          variant="ghost" 
-                          className="text-red-600"
-                          onClick={() => removeItem(index)}
-                        >
-                          <X className="w-4 h-4" />
-                        </Button>
+                      <label className="text-xs text-slate-600 font-medium">Aplicar IVA (16%)</label>
+                      {item.apply_tax && (
+                        <span className="text-xs text-teal-600 font-semibold">
+                          +${((item.quantity * item.unitPrice) * 0.16).toFixed(2)}
+                        </span>
                       )}
                     </div>
                   </div>
@@ -177,18 +270,18 @@ export const InvoiceForm = ({ onSave, onCancel }: InvoiceFormProps) => {
 
               <div className="mt-6 pt-4 border-t border-slate-200">
                 <div className="flex justify-end">
-                  <div className="w-64 space-y-2">
+                  <div className="w-72 space-y-2">
                     <div className="flex justify-between text-sm">
-                      <span>Subtotal:</span>
-                      <span>${calculateTotal().toFixed(2)}</span>
+                      <span className="text-slate-600">Subtotal:</span>
+                      <span className="font-semibold">${calculateSubtotal().toFixed(2)}</span>
                     </div>
                     <div className="flex justify-between text-sm">
-                      <span>IVA (16%):</span>
-                      <span>${(calculateTotal() * 0.16).toFixed(2)}</span>
+                      <span className="text-slate-600">IVA (16%):</span>
+                      <span className="font-semibold text-amber-600">${calculateTaxAmount().toFixed(2)}</span>
                     </div>
-                    <div className="flex justify-between text-lg font-bold text-slate-900 border-t pt-2">
+                    <div className="flex justify-between text-lg font-bold text-slate-900 border-t pt-2 border-teal-200">
                       <span>Total:</span>
-                      <span className="text-indigo-600">${(calculateTotal() * 1.16).toFixed(2)}</span>
+                      <span className="text-teal-600">${calculateTotal().toFixed(2)}</span>
                     </div>
                   </div>
                 </div>

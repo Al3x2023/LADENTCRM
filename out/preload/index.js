@@ -39,7 +39,12 @@ const api = {
   getInvoices: (patientId) => electron.ipcRenderer.invoke("get-invoices", patientId),
   createInvoice: (data) => electron.ipcRenderer.invoke("create-invoice", data),
   getInvoiceDetails: (invoiceId) => electron.ipcRenderer.invoke("get-invoice-details", invoiceId),
-  updateInvoiceStatus: (data) => electron.ipcRenderer.invoke("update-invoice-status", data)
+  updateInvoiceStatus: (data) => electron.ipcRenderer.invoke("update-invoice-status", data),
+  // Treatments & Products
+  getTreatments: () => electron.ipcRenderer.invoke("get-treatments"),
+  addTreatment: (data) => electron.ipcRenderer.invoke("add-treatment", data),
+  updateTreatment: (data) => electron.ipcRenderer.invoke("update-treatment", data),
+  deleteTreatment: (id) => electron.ipcRenderer.invoke("delete-treatment", id)
 };
 if (process.contextIsolated) {
   try {
