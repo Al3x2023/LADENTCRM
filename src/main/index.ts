@@ -1,4 +1,4 @@
-import { app, shell, BrowserWindow } from 'electron'
+import { app, shell, BrowserWindow, dialog } from 'electron'
 import { join } from 'path'
 import { electronApp, optimizer, is } from '@electron-toolkit/utils'
 import { initDatabase } from './db/database'
@@ -38,27 +38,33 @@ function createWindow(): void {
 }
 
 app.whenReady().then(() => {
-  electronApp.setAppUserModelId('com.liadent.crm')
+  try {
+    electronApp.setAppUserModelId('com.liadent.crm')
 
-  app.on('browser-window-created', (_, window) => {
-    optimizer.watchWindowShortcuts(window)
-  })
+    app.on('browser-window-created', (_, window) => {
+      optimizer.watchWindowShortcuts(window)
+    })
 
-  // Initialize Database
-  initDatabase()
+    // Initialize Database
+    initDatabase()
 
-  // Setup IPC Handlers
-  setupAuthHandlers()
-  setupPatientsHandlers()
-  setupAppointmentsHandlers()
-  setupClinicalHandlers()
-  setupBillingHandlers()
+    // Setup IPC Handlers
+    setupAuthHandlers()
+    setupPatientsHandlers()
+    setupAppointmentsHandlers()
+    setupClinicalHandlers()
+    setupBillingHandlers()
 
-  createWindow()
+    createWindow()
 
-  app.on('activate', function () {
-    if (BrowserWindow.getAllWindows().length === 0) createWindow()
-  })
+    app.on('activate', function () {
+      if (BrowserWindow.getAllWindows().length === 0) createWindow()
+    })
+  } catch (error) {
+    console.error('Error during app initialization:', error)
+    dialog.showErrorBox('Error de Inicialización', `No se pudo iniciar la aplicación: ${error}`)
+    app.quit()
+  }
 })
 
 app.on('window-all-closed', () => {

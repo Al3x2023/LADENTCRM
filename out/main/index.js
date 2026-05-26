@@ -194,79 +194,84 @@ function verifyPassword(password, hash) {
 let db;
 const IMAGES_DIR = path.join(electron.app.getPath("userData"), "patient_images");
 function initDatabase() {
-  const dbPath = path.join(electron.app.getPath("userData"), "liadent.db");
-  if (!fs.existsSync(IMAGES_DIR)) {
-    fs.mkdirSync(IMAGES_DIR, { recursive: true });
-  }
-  db = new Database(dbPath);
-  db.pragma("foreign_keys = ON");
-  db.exec(SCHEMA);
-  const adminExists = db.prepare("SELECT id FROM users WHERE role = ?").get("admin");
-  if (!adminExists) {
-    const hashedPassword = hashPassword("admin123");
-    db.prepare(`
-      INSERT INTO users (username, password_hash, full_name, role)
-      VALUES (?, ?, ?, ?)
-    `).run("admin", hashedPassword, "Administrador Sistema", "admin");
-  }
-  const treatmentsCount = db.prepare("SELECT COUNT(*) as count FROM treatments").get();
-  if (treatmentsCount.count === 0) {
-    const treatments = [
-      // SERVICIOS DIAGNOSTICOS
-      ["Radiografia Panoramica", "Imaging", "service", 50, true],
-      ["Radiografia Periapical", "Imaging", "service", 25, true],
-      ["Tomografia Cone Beam CBCT", "Imaging", "service", 150, true],
-      // TRATAMIENTOS BASICOS
-      ["Limpieza Profunda (Tartrectomia)", "Preventiva", "treatment", 100, true],
-      ["Profilaxis Dental", "Preventiva", "treatment", 50, true],
-      ["Aplicacion de Fluor", "Preventiva", "treatment", 30, true],
-      ["Sellante de Fosas y Fisuras", "Preventiva", "treatment", 40, true],
-      // ENDODONCIA
-      ["Tratamiento de Conducto Unirradicular", "Endodoncia", "treatment", 300, true],
-      ["Tratamiento de Conducto Birradicular", "Endodoncia", "treatment", 400, true],
-      ["Tratamiento de Conducto Multirradicular", "Endodoncia", "treatment", 500, true],
-      ["Retratamiento de Conducto", "Endodoncia", "treatment", 350, true],
-      // PERIODONCIA
-      ["Curetaje Subgingival (por cuadrante)", "Periodoncia", "treatment", 150, true],
-      ["Destartaje Subgingival", "Periodoncia", "treatment", 100, true],
-      ["Injerto de Tejido Gingival", "Periodoncia", "treatment", 500, true],
-      // CIRUGIA
-      ["Extraccion Dental Simple", "Cirugia", "treatment", 200, true],
-      ["Extraccion Dental Compleja/Impactada", "Cirugia", "treatment", 400, true],
-      ["Extraccion de Cordales", "Cirugia", "treatment", 350, true],
-      ["Elevacion de Seno Maxilar", "Cirugia", "treatment", 600, true],
-      // IMPLANTOLOGIA
-      ["Colocacion de Implante Dental", "Implantologia", "treatment", 800, true],
-      ["Carga Inmediata de Implante", "Implantologia", "treatment", 900, true],
-      ["Regeneracion Osea Guiada", "Implantologia", "treatment", 700, true],
-      // PROTESIS
-      ["Corona Dental (Porcelana)", "Protesis", "treatment", 600, true],
-      ["Puente Dental (3 elementos)", "Protesis", "treatment", 1200, true],
-      ["Protesis Parcial Removible", "Protesis", "treatment", 500, true],
-      ["Protesis Total", "Protesis", "treatment", 1e3, true],
-      ["Incrustacion Dental", "Protesis", "treatment", 400, true],
-      // ORTODONCIA
-      ["Aparatologia Fija Completa", "Ortodoncia", "treatment", 3e3, true],
-      ["Aparatologia Removible", "Ortodoncia", "treatment", 800, true],
-      ["Consulta Ortodoncia", "Ortodoncia", "treatment", 150, true],
-      // BLANQUEAMIENTO
-      ["Blanqueamiento en Consultorio", "Estetica", "treatment", 300, true],
-      ["Kit Blanqueamiento Casero", "Estetica", "treatment", 200, true],
-      // MATERIALES
-      ["Composite Restauracion", "Material", "material", 80, false],
-      ["Ionómero de Vidrio", "Material", "material", 60, false],
-      ["Amalgama Dental", "Material", "material", 50, false],
-      ["Cemento Definitivo", "Material", "material", 40, false]
-    ];
-    const stmt = db.prepare(`
-      INSERT INTO treatments (name, description, category, price, apply_tax)
-      VALUES (?, ?, ?, ?, ?)
-    `);
-    for (const t of treatments) {
-      stmt.run(...t);
+  try {
+    const dbPath = path.join(electron.app.getPath("userData"), "liadent.db");
+    if (!fs.existsSync(IMAGES_DIR)) {
+      fs.mkdirSync(IMAGES_DIR, { recursive: true });
     }
+    db = new Database(dbPath);
+    db.pragma("foreign_keys = ON");
+    db.exec(SCHEMA);
+    const adminExists = db.prepare("SELECT id FROM users WHERE role = ?").get("admin");
+    if (!adminExists) {
+      const hashedPassword = hashPassword("admin123");
+      db.prepare(`
+        INSERT INTO users (username, password_hash, full_name, role)
+        VALUES (?, ?, ?, ?)
+      `).run("admin", hashedPassword, "Administrador Sistema", "admin");
+    }
+    const treatmentsCount = db.prepare("SELECT COUNT(*) as count FROM treatments").get();
+    if (treatmentsCount.count === 0) {
+      const treatments = [
+        // SERVICIOS DIAGNOSTICOS
+        ["Radiografia Panoramica", "service", 50, 1],
+        ["Radiografia Periapical", "service", 25, 1],
+        ["Tomografia Cone Beam CBCT", "service", 150, 1],
+        // TRATAMIENTOS BASICOS
+        ["Limpieza Profunda (Tartrectomia)", "treatment", 100, 1],
+        ["Profilaxis Dental", "treatment", 50, 1],
+        ["Aplicacion de Fluor", "treatment", 30, 1],
+        ["Sellante de Fosas y Fisuras", "treatment", 40, 1],
+        // ENDODONCIA
+        ["Tratamiento de Conducto Unirradicular", "treatment", 300, 1],
+        ["Tratamiento de Conducto Birradicular", "treatment", 400, 1],
+        ["Tratamiento de Conducto Multirradicular", "treatment", 500, 1],
+        ["Retratamiento de Conducto", "treatment", 350, 1],
+        // PERIODONCIA
+        ["Curetaje Subgingival (por cuadrante)", "treatment", 150, 1],
+        ["Destartaje Subgingival", "treatment", 100, 1],
+        ["Injerto de Tejido Gingival", "treatment", 500, 1],
+        // CIRUGIA
+        ["Extraccion Dental Simple", "treatment", 200, 1],
+        ["Extraccion Dental Compleja/Impactada", "treatment", 400, 1],
+        ["Extraccion de Cordales", "treatment", 350, 1],
+        ["Elevacion de Seno Maxilar", "treatment", 600, 1],
+        // IMPLANTOLOGIA
+        ["Colocacion de Implante Dental", "treatment", 800, 1],
+        ["Carga Inmediata de Implante", "treatment", 900, 1],
+        ["Regeneracion Osea Guiada", "treatment", 700, 1],
+        // PROTESIS
+        ["Corona Dental (Porcelana)", "treatment", 600, 1],
+        ["Puente Dental (3 elementos)", "treatment", 1200, 1],
+        ["Protesis Parcial Removible", "treatment", 500, 1],
+        ["Protesis Total", "treatment", 1e3, 1],
+        ["Incrustacion Dental", "treatment", 400, 1],
+        // ORTODONCIA
+        ["Aparatologia Fija Completa", "treatment", 3e3, 1],
+        ["Aparatologia Removible", "treatment", 800, 1],
+        ["Consulta Ortodoncia", "treatment", 150, 1],
+        // BLANQUEAMIENTO
+        ["Blanqueamiento en Consultorio", "treatment", 300, 1],
+        ["Kit Blanqueamiento Casero", "treatment", 200, 1],
+        // MATERIALES
+        ["Composite Restauracion", "material", 80, 0],
+        ["Ionómero de Vidrio", "material", 60, 0],
+        ["Amalgama Dental", "material", 50, 0],
+        ["Cemento Definitivo", "material", 40, 0]
+      ];
+      const stmt = db.prepare(`
+        INSERT INTO treatments (name, category, price, apply_tax)
+        VALUES (?, ?, ?, ?)
+      `);
+      for (const t of treatments) {
+        stmt.run(...t);
+      }
+    }
+    return db;
+  } catch (error) {
+    console.error("Error initializing database:", error);
+    throw error;
   }
-  return db;
 }
 function getDb() {
   if (!db) {
@@ -720,20 +725,26 @@ function createWindow() {
   }
 }
 electron.app.whenReady().then(() => {
-  utils.electronApp.setAppUserModelId("com.liadent.crm");
-  electron.app.on("browser-window-created", (_, window) => {
-    utils.optimizer.watchWindowShortcuts(window);
-  });
-  initDatabase();
-  setupAuthHandlers();
-  setupPatientsHandlers();
-  setupAppointmentsHandlers();
-  setupClinicalHandlers();
-  setupBillingHandlers();
-  createWindow();
-  electron.app.on("activate", function() {
-    if (electron.BrowserWindow.getAllWindows().length === 0) createWindow();
-  });
+  try {
+    utils.electronApp.setAppUserModelId("com.liadent.crm");
+    electron.app.on("browser-window-created", (_, window) => {
+      utils.optimizer.watchWindowShortcuts(window);
+    });
+    initDatabase();
+    setupAuthHandlers();
+    setupPatientsHandlers();
+    setupAppointmentsHandlers();
+    setupClinicalHandlers();
+    setupBillingHandlers();
+    createWindow();
+    electron.app.on("activate", function() {
+      if (electron.BrowserWindow.getAllWindows().length === 0) createWindow();
+    });
+  } catch (error) {
+    console.error("Error during app initialization:", error);
+    electron.dialog.showErrorBox("Error de Inicialización", `No se pudo iniciar la aplicación: ${error}`);
+    electron.app.quit();
+  }
 });
 electron.app.on("window-all-closed", () => {
   if (process.platform !== "darwin") {
