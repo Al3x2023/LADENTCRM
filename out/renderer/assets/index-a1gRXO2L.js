@@ -27609,6 +27609,3 @@ export {
   commonjsGlobal as c,
   getDefaultExportFromCjs as g
 };
-
-
-export { c, _, g }
